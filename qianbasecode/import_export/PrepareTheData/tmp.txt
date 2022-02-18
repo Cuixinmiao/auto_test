@@ -1,0 +1,1 @@
+IMPORT INTO bankdb.accounts AVRO DATA ('nodelocal://2/simple-sorted2.json') WITH data_as_json_records,strict_validation,records_terminated_by = e'-',schema='{"type": "record","name": "simple","fields":[{ "name": "i", "type": "int" },{ "name": "s", "type": "string" },{ "name": "c", "type": "int"}]}';

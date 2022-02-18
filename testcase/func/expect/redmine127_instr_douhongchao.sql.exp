@@ -1,0 +1,1869 @@
+drop table if exists cs_instr
+
+drop table if exists cs_instri
+
+create table cs_instr (id int,name string,soc decimal ,socdate date,bt bytes default '1'::bytes)
+
+insert into cs_instr values(1,'xiaoming',50.0,date'2020-08-01')
+
+insert into cs_instr values(2,'zhangsanbufulisi',100,date'2020-08-02')
+
+insert into cs_instr values(3,'zheshiganshane',79.5,null)
+
+insert into cs_instr values(4, null,80.5,date'2020-08-14')
+
+insert into cs_instr values(5,'shuilaishuizhidao',50.1,date'2020-08-19')
+
+insert into cs_instr values(6,'aishuaishuai',null,date'2020-09-10')
+
+insert into cs_instr values(74,'a5bushia6',77.1,date'2020-08-15')
+
+insert into cs_instr values(55,'****auddaua$',60.1,date'2020-08-20')
+
+insert into cs_instr values(199,'aishuishusi',70.1,date'2020-08-29')
+
+insert into cs_instr values(null,'buzhiduicuoai',88.1,date'2020-08-30')
+
+create table cs_instri (id int,fname string)
+
+insert into cs_instri values  (1,'a')
+
+insert into cs_instri values (2,'b')
+
+insert into cs_instri values (3,'c')
+
+insert into cs_instri values (4,'d')
+
+insert into cs_instri values (5,'e')
+
+insert into cs_instri values (6,'f')
+
+insert into cs_instri values (7,'g')
+select instr('helloworld') from dual
+unknown signature: instr(string)
+
+
+select instr('helloworld','he') from dual
+instr('helloworld','he')
+1
+
+select instr('helloworld','nihaoya') from dual
+instr('helloworld','nihaoya')
+0
+
+select instr('helloworld%','%') from dual
+instr('helloworld%','%')
+11
+
+select instr('helloworld!','!') from dual
+instr('helloworld!','!')
+11
+
+select instr('helloworld@','@') from dual
+instr('helloworld@','@')
+11
+
+select instr('helloworld#','#') from dual
+instr('helloworld#','#')
+11
+
+select instr('helloworld$','$') from dual
+instr('helloworld$','$')
+11
+
+select instr('helloworld￥','￥') from dual
+instr('helloworld￥','￥')
+11
+
+select instr('helloworld%','%') from dual
+instr('helloworld%','%')
+11
+
+select instr('helloworld^','^') from dual
+instr('helloworld^','^')
+11
+
+select instr('helloworld&','&') from dual
+instr('helloworld&','&')
+11
+
+select instr('helloworld*','*') from dual
+instr('helloworld*','*')
+11
+
+select instr('helloworld(','(') from dual
+instr('helloworld(','(')
+11
+
+select instr('helloworld)',')') from dual
+instr('helloworld)',')')
+11
+
+select instr('helloworld-','-') from dual
+instr('helloworld-','-')
+11
+
+select instr('helloworld+','+') from dual
+instr('helloworld+','+')
+11
+
+select instr('helloworld=','=') from dual
+instr('helloworld=','=')
+11
+
+select instr('helloworld{','{') from dual
+instr('helloworld{','{')
+11
+
+select instr('helloworld}','}') from dual
+instr('helloworld}','}')
+11
+
+select instr('helloworld【','【') from dual
+instr('helloworld【','【')
+11
+
+select instr('helloworld】','】') from dual
+instr('helloworld】','】')
+11
+
+select instr('helloworld[','[') from dual
+instr('helloworld[','[')
+11
+
+select instr('helloworld]',']') from dual
+instr('helloworld]',']')
+11
+
+select instr('helloworld\','\') from dual
+instr('helloworld\','\')
+11
+
+select instr('helloworld|','|') from dual
+instr('helloworld|','|')
+11
+
+select instr('helloworld:',':') from dual
+instr('helloworld:',':')
+11
+select instr('helloworld
+lexical error: unterminated string
+DETAIL:  source SQL:
+select instr('helloworld
+             ^
+HINT:  try \hf instr
+
+','
+at or near ",": syntax error
+DETAIL:  source SQL:
+','
+^
+
+') from dual
+lexical error: unterminated string
+DETAIL:  source SQL:
+') from dual
+^
+
+
+select instr('helloworld?','?') from dual
+instr('helloworld?','?')
+11
+
+select instr('helloworld/','/') from dual
+instr('helloworld/','/')
+11
+
+select instr('helloworld>','>') from dual
+instr('helloworld>','>')
+11
+
+select instr('helloworld<','<') from dual
+instr('helloworld<','<')
+11
+
+select instr('helloworld','o',2) from dual
+instr('helloworld','o',2)
+5
+
+select instr('helloworld','o',-2) from dual
+instr('helloworld','o',-2)
+7
+
+select instr('helloworld','o',0) from dual
+instr('helloworld','o',0)
+0
+
+select instr('helloworld','o',2,1) from dual
+instr('helloworld','o',2,1)
+5
+select instr('helloworld','o',2,0) from dual
+instr(): argument '0' is out of range
+
+select instr('helloworld','o',2,-1) from dual
+instr(): argument '-1' is out of range
+
+select instr('helloworld','hello',2,-1) from dual
+instr(): argument '-1' is out of range
+
+select instr(date'2020-09-10','20',1,1) from dual
+unknown signature: instr(date, string, int, int)
+
+select instr(date'2020-09-10','20','1','1') from dual
+unknown signature: instr(date, string, string, string)
+
+select instr(date'2020-09-10',20,'1','1') from dual
+unknown signature: instr(date, int, string, string)
+
+select instr(date'2020-09-10',20,'-1','1') from dual
+unknown signature: instr(date, int, string, string)
+
+select instr(date'2020-09-10',20,'-1.5','1.8') from dual
+unknown signature: instr(date, int, string, string)
+
+select instr(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instr(date, decimal, string, string)
+
+select instr(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instr(date, decimal, string, string)
+
+select instr(now(),sysdate,1,1) from dual
+instr(): unknown signature: now() (desired <string>)
+
+select instr(date'2020-09-10',20:bytes,1,1) from dual
+at or near ":": syntax error
+DETAIL:  source SQL:
+select instr(date'2020-09-10',20:bytes,1,1) from dual
+                                ^
+HINT:  try \hf instr
+
+select instr(date'2020-09-10',null,1,1) from dual
+unknown signature: instr(date, unknown, int, int)
+
+select instr(date'2020-09-10',20,null,1) from dual
+unknown signature: instr(date, int, unknown, int)
+
+select instr(date'2020-09-10',20,1,null) from dual
+unknown signature: instr(date, int, int, unknown)
+
+select instr(date'2020-09-10',null,null,null) from dual
+unknown signature: instr(date, unknown, unknown, unknown)
+
+select instr('2020-09-10',20,1.5,2) from dual
+unknown signature: instr(string, int, decimal, int)
+
+select instr('2020-09-10',20.0,1.5,2) from dual
+unknown signature: instr(string, decimal, decimal, int)
+
+select instr('2020-09-10 23:11:11',date'2020-09-10',1,1) from dual
+unknown signature: instr(string, date, int, int)
+
+select instr('2020-09-10','2020'::bytes,1,1) from dual
+unknown signature: instr(string, bytes, int, int)
+
+select instr('2020-09-10',null,1.5,2) from dual
+unknown signature: instr(string, unknown, decimal, int)
+
+select instr('2020-09-10',20,null,2) from dual
+unknown signature: instr(string, int, unknown, int)
+
+select instr('2020-09-10',20,1,null) from dual
+unknown signature: instr(string, int, int, unknown)
+
+select instr('你好2022')
+unknown signature: instr(string)
+
+
+select instr('2020-09-10',null,null,null) from dual
+instr('2020-09-10',NULL,NULL,NULL)
+None
+select instr(1.345,1.3,1,1) from dual
+unknown signature: instr(decimal, decimal, int, int)
+
+select instr(1.345,'1.3',1,1) from dual
+unknown signature: instr(decimal, string, int, int)
+
+select instr(1.345,'1.3',-1,1) from dual
+unknown signature: instr(decimal, string, int, int)
+
+select instr(2000.00,date'2000',1,1) from dual
+instr(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Month Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year ]
+
+select instr(1.345,'1'::bytes,1,1) from dual
+unknown signature: instr(decimal, bytes, int, int)
+
+select instr('1234'::bytes,'1',1,1 ) from dual
+unknown signature: instr(bytes, string, int, int)
+
+select instr('2020-02-01'::bytes,date'2020',1,1 ) from dual
+instr(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Month Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year ]
+
+select instr('1.678'::bytes,1.6,1,1) from dual
+unknown signature: instr(bytes, decimal, int, int)
+
+select instr('你好2020'::bytes,'20',1,1) from dual
+unknown signature: instr(bytes, string, int, int)
+
+select instr (id,1,1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,1,-1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,'1',1,1) from cs_instr
+unknown signature: instr(int, string, int, int)
+
+
+select instr(name,'a',1,1) from cs_instr
+instr(name,'a',1,1)
+3
+3
+8
+None
+6
+1
+1
+5
+1
+12
+
+select instr(name,'a',-1,1) from cs_instr
+instr(name,'a',-1,1)
+3
+7
+12
+None
+16
+11
+8
+11
+1
+12
+
+select instr(name,'$',-1,1) from cs_instr
+instr(name,'$',-1,1)
+0
+0
+0
+None
+0
+0
+0
+12
+0
+0
+
+select instr(name,'*',1,1) from cs_instr
+instr(name,'*',1,1)
+0
+0
+0
+None
+0
+0
+0
+1
+0
+0
+select instr(name,1,1,1) from cs_instr
+unknown signature: instr(string, int, int, int)
+
+
+select instr(name,'$','-1','1') from cs_instr
+instr(name,'$','-1','1')
+0
+0
+0
+None
+0
+0
+0
+12
+0
+0
+select instr(name,'$','-1.5','1.5') from cs_instr
+unknown signature: instr(string, string, string, string)
+
+select instr(soc,0.5,1,1) from cs_instr
+unknown signature: instr(decimal, decimal, int, int)
+
+select instr(soc,0.5,-1,1) from cs_instr
+unknown signature: instr(decimal, decimal, int, int)
+
+select instr(soc,'0.5',-1,1) from cs_instr
+unknown signature: instr(decimal, string, int, int)
+
+select instr(socdate,'20',1,1)  from cs_instr
+unknown signature: instr(date, string, int, int)
+
+select instr(socdate,'20',1,1) from cs_instr
+unknown signature: instr(date, string, int, int)
+
+select instr(socdate,20,'-1.5','1.9') from cs_instr
+unknown signature: instr(date, int, string, string)
+
+select instr(bt,1,1,1) from cs_instr
+unknown signature: instr(bytes, int, int, int)
+
+select instr(bt,1,1,1) from cs_instr
+unknown signature: instr(bytes, int, int, int)
+
+select instr(null,1,1,1) from cs_instr
+unknown signature: instr(unknown, int, int, int)
+
+
+select instr(null,null,null,null) from cs_instr
+instr(NULL,NULL,NULL,NULL)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+insert into cs_instr (id,soc)  select instr('hello world','he',1,1),instr('hello world','wo',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instr('hello world','he',1,1),instr('hello world','1',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instr('hello world','he',1,1),instr('hello world','1',-1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr(id,soc) values(instr('nihao','hao',1,1),instr('nihao','hao',1,1))
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into cs_instr(id) values(instr('nihao','hao'))
+update cs_instr set id=instr('hellowolrd',i'he',1,1) where instr(name,'a',1,1)=1
+instr(): type "i" does not exist
+
+
+delete from cs_instr where instr(name,'a',1,1)=1
+delete from cs_instr where substr(name,'a',instr(name,'a')) in (select pname from cs_instri)
+unsupported comparison operator: substr(name, 'a', instr(name, 'a')) IN (SELECT pname FROM cs_instri): unknown signature: substr(string, string, int)
+
+
+alter table cs_instr  alter column id set default instr('helloworld','he')
+
+select * from cs_instr where id < instr('helloworld','world')
+id name soc socdate bt
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952880>
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952940>
+3 zheshiganshane 79.5 None <memory at 0x7f3322952ac0>
+4 None 80.5 2020-08-14 <memory at 0x7f3322952a00>
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952b80>
+3 None None None <memory at 0x7f3322952c40>
+
+select * from cs_instr where id > instr('helloworld','world')
+id name soc socdate bt
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952d00>
+
+select * from cs_instr where id = instr('helloworld','world')
+id name soc socdate bt
+
+select * from cs_instr where id between instr('helloworld','he') and instr('hellowrold','wo')
+id name soc socdate bt
+
+select instr(name,'a') from cs_instr union select instr(name,'z') from cs_instr
+instr(name,'a')
+3
+8
+None
+6
+5
+12
+0
+1
+
+select instr(name,'a') from cs_instr union all select instr(name,'z') from cs_instr
+instr(name,'a')
+3
+3
+8
+None
+6
+5
+12
+None
+0
+1
+1
+None
+12
+0
+3
+None
+
+select instr(name,'a') from cs_instr except select instr(name,'z') from cs_instr
+instr(name,'a')
+8
+6
+5
+
+select instr(name,'a') from cs_instr intersect select instr(name,'z') from cs_instr
+instr(name,'a')
+3
+None
+12
+
+select instr(name,'a') ,name from cs_instr order  by instr(name,'a') desc
+instr(name,'a') name
+12 buzhiduicuoai
+8 zheshiganshane
+6 shuilaishuizhidao
+5 ****auddaua$
+3 zhangsanbufulisi
+3 xiaoming
+None None
+None None
+
+select instr(name,'a') ,name from cs_instr order  by instr(name,'a') asc
+instr(name,'a') name
+None None
+None None
+3 xiaoming
+3 zhangsanbufulisi
+5 ****auddaua$
+6 shuilaishuizhidao
+8 zheshiganshane
+12 buzhiduicuoai
+
+select instr(name,'a'),name from cs_instr group by instr(name,'a'),name
+instr(name,'a') name
+3 xiaoming
+3 zhangsanbufulisi
+8 zheshiganshane
+None None
+6 shuilaishuizhidao
+5 ****auddaua$
+12 buzhiduicuoai
+
+select * from cs_instr a inner join cs_instri b on  instr(a.name,'a')=instr(b.fname,'a')
+id name soc socdate bt id fname
+
+select * from cs_instr a left outer join cs_instri b on  instr(a.name,'a')=instr(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952d00> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952c40> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952880> None None
+4 None 80.5 2020-08-14 <memory at 0x7f3322952940> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952ac0> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952a00> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952b80> None None
+3 None None None <memory at 0x7f3322952dc0> None None
+
+select * from cs_instr a right outer join cs_instri b on  instr(a.name,'a')=instr(b.fname,'a')
+id name soc socdate bt id fname
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr a full outer join cs_instri b on  instr(a.name,'a')=instr(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952dc0> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952d00> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952c40> None None
+4 None 80.5 2020-08-14 <memory at 0x7f3322952880> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952940> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952ac0> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952a00> None None
+3 None None None <memory at 0x7f3322952b80> None None
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr where substr(name,1,1) in (select substr(fname,instr('abc','a')) from cs_instri)
+id name soc socdate bt
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f332296c040>
+select instr(soc,1)+instr(name,'a') from cs_instr
+unknown signature: instr(decimal, int)
+
+select instr(soc,1)-instr(name,'a') from cs_instr
+unknown signature: instr(decimal, int)
+
+select instr(soc,1)*instr(name,'a') from cs_instr
+unknown signature: instr(decimal, int)
+
+select instr(soc,1)/instr(name,'a') from cs_instr
+unknown signature: instr(decimal, int)
+
+
+select instr(substr(lpad(name,40000,'nihao'),1),name) from cs_instr
+instr(substr(lpad(name,40000,'nihao'),1),name)
+39993
+39985
+39987
+None
+39984
+39989
+39988
+None
+
+SELECT SUBSTR('hello,world', 1, INSTR('hello,world', ',')-1) FROM DUAL
+substr
+hello
+
+select sum(instr(name,'a')) from cs_instr
+sum
+37
+
+select max(instr(name,'a')) from cs_instr
+max
+12
+
+select min(instr(name,'a')) from cs_instr
+min
+3
+
+select count(instr(name,'a')) from cs_instr
+count
+6
+select instr('hello','lo')||instr('hello','h') from dual
+unsupported binary operator: <int> || <int>
+
+
+select lpad('nihao',instr('bbababbax','x'),' ') from dual
+lpad
+nihao
+
+select avg(instr(name,'a')) from cs_instr
+avg
+6.1666666666666666667
+
+select trim(lpad('nihao',instr('bbababbax','x'),' ')) from dual
+btrim
+nihao
+select instrb('helloworld') from dual
+unknown signature: instrb(string)
+
+
+select instrb('helloworld','he') from dual
+instrb('helloworld','he')
+1
+
+select instrb('helloworld','nihaoya') from dual
+instrb('helloworld','nihaoya')
+0
+
+select instrb('helloworld%','%') from dual
+instrb('helloworld%','%')
+11
+
+select instrb('helloworld!','!') from dual
+instrb('helloworld!','!')
+11
+
+select instrb('helloworld@','@') from dual
+instrb('helloworld@','@')
+11
+
+select instrb('helloworld#','#') from dual
+instrb('helloworld#','#')
+11
+
+select instrb('helloworld$','$') from dual
+instrb('helloworld$','$')
+11
+
+select instrb('helloworld￥','￥') from dual
+instrb('helloworld￥','￥')
+11
+
+select instrb('helloworld%','%') from dual
+instrb('helloworld%','%')
+11
+
+select instrb('helloworld^','^') from dual
+instrb('helloworld^','^')
+11
+
+select instrb('helloworld&','&') from dual
+instrb('helloworld&','&')
+11
+
+select instrb('helloworld*','*') from dual
+instrb('helloworld*','*')
+11
+
+select instrb('helloworld(','(') from dual
+instrb('helloworld(','(')
+11
+
+select instrb('helloworld)',')') from dual
+instrb('helloworld)',')')
+11
+
+select instrb('helloworld-','-') from dual
+instrb('helloworld-','-')
+11
+
+select instrb('helloworld+','+') from dual
+instrb('helloworld+','+')
+11
+
+select instrb('helloworld=','=') from dual
+instrb('helloworld=','=')
+11
+
+select instrb('helloworld{','{') from dual
+instrb('helloworld{','{')
+11
+
+select instrb('helloworld}','}') from dual
+instrb('helloworld}','}')
+11
+
+select instrb('helloworld【','【') from dual
+instrb('helloworld【','【')
+11
+
+select instrb('helloworld】','】') from dual
+instrb('helloworld】','】')
+11
+
+select instrb('helloworld[','[') from dual
+instrb('helloworld[','[')
+11
+
+select instrb('helloworld]',']') from dual
+instrb('helloworld]',']')
+11
+
+select instrb('helloworld\','\') from dual
+instrb('helloworld\','\')
+11
+
+select instrb('helloworld|','|') from dual
+instrb('helloworld|','|')
+11
+
+select instrb('helloworld:',':') from dual
+instrb('helloworld:',':')
+11
+select instrb('helloworld
+lexical error: unterminated string
+DETAIL:  source SQL:
+select instrb('helloworld
+              ^
+HINT:  try \hf instrb
+
+','
+at or near ",": syntax error
+DETAIL:  source SQL:
+','
+^
+
+') from dual
+lexical error: unterminated string
+DETAIL:  source SQL:
+') from dual
+^
+
+
+select instrb('helloworld?','?') from dual
+instrb('helloworld?','?')
+11
+
+select instrb('helloworld/','/') from dual
+instrb('helloworld/','/')
+11
+
+select instrb('helloworld>','>') from dual
+instrb('helloworld>','>')
+11
+
+select instrb('helloworld<','<') from dual
+instrb('helloworld<','<')
+11
+
+select instrb('helloworld','o',2) from dual
+instrb('helloworld','o',2)
+5
+
+select instrb('helloworld','o',-2) from dual
+instrb('helloworld','o',-2)
+7
+
+select instrb('helloworld','o',0) from dual
+instrb('helloworld','o',0)
+0
+
+select instrb('helloworld','o',2,1) from dual
+instrb('helloworld','o',2,1)
+5
+select instrb('helloworld','o',2,0) from dual
+instrb(): argument '0' is out of range
+
+select instrb('helloworld','o',2,-1) from dual
+instrb(): argument '-1' is out of range
+
+select instrb('helloworld','hello',2,-1) from dual
+instrb(): argument '-1' is out of range
+
+select instrb(date'2020-09-10','20',1,1) from dual
+unknown signature: instrb(date, string, int, int)
+
+select instrb(date'2020-09-10','20','1','1') from dual
+unknown signature: instrb(date, string, string, string)
+
+select instrb(date'2020-09-10',20,'1','1') from dual
+unknown signature: instrb(date, int, string, string)
+
+select instrb(date'2020-09-10',20,'-1','1') from dual
+unknown signature: instrb(date, int, string, string)
+
+select instrb(date'2020-09-10',20,'-1.5','1.8') from dual
+unknown signature: instrb(date, int, string, string)
+
+select instrb(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instrb(date, decimal, string, string)
+
+select instrb(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instrb(date, decimal, string, string)
+
+select instrb(sysdate,date'2020-09-10',1,1) from dual
+unknown signature: instrb(timestamp, date, int, int)
+
+select instrb(date'2020-09-10',20:bytes,1,1) from dual
+at or near ":": syntax error
+DETAIL:  source SQL:
+select instrb(date'2020-09-10',20:bytes,1,1) from dual
+                                 ^
+HINT:  try \hf instrb
+
+select instrb(date'2020-09-10',null,1,1) from dual
+unknown signature: instrb(date, unknown, int, int)
+
+select instrb(date'2020-09-10',20,null,1) from dual
+unknown signature: instrb(date, int, unknown, int)
+
+select instrb(date'2020-09-10',20,1,null) from dual
+unknown signature: instrb(date, int, int, unknown)
+
+select instrb(date'2020-09-10',null,null,null) from dual
+unknown signature: instrb(date, unknown, unknown, unknown)
+
+select instrb('2020-09-10',20,1.5,2) from dual
+unknown signature: instrb(string, int, decimal, int)
+
+select instrb('2020-09-10',20.0,1.5,2) from dual
+unknown signature: instrb(string, decimal, decimal, int)
+
+select instrb('2020-09-10',date'2020-09',1,1) from dual
+instrb(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year Month ]
+
+select instrb('2020-09-10','2020'::bytes,1,1) from dual
+unknown signature: instrb(string, bytes, int, int)
+
+select instrb('2020-09-10',null,1.5,2) from dual
+unknown signature: instrb(string, unknown, decimal, int)
+
+select instrb('2020-09-10',20,null,2) from dual
+unknown signature: instrb(string, int, unknown, int)
+
+select instrb('2020-09-10',20,1,null) from dual
+unknown signature: instrb(string, int, int, unknown)
+
+select instrb('你好2022')
+select instrb('2020-09-10',null,null,null) from dual
+at or near "select": syntax error
+DETAIL:  source SQL:
+select instrb('你好2022')
+select instrb('2020-09-10',null,null,null) from dual
+^
+
+select instrb(1.345,1.3,1,1) from dual
+unknown signature: instrb(decimal, decimal, int, int)
+
+select instrb(1.345,'1.3',1,1) from dual
+unknown signature: instrb(decimal, string, int, int)
+
+select instrb(1.345,'1.3',-1,1) from dual
+unknown signature: instrb(decimal, string, int, int)
+
+select instrb(2000.00,date'2000',1,1) from dual
+instrb(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Month Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year ]
+
+select instrb(1.345,1::bytes,1,1) from dual
+instrb(): invalid cast: int -> bytes
+
+select instrb('1234'::byteas,'1',1,1 ) from dual
+instrb(): type "byteas" does not exist
+
+select instrb('2020-02-01'::byteas,date'2020',1,1 ) from dual
+instrb(): type "byteas" does not exist
+
+select instrb('1.678'::byteas,1.6,1,1) from dual
+instrb(): type "byteas" does not exist
+
+select instrb('你好2020'::bytes,'20',1,1) from dual
+unknown signature: instrb(bytes, string, int, int)
+
+select instr (id,1,1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,1,-1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,'1',1,1) from cs_instr
+unknown signature: instr(int, string, int, int)
+
+
+select instrb(name,'a',1,1) from cs_instr
+instrb(name,'a',1,1)
+3
+3
+8
+None
+6
+5
+12
+None
+
+select instrb(name,'a',-1,1) from cs_instr
+instrb(name,'a',-1,1)
+3
+7
+12
+None
+16
+11
+12
+None
+
+select instrb(name,'$',-1,1) from cs_instr
+instrb(name,'$',-1,1)
+0
+0
+0
+None
+0
+12
+0
+None
+
+select instrb(name,'*',1,1) from cs_instr
+instrb(name,'*',1,1)
+0
+0
+0
+None
+0
+1
+0
+None
+select instrb(name,1,1,1) from cs_instr
+unknown signature: instrb(string, int, int, int)
+
+
+select instrb(name,'$','-1','1') from cs_instr
+instrb(name,'$','-1','1')
+0
+0
+0
+None
+0
+12
+0
+None
+select instrb(name,'$','-1.5','1.5') from cs_instr
+unknown signature: instrb(string, string, string, string)
+
+select instrb(soc,0.5,1,1) from cs_instr
+unknown signature: instrb(decimal, decimal, int, int)
+
+select instrb(soc,0.5,-1,1) from cs_instr
+unknown signature: instrb(decimal, decimal, int, int)
+
+select instrb(soc,'0.5',-1,1) from cs_instr
+unknown signature: instrb(decimal, string, int, int)
+
+select instrb(socdate,'20',1,1)  from cs_instr
+unknown signature: instrb(date, string, int, int)
+
+select instrb(socdate,'20',1,1) from cs_instr
+unknown signature: instrb(date, string, int, int)
+
+select instrb(socdate,20,'-1.5','1.9') from cs_instr
+unknown signature: instrb(date, int, string, string)
+
+select instrb(bt,1,1,1) from cs_instr
+unknown signature: instrb(bytes, int, int, int)
+
+select instrb(bt,1,1,1) from cs_instr
+unknown signature: instrb(bytes, int, int, int)
+
+select instrb(null,1,1,1) from cs_instr
+unknown signature: instrb(unknown, int, int, int)
+
+
+select instrb(null,null,null,null) from cs_instr
+instrb(NULL,NULL,NULL,NULL)
+None
+None
+None
+None
+None
+None
+None
+None
+insert into cs_instr (id,soc)  select instrb('hello world','he',1,1),instrb('hello world','wo',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instrb('hello world','he',1,1),instrb('hello world','1',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instrb('hello world','he',1,1),instrb('hello world','1',-1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instrb(id,soc) values(instrb('nihao','hao',1,1)),instrb('nihao','hao',1,1)))
+at or near "instrb": syntax error
+DETAIL:  source SQL:
+insert into cs_instrb(id,soc) values(instrb('nihao','hao',1,1)),instrb('nihao','hao',1,1)))
+                                                                ^
+HINT:  try \h <SELECTCLAUSE>
+
+update cs_instr set id=instrb('hellowolrd',he,1,1) where instrb(name,'a',1,1)=1
+column "he" does not exist
+
+
+delete  from cs_instr where instrb(name,'a',1,1)=1
+delete  from cs_instr where substr(name,'a',instrb(name,'a')) in (select pname from cs_instri)
+unsupported comparison operator: substr(name, 'a', instrb(name, 'a')) IN (SELECT pname FROM cs_instri): unknown signature: substr(string, string, int)
+
+alter table cs_instr  alter column id default instrb('helloworld','he')
+at or near "default": syntax error
+DETAIL:  source SQL:
+alter table cs_instr  alter column id default instrb('helloworld','he')
+                                      ^
+HINT:  try \h ALTER TABLE
+
+
+select * from cs_instr where id < instrb('helloworld','world')
+id name soc socdate bt
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952640>
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952e80>
+3 zheshiganshane 79.5 None <memory at 0x7f3322952dc0>
+4 None 80.5 2020-08-14 <memory at 0x7f3322952d00>
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952c40>
+3 None None None <memory at 0x7f3322952880>
+
+select * from cs_instr where id > instrb('helloworld','world')
+id name soc socdate bt
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952940>
+
+select * from cs_instr where id = instrb('helloworld','world')
+id name soc socdate bt
+
+select * from cs_instr where id between instrb('helloworld','he') and instrb('hellowrold','wo')
+id name soc socdate bt
+
+select instrb(name,'a') from cs_instr union select instrb(name,'z') from cs_instr
+instrb(name,'a')
+3
+8
+None
+6
+5
+12
+0
+1
+
+select instrb(name,'a') from cs_instr union all select instrb(name,'z') from cs_instr
+instrb(name,'a')
+3
+3
+8
+None
+6
+5
+12
+None
+0
+1
+1
+None
+12
+0
+3
+None
+
+select instrb(name,'a') from cs_instr except select instrb(name,'z') from cs_instr
+instrb(name,'a')
+8
+6
+5
+
+select instrb(name,'a') from cs_instr intersect select instrb(name,'z') from cs_instr
+instrb(name,'a')
+3
+None
+12
+
+select instrb(name,'a') ,name from cs_instr order  by instrb(name,'a') desc
+instrb(name,'a') name
+12 buzhiduicuoai
+8 zheshiganshane
+6 shuilaishuizhidao
+5 ****auddaua$
+3 zhangsanbufulisi
+3 xiaoming
+None None
+None None
+
+select instrb(name,'a') ,name from cs_instr order  by instrb(name,'a') asc
+instrb(name,'a') name
+None None
+None None
+3 xiaoming
+3 zhangsanbufulisi
+5 ****auddaua$
+6 shuilaishuizhidao
+8 zheshiganshane
+12 buzhiduicuoai
+
+select instrb(name,'a'),name from cs_instr group by instrb(name,'a'),name
+instrb(name,'a') name
+3 xiaoming
+3 zhangsanbufulisi
+8 zheshiganshane
+None None
+6 shuilaishuizhidao
+5 ****auddaua$
+12 buzhiduicuoai
+
+select * from cs_instr a inner join cs_instri b on  instrb(a.name,'a')=instrb(b.fname,'a')
+id name soc socdate bt id fname
+
+select * from cs_instr a left outer join cs_instri b on  instrb(a.name,'a')=instrb(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952940> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952880> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952640> None None
+4 None 80.5 2020-08-14 <memory at 0x7f3322952e80> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952dc0> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952d00> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952c40> None None
+3 None None None <memory at 0x7f3322952ac0> None None
+
+select * from cs_instr a right outer join cs_instri b on  instrb(a.name,'a')=instrb(b.fname,'a')
+id name soc socdate bt id fname
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr a full outer join cs_instri b on  instrb(a.name,'a')=instrb(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952ac0> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952940> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952880> None None
+4 None 80.5 2020-08-14 <memory at 0x7f3322952640> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952e80> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952dc0> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952d00> None None
+3 None None None <memory at 0x7f3322952c40> None None
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr where substr(name,1,1) in (select substr(fname,instrb('abc','a')) from cs_instri)
+id name soc socdate bt
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952b80>
+select instrb(soc,1)+instrb(name,'a') from cs_instr
+unknown signature: instrb(decimal, int)
+
+select instrb(soc,1)-instrb(name,'a') from cs_instr
+unknown signature: instrb(decimal, int)
+
+select instrb(soc,1)*instrb(name,'a') from cs_instr
+unknown signature: instrb(decimal, int)
+
+select instrb(soc,1)/instrb(name,'a') from cs_instr
+unknown signature: instrb(decimal, int)
+
+select instrb(substr(lpad(name,40000,'nihao'),1,1), from cs_instr
+at or near "from": syntax error
+DETAIL:  source SQL:
+select instrb(substr(lpad(name,40000,'nihao'),1,1), from cs_instr
+                                                    ^
+HINT:  try \hf instrb
+
+
+SELECT SUBSTR('hello,world', 1, instrb('hello,world', ',')-1) FROM DUAL
+substr
+hello
+select instrb('hello','lo')||instrb('hello','h') from dual
+unsupported binary operator: <int> || <int>
+
+
+select sum(instrb(name,'a')) from cs_instr
+sum
+37
+
+select max(instrb(name,'a')) from cs_instr
+max
+12
+
+select min(instrb(name,'a')) from cs_instr
+min
+3
+
+select avg(instrb(name,'a')) from cs_instr
+avg
+6.1666666666666666667
+
+select count(instrb(name,'a')) from cs_instr
+count
+6
+
+select lpad('nihao',instrb('bbababbax','x'),' ') from dual
+lpad
+nihao
+
+select trim(lpad('nihao',instrb('bbababbax','x'),' ')) from dual
+btrim
+nihao
+select instrc('helloworld') from dual
+unknown signature: instrc(string)
+
+
+select instrc('helloworld','he') from dual
+instrc('helloworld','he')
+1
+
+select instrc('helloworld','nihaoya') from dual
+instrc('helloworld','nihaoya')
+0
+
+select instrc('helloworld%','%') from dual
+instrc('helloworld%','%')
+11
+
+select instrc('helloworld!','!') from dual
+instrc('helloworld!','!')
+11
+
+select instrc('helloworld@','@') from dual
+instrc('helloworld@','@')
+11
+
+select instrc('helloworld#','#') from dual
+instrc('helloworld#','#')
+11
+
+select instrc('helloworld$','$') from dual
+instrc('helloworld$','$')
+11
+
+select instrc('helloworld￥','￥') from dual
+instrc('helloworld￥','￥')
+11
+
+select instrc('helloworld%','%') from dual
+instrc('helloworld%','%')
+11
+
+select instrc('helloworld^','^') from dual
+instrc('helloworld^','^')
+11
+
+select instrc('helloworld&','&') from dual
+instrc('helloworld&','&')
+11
+
+select instrc('helloworld*','*') from dual
+instrc('helloworld*','*')
+11
+
+select instrc('helloworld(','(') from dual
+instrc('helloworld(','(')
+11
+
+select instrc('helloworld)',')') from dual
+instrc('helloworld)',')')
+11
+
+select instrc('helloworld-','-') from dual
+instrc('helloworld-','-')
+11
+
+select instrc('helloworld+','+') from dual
+instrc('helloworld+','+')
+11
+
+select instrc('helloworld=','=') from dual
+instrc('helloworld=','=')
+11
+
+select instrc('helloworld{','{') from dual
+instrc('helloworld{','{')
+11
+
+select instrc('helloworld}','}') from dual
+instrc('helloworld}','}')
+11
+
+select instrc('helloworld【','【') from dual
+instrc('helloworld【','【')
+11
+
+select instrc('helloworld】','】') from dual
+instrc('helloworld】','】')
+11
+
+select instrc('helloworld[','[') from dual
+instrc('helloworld[','[')
+11
+
+select instrc('helloworld]',']') from dual
+instrc('helloworld]',']')
+11
+
+select instrc('helloworld\','\') from dual
+instrc('helloworld\','\')
+11
+
+select instrc('helloworld|','|') from dual
+instrc('helloworld|','|')
+11
+
+select instrc('helloworld:',':') from dual
+instrc('helloworld:',':')
+11
+select instrc('helloworld
+lexical error: unterminated string
+DETAIL:  source SQL:
+select instrc('helloworld
+              ^
+HINT:  try \hf instrc
+
+','
+at or near ",": syntax error
+DETAIL:  source SQL:
+','
+^
+
+') from dual
+lexical error: unterminated string
+DETAIL:  source SQL:
+') from dual
+^
+
+
+select instrc('helloworld?','?') from dual
+instrc('helloworld?','?')
+11
+
+select instrc('helloworld/','/') from dual
+instrc('helloworld/','/')
+11
+
+select instrc('helloworld>','>') from dual
+instrc('helloworld>','>')
+11
+
+select instrc('helloworld<','<') from dual
+instrc('helloworld<','<')
+11
+
+select instrc('helloworld','o',2) from dual
+instrc('helloworld','o',2)
+5
+
+select instrc('helloworld','o',-2) from dual
+instrc('helloworld','o',-2)
+7
+
+select instrc('helloworld','o',0) from dual
+instrc('helloworld','o',0)
+0
+
+select instrc('helloworld','o',2,1) from dual
+instrc('helloworld','o',2,1)
+5
+select instrc('helloworld','o',2,0) from dual
+instrc(): argument '0' is out of range
+
+select instrc('helloworld','o',2,-1) from dual
+instrc(): argument '-1' is out of range
+
+select instrc('helloworld','hello',2,-1) from dual
+instrc(): argument '-1' is out of range
+
+select instrc(date'2020-09-10','20',1,1) from dual
+unknown signature: instrc(date, string, int, int)
+
+select instrc(date'2020-09-10','20','1','1') from dual
+unknown signature: instrc(date, string, string, string)
+
+select instrc(date'2020-09-10',20,'1','1') from dual
+unknown signature: instrc(date, int, string, string)
+
+select instrc(date'2020-09-10',20,'-1','1') from dual
+unknown signature: instrc(date, int, string, string)
+
+select instrc(date'2020-09-10',20,'-1.5','1.8') from dual
+unknown signature: instrc(date, int, string, string)
+
+select instrc(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instrc(date, decimal, string, string)
+
+select instrc(date'2020-09-10',20.00,'-1.5','1.8') from dual
+unknown signature: instrc(date, decimal, string, string)
+
+select instrc(sysdate,date'2020-09-10',1,1) from dual
+unknown signature: instrc(timestamp, date, int, int)
+
+select instrc(date'2020-09-10',20:bytes,1,1) from dual
+at or near ":": syntax error
+DETAIL:  source SQL:
+select instrc(date'2020-09-10',20:bytes,1,1) from dual
+                                 ^
+HINT:  try \hf instrc
+
+select instrc(date'2020-09-10',null,1,1) from dual
+unknown signature: instrc(date, unknown, int, int)
+
+select instrc(date'2020-09-10',20,null,1) from dual
+unknown signature: instrc(date, int, unknown, int)
+
+select instrc(date'2020-09-10',20,1,null) from dual
+unknown signature: instrc(date, int, int, unknown)
+
+select instrc(date'2020-09-10',null,null,null) from dual
+unknown signature: instrc(date, unknown, unknown, unknown)
+
+select instrc('2020-09-10',20,1.5,2) from dual
+unknown signature: instrc(string, int, decimal, int)
+
+select instrc('2020-09-10',20.0,1.5,2) from dual
+unknown signature: instrc(string, decimal, decimal, int)
+
+select instrc('2020-09-10',date'2020-09',1,1) from dual
+instrc(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year Month ]
+
+select instrc('2020-09-10','2020'::bytes,1,1) from dual
+unknown signature: instrc(string, bytes, int, int)
+
+select instrc('2020-09-10',null,1.5,2) from dual
+unknown signature: instrc(string, unknown, decimal, int)
+
+select instrc('2020-09-10',20,null,2) from dual
+unknown signature: instrc(string, int, unknown, int)
+
+select instrc('2020-09-10',20,1,null) from dual
+unknown signature: instrc(string, int, int, unknown)
+
+select instrc('你好2022')
+select instrc('2020-09-10',null,null,null) from dual
+at or near "select": syntax error
+DETAIL:  source SQL:
+select instrc('你好2022')
+select instrc('2020-09-10',null,null,null) from dual
+^
+
+select instrc(1.345,1.3,1,1) from dual
+unknown signature: instrc(decimal, decimal, int, int)
+
+select instrc(1.345,'1.3',1,1) from dual
+unknown signature: instrc(decimal, string, int, int)
+
+select instrc(1.345,'1.3',-1,1) from dual
+unknown signature: instrc(decimal, string, int, int)
+
+select instrc(2000.00,date'2000',1,1) from dual
+instrc(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Month Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year ]
+
+select instrc(1.345,1::bytes,1,1) from dual
+instrc(): invalid cast: int -> bytes
+
+select instrc('1234'::byteas,'1',1,1 ) from dual
+instrc(): type "byteas" does not exist
+
+select instrc('2020-02-01'::byteas,date'2020',1,1 ) from dual
+instrc(): type "byteas" does not exist
+
+select instrc('1.678'::byteas,1.6,1,1) from dual
+instrc(): type "byteas" does not exist
+
+select instrc('你好2020'::bytes,'20',1,1) from dual
+unknown signature: instrc(bytes, string, int, int)
+
+select instr (id,1,1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,1,-1,1) from cs_instr
+unknown signature: instr(int, int, int, int)
+
+select instr (id,'1',1,1) from cs_instr
+unknown signature: instr(int, string, int, int)
+
+
+select instrc(name,'a',1,1) from cs_instr
+instrc(name,'a',1,1)
+3
+3
+8
+None
+6
+5
+12
+None
+
+select instrc(name,'a',-1,1) from cs_instr
+instrc(name,'a',-1,1)
+3
+7
+12
+None
+16
+11
+12
+None
+
+select instrc(name,'$',-1,1) from cs_instr
+instrc(name,'$',-1,1)
+0
+0
+0
+None
+0
+12
+0
+None
+
+select instrc(name,'*',1,1) from cs_instr
+instrc(name,'*',1,1)
+0
+0
+0
+None
+0
+1
+0
+None
+select instrc(name,1,1,1) from cs_instr
+unknown signature: instrc(string, int, int, int)
+
+
+select instrc(name,'$','-1','1') from cs_instr
+instrc(name,'$','-1','1')
+0
+0
+0
+None
+0
+12
+0
+None
+select instrc(name,'$','-1.5','1.5') from cs_instr
+unknown signature: instrc(string, string, string, string)
+
+select instrc(soc,0.5,1,1) from cs_instr
+unknown signature: instrc(decimal, decimal, int, int)
+
+select instrc(soc,0.5,-1,1) from cs_instr
+unknown signature: instrc(decimal, decimal, int, int)
+
+select instrc(soc,'0.5',-1,1) from cs_instr
+unknown signature: instrc(decimal, string, int, int)
+
+select instrc(socdate,'20',1,1)  from cs_instr
+unknown signature: instrc(date, string, int, int)
+
+select instrc(socdate,'20',1,1) from cs_instr
+unknown signature: instrc(date, string, int, int)
+
+select instrc(socdate,20,'-1.5','1.9') from cs_instr
+unknown signature: instrc(date, int, string, string)
+
+select instrc(bt,1,1,1) from cs_instr
+unknown signature: instrc(bytes, int, int, int)
+
+select instrc(bt,1,1,1) from cs_instr
+unknown signature: instrc(bytes, int, int, int)
+
+select instrc(null,1,1,1) from cs_instr
+unknown signature: instrc(unknown, int, int, int)
+
+
+select instrc(null,null,null,null) from cs_instr
+instrc(NULL,NULL,NULL,NULL)
+None
+None
+None
+None
+None
+None
+None
+None
+insert into cs_instr (id,soc)  select instrc('hello world','he',1,1),instrc('hello world','wo',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instrc('hello world','he',1,1),instrc('hello world','1',1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instr (id,soc)  select instrc('hello world','he',1,1),instrc('hello world','1',-1,1) from dual
+value type int doesn't match type decimal of column "soc"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_instrc(id,soc) values(instrc('nihao','hao',1,1)),instrc('nihao','hao',1,1)))
+at or near "instrc": syntax error
+DETAIL:  source SQL:
+insert into cs_instrc(id,soc) values(instrc('nihao','hao',1,1)),instrc('nihao','hao',1,1)))
+                                                                ^
+HINT:  try \h <SELECTCLAUSE>
+
+update cs_instr set id=instrc('hellowolrd',he,1,1) where instrc(name,'a',1,1)=1
+column "he" does not exist
+
+
+delete  from cs_instr where instrc(name,'a',1,1)=1
+delete  from cs_instr where substr(name,'a',instrc(name,'a')) in (select pname from cs_instri)
+unsupported comparison operator: substr(name, 'a', instrc(name, 'a')) IN (SELECT pname FROM cs_instri): unknown signature: substr(string, string, int)
+
+alter table cs_instr  alter column id default instrc('helloworld','he')
+at or near "default": syntax error
+DETAIL:  source SQL:
+alter table cs_instr  alter column id default instrc('helloworld','he')
+                                      ^
+HINT:  try \h ALTER TABLE
+
+
+select * from cs_instr where id < instrc('helloworld','world')
+id name soc socdate bt
+1 xiaoming 50 2020-08-01 <memory at 0x7f33229521c0>
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952580>
+3 zheshiganshane 79.5 None <memory at 0x7f3322952f40>
+4 None 80.5 2020-08-14 <memory at 0x7f33229524c0>
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f33229527c0>
+3 None None None <memory at 0x7f3322952a00>
+
+select * from cs_instr where id > instrc('helloworld','world')
+id name soc socdate bt
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952ac0>
+
+select * from cs_instr where id = instrc('helloworld','world')
+id name soc socdate bt
+
+select * from cs_instr where id between instrc('helloworld','he') and instrc('hellowrold','wo')
+id name soc socdate bt
+
+select instrc(name,'a') from cs_instr union  select instrc(name,'z') from cs_instr
+instrc(name,'a')
+3
+8
+None
+6
+5
+12
+0
+1
+
+select instrc(name,'a') from cs_instr union all select instrc(name,'z') from cs_instr
+instrc(name,'a')
+3
+3
+8
+None
+6
+5
+12
+None
+0
+1
+1
+None
+12
+0
+3
+None
+
+select instrc(name,'a') from cs_instr except select instrc(name,'z') from cs_instr
+instrc(name,'a')
+8
+6
+5
+
+select instrc(name,'a') from cs_instr intersect select instrc(name,'z') from cs_instr
+instrc(name,'a')
+3
+None
+12
+
+select instrc(name,'a') ,name from cs_instr order  by instrc(name,'a') desc
+instrc(name,'a') name
+12 buzhiduicuoai
+8 zheshiganshane
+6 shuilaishuizhidao
+5 ****auddaua$
+3 zhangsanbufulisi
+3 xiaoming
+None None
+None None
+
+select instrc(name,'a') ,name from cs_instr order  by instrc(name,'a') asc
+instrc(name,'a') name
+None None
+None None
+3 xiaoming
+3 zhangsanbufulisi
+5 ****auddaua$
+6 shuilaishuizhidao
+8 zheshiganshane
+12 buzhiduicuoai
+
+select instrc(name,'a'),name from cs_instr group by instrc(name,'a'),name
+instrc(name,'a') name
+3 xiaoming
+3 zhangsanbufulisi
+8 zheshiganshane
+None None
+6 shuilaishuizhidao
+5 ****auddaua$
+12 buzhiduicuoai
+
+select * from cs_instr a inner join cs_instri b on  instrc(a.name,'a')=instrc(b.fname,'a')
+id name soc socdate bt id fname
+
+select * from cs_instr a left outer join cs_instri b on  instrc(a.name,'a')=instrc(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f3322952ac0> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952b80> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952a00> None None
+4 None 80.5 2020-08-14 <memory at 0x7f33229521c0> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f3322952580> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952f40> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f33229524c0> None None
+3 None None None <memory at 0x7f33229527c0> None None
+
+select * from cs_instr a right outer join cs_instri b on  instrc(a.name,'a')=instrc(b.fname,'a')
+id name soc socdate bt id fname
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr a full outer join cs_instri b on  instrc(a.name,'a')=instrc(b.fname,'a')
+id name soc socdate bt id fname
+1 xiaoming 50 2020-08-01 <memory at 0x7f33229527c0> None None
+2 zhangsanbufulisi 100 2020-08-02 <memory at 0x7f3322952ac0> None None
+3 zheshiganshane 79.5 None <memory at 0x7f3322952b80> None None
+4 None 80.5 2020-08-14 <memory at 0x7f3322952a00> None None
+5 shuilaishuizhidao 50.1 2020-08-19 <memory at 0x7f33229521c0> None None
+55 ****auddaua$ 60.1 2020-08-20 <memory at 0x7f3322952580> None None
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952f40> None None
+3 None None None <memory at 0x7f33229524c0> None None
+None None None None None 1 a
+None None None None None 2 b
+None None None None None 3 c
+None None None None None 4 d
+None None None None None 5 e
+None None None None None 6 f
+None None None None None 7 g
+
+select * from cs_instr where substr(name,1,1) in (select substr(fname,instrc('abc','a')) from cs_instri)
+id name soc socdate bt
+None buzhiduicuoai 88.1 2020-08-30 <memory at 0x7f3322952880>
+select instrc(soc,1)+instrc(name,'a') from cs_instr
+unknown signature: instrc(decimal, int)
+
+select instrc(soc,1)-instrc(name,'a') from cs_instr
+unknown signature: instrc(decimal, int)
+
+select instrc(soc,1)*instrc(name,'a') from cs_instr
+unknown signature: instrc(decimal, int)
+
+select instrc(soc,1)/instrc(name,'a') from cs_instr
+unknown signature: instrc(decimal, int)
+
+select instrc(substr(lpad(name,40000,'nihao'),1,1), from cs_instr
+at or near "from": syntax error
+DETAIL:  source SQL:
+select instrc(substr(lpad(name,40000,'nihao'),1,1), from cs_instr
+                                                    ^
+HINT:  try \hf instrc
+
+
+SELECT SUBSTR('hello,world', 1, instrc('hello,world', ',')-1) FROM DUAL
+substr
+hello
+select instrc('hello','lo')||instr('hello','h') from dual
+unsupported binary operator: <int> || <int>
+
+
+select sum(instrc(name,'a')) from cs_instr
+sum
+37
+
+select max(instrc(name,'a')) from cs_instr
+max
+12
+
+select min(instrc(name,'a')) from cs_instr
+min
+3
+
+select avg(instrc(name,'a')) from cs_instr
+avg
+6.1666666666666666667
+
+select count(instrc(name,'a')) from cs_instr
+count
+6
+
+select lpad('nihao',instrc('bbababbax','x'),' ') from dual
+lpad
+nihao
+
+select trim(lpad('nihao',instrc('bbababbax','x'),' ')) from dual
+btrim
+nihao
+
+drop table cs_instr
+
+drop table cs_instri

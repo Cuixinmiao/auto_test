@@ -1,0 +1,410 @@
+drop table if exists cim_rtl_inf 
+
+create table cim_rtl_inf(bankno varchar(3) not null,custno varchar(10) not null primary key, custname varchar(500) not null,stsrcd varchar(2),a varchar(10))
+
+create index idx on cim_rtl_inf(bankno,custname)
+
+insert into cim_rtl_inf select '100', '000'||generate_series(2000001, 3000000)::varchar,'周星驰','1','sadfe'
+
+insert into cim_rtl_inf select '100', '000'||generate_series(4000001, 5000000)::varchar,'周星驰','2','sadfe'
+
+insert into cim_rtl_inf select '100', '000'||generate_series(3000001, 4000000)::varchar,'周星驰','1','sadfe'
+
+insert into cim_rtl_inf select '100', '000'||generate_series(8000001, 9000000)::varchar,'周星驰','1','sadfe'
+
+insert into cim_rtl_inf select '100', '000'||generate_series(6000001, 7000000)::varchar,'周星驰','1','sadfe'
+
+select count(*) from [show ranges from table cim_rtl_inf]
+count
+5
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0002000010 周星驰 1 sadfe 10
+100 0002000011 周星驰 1 sadfe 11
+100 0002000012 周星驰 1 sadfe 12
+100 0002000013 周星驰 1 sadfe 13
+100 0002000014 周星驰 1 sadfe 14
+100 0002000015 周星驰 1 sadfe 15
+100 0002000016 周星驰 1 sadfe 16
+100 0002000017 周星驰 1 sadfe 17
+100 0002000018 周星驰 1 sadfe 18
+100 0002000019 周星驰 1 sadfe 19
+100 0002000020 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0002940010 周星驰 1 sadfe 10
+100 0002940011 周星驰 1 sadfe 11
+100 0002940012 周星驰 1 sadfe 12
+100 0002940013 周星驰 1 sadfe 13
+100 0002940014 周星驰 1 sadfe 14
+100 0002940015 周星驰 1 sadfe 15
+100 0002940016 周星驰 1 sadfe 16
+100 0002940017 周星驰 1 sadfe 17
+100 0002940018 周星驰 1 sadfe 18
+100 0002940019 周星驰 1 sadfe 19
+100 0002940020 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0002940010 周星驰 1 sadfe 10
+100 0002940011 周星驰 1 sadfe 11
+100 0002940012 周星驰 1 sadfe 12
+100 0002940013 周星驰 1 sadfe 13
+100 0002940014 周星驰 1 sadfe 14
+100 0002940015 周星驰 1 sadfe 15
+100 0002940016 周星驰 1 sadfe 16
+100 0002940017 周星驰 1 sadfe 17
+100 0002940018 周星驰 1 sadfe 18
+100 0002940019 周星驰 1 sadfe 19
+100 0002940020 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0002940010 周星驰 1 sadfe 10
+100 0002940011 周星驰 1 sadfe 11
+100 0002940012 周星驰 1 sadfe 12
+100 0002940013 周星驰 1 sadfe 13
+100 0002940014 周星驰 1 sadfe 14
+100 0002940015 周星驰 1 sadfe 15
+100 0002940016 周星驰 1 sadfe 16
+100 0002940017 周星驰 1 sadfe 17
+100 0002940018 周星驰 1 sadfe 18
+100 0002940019 周星驰 1 sadfe 19
+100 0002940020 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0002000010 周星驰 1 sadfe 10
+100 0002000011 周星驰 1 sadfe 11
+100 0002000012 周星驰 1 sadfe 12
+100 0002000013 周星驰 1 sadfe 13
+100 0002000014 周星驰 1 sadfe 14
+100 0002000015 周星驰 1 sadfe 15
+100 0002000016 周星驰 1 sadfe 16
+100 0002000017 周星驰 1 sadfe 17
+100 0002000018 周星驰 1 sadfe 18
+100 0002000019 周星驰 1 sadfe 19
+100 0002000020 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0008999991 周星驰 1 sadfe 10
+100 0008999990 周星驰 1 sadfe 11
+100 0008999989 周星驰 1 sadfe 12
+100 0008999988 周星驰 1 sadfe 13
+100 0008999987 周星驰 1 sadfe 14
+100 0008999986 周星驰 1 sadfe 15
+100 0008999985 周星驰 1 sadfe 16
+100 0008999984 周星驰 1 sadfe 17
+100 0008999983 周星驰 1 sadfe 18
+100 0008999982 周星驰 1 sadfe 19
+100 0008999981 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0008999991 周星驰 1 sadfe 10
+100 0008999990 周星驰 1 sadfe 11
+100 0008999989 周星驰 1 sadfe 12
+100 0008999988 周星驰 1 sadfe 13
+100 0008999987 周星驰 1 sadfe 14
+100 0008999986 周星驰 1 sadfe 15
+100 0008999985 周星驰 1 sadfe 16
+100 0008999984 周星驰 1 sadfe 17
+100 0008999983 周星驰 1 sadfe 18
+100 0008999982 周星驰 1 sadfe 19
+100 0008999981 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0008999991 周星驰 1 sadfe 10
+100 0008999990 周星驰 1 sadfe 11
+100 0008999989 周星驰 1 sadfe 12
+100 0008999988 周星驰 1 sadfe 13
+100 0008999987 周星驰 1 sadfe 14
+100 0008999986 周星驰 1 sadfe 15
+100 0008999985 周星驰 1 sadfe 16
+100 0008999984 周星驰 1 sadfe 17
+100 0008999983 周星驰 1 sadfe 18
+100 0008999982 周星驰 1 sadfe 19
+100 0008999981 周星驰 1 sadfe 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno custname stsrcd a rn
+100 0008999991 周星驰 1 sadfe 10
+100 0008999990 周星驰 1 sadfe 11
+100 0008999989 周星驰 1 sadfe 12
+100 0008999988 周星驰 1 sadfe 13
+100 0008999987 周星驰 1 sadfe 14
+100 0008999986 周星驰 1 sadfe 15
+100 0008999985 周星驰 1 sadfe 16
+100 0008999984 周星驰 1 sadfe 17
+100 0008999983 周星驰 1 sadfe 18
+100 0008999982 周星驰 1 sadfe 19
+100 0008999981 周星驰 1 sadfe 20
+
+drop table if exists cim_rtl_inf1 
+
+create table cim_rtl_inf1(
+bankno varchar(3) not null,
+custno varchar(10) primary key,
+mngadsc varchar(8),
+custname varchar(500) not null,
+custtype varchar(2) not null,
+flgfrndgnt varchar(1),
+custstg varchar(1),
+custlv1 varchar(3),
+fstnam varchar(200),
+lstname varchar(200),
+sltnam varchar(1),
+srtnam varchar(200),
+formnam varchar(200),
+cna varchar(3),
+sex varchar(1),
+bld varchar(2),
+folk varchar(2),
+dtbrthday varchar(8),
+rsdntat varchar(2),
+rsdnflg varchar(1),
+lang varchar(5),
+edct varchar(2),
+major varchar(3),
+occup varchar(5),
+ocprmk varchar(60),
+wrkcom varchar(200),
+comnatr varchar(4),
+dtonboard varchar(8),
+comdpt varchar(30),
+pstn varchar(10),
+title varchar(3),
+monincome dec(20,2),
+yeaincom dec(20,2),
+comtel varchar(30),
+comtelex varchar(30),
+compstcod varchar(6),
+comaddr varchar(120),
+comfax varchar(30),
+marristat varchar(2),
+childrstat varchar(1),
+famincom dec(20,2),
+taxno varchar(40),
+taxpayaddr varchar(120),
+taxdcl varchar(200),
+ntaxrsn varchar(200),
+socinsuno varchar(40),
+taxr dec(10,6),
+iscomp varchar(1),
+empno varchar(8),
+brcno varchar(10),
+exctflg varchar(1),
+shareflg varchar(1),
+ftaflg varchar(1),
+flgslp varchar(1),
+flgfrz varchar(1),
+flgdie varchar(1),
+flglock varchar(1),
+flgdump varchar(1),
+crdtlvl varchar(1),
+stscust varchar(1),
+chnlopen varchar(6),
+brcadsc varchar(10),
+imgid varchar(32),
+flgccardc varchar(1),
+enqpass varchar(32),
+remark1 varchar(200),
+remark2 varchar(200),
+creuid varchar(8),
+dtcreate varchar(8),
+brccre varchar(10),
+modteller varchar(8),
+modbrc varchar(10),
+moddate varchar(8),
+stsrcd varchar(2),
+crttime timestamp(6),
+updtime timestamp(6),
+flghandper varchar(1)
+)
+
+insert into cim_rtl_inf1(bankno,custno, custname,custtype,stsrcd) select '100', '000'||generate_series(2000001, 3000000)::varchar,'周星驰','fe','1'
+
+insert into cim_rtl_inf1(bankno,custno, custname,custtype,stsrcd) select '100', '000'||generate_series(4000001, 5000000)::varchar,'周星驰','fe','2'
+
+insert into cim_rtl_inf1(bankno,custno, custname,custtype,stsrcd) select '100', '000'||generate_series(3000001, 4000000)::varchar,'周星驰','sa','1'
+
+insert into cim_rtl_inf1(bankno,custno, custname,custtype,stsrcd) select '100', '000'||generate_series(8000001, 9000000)::varchar,'周星驰','sa','1'
+
+insert into cim_rtl_inf1(bankno,custno, custname,custtype,stsrcd) select '100', '000'||generate_series(6000001, 7000000)::varchar,'周星驰','sa','1'
+
+create index idx on cim_rtl_inf1(bankno,custname)
+
+select count(*) from [show ranges from table cim_rtl_inf1]
+count
+3
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0002000010 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0002000011 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0002000012 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0002000013 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0002000014 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0002000015 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0002000016 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0002000017 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0002000018 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0002000019 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0002000020 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0002000010 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0002000011 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0002000012 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0002000013 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0002000014 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0002000015 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0002000016 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0002000017 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0002000018 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0002000019 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0002000020 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0002000010 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0002000011 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0002000012 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0002000013 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0002000014 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0002000015 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0002000016 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0002000017 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0002000018 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0002000019 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0002000020 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0002000010 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0002000011 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0002000012 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0002000013 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0002000014 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0002000015 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0002000016 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0002000017 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0002000018 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0002000019 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0002000020 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1' order by custno desc
+)t1 where rownum<=20
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0002000010 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0002000011 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0002000012 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0002000013 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0002000014 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0002000015 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0002000016 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0002000017 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0002000018 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0002000019 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0002000020 None 周星驰 fe None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0008999991 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0008999990 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0008999989 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0008999988 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0008999987 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0008999986 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0008999985 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0008999984 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0008999983 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0008999982 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0008999981 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0008999991 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0008999990 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0008999989 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0008999988 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0008999987 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0008999986 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0008999985 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0008999984 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0008999983 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0008999982 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0008999981 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+select t2.* from(
+select t1.*,rownum rn from (select * from cim_rtl_inf1 where stsrcd='1'
+)t1 where rownum<=20 order by custno desc
+)t2 where rn>=10
+bankno custno mngadsc custname custtype flgfrndgnt custstg custlv1 fstnam lstname sltnam srtnam formnam cna sex bld folk dtbrthday rsdntat rsdnflg lang edct major occup ocprmk wrkcom comnatr dtonboard comdpt pstn title monincome yeaincom comtel comtelex compstcod comaddr comfax marristat childrstat famincom taxno taxpayaddr taxdcl ntaxrsn socinsuno taxr iscomp empno brcno exctflg shareflg ftaflg flgslp flgfrz flgdie flglock flgdump crdtlvl stscust chnlopen brcadsc imgid flgccardc enqpass remark1 remark2 creuid dtcreate brccre modteller modbrc moddate stsrcd crttime updtime flghandper rn
+100 0008999991 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 10
+100 0008999990 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 11
+100 0008999989 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 12
+100 0008999988 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 13
+100 0008999987 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 14
+100 0008999986 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 15
+100 0008999985 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 16
+100 0008999984 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 17
+100 0008999983 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 18
+100 0008999982 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 19
+100 0008999981 None 周星驰 sa None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None 1 None None None 20
+
+drop table cim_rtl_inf1
+
+drop table cim_rtl_inf

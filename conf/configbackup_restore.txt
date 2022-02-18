@@ -1,0 +1,60 @@
+#升级配置信息isconfigure = 0不配置
+[upgradeinfo]
+isconfigure = 0
+befupgpath = 
+aftupgpath = 
+
+
+#数据库的连接配置信息
+[qianbase]
+dbname=defaultdb
+user=root
+dbport=26287
+securepw=boyu1105
+host=10.16.30.173
+sshport=22
+bindir=/usr/bin
+nodeid=3
+backdir=mybackup
+
+#数据库安装的相关信息配置
+[backup_restore]
+securemod=secure
+store=/data{0}/node
+locality=region=huabei,rack=1,rid=1-region=xibei,rack=1,rid=1
+advertise-addr=10.16.30.173-2,10.16.30.174-2
+listen-addr=26287
+http-addr=8989
+cache=0.1
+join=10.16.30.173:26287,10.16.30.174:26287
+max-sql-memory=0.1
+user=root
+password=esgyndb
+binname=qianbase
+init_ip=10.16.30.173
+init_port=26287
+sshport=22
+chaosblade=arm
+init=0
+replicas=3
+bindir=/usr/bin
+#master room server num
+master_idx=3
+#local back room server num
+back_idx=3
+#remote back romm server num
+remote_idx=1
+# haproxy config info
+client_ip=10.16.30.172
+client_port=26287
+ethname=ens3
+
+#general certs relation config info
+[certs]
+gm = None
+basecerts=/GM_CA
+certs=certs
+mysafedir=my-safe-directory
+usercerts=root
+clientip=10.16.30.172
+

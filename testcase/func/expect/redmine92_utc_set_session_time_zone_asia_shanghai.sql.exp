@@ -1,0 +1,3365 @@
+-- create by cuixiangling
+-- Date: 2021-09-13
+--  system function for timezone test
+select * from [show time zone]
+timezone
+UTC
+
+select current_timestamp from dual
+current_timestamp
+2021-10-11 12:07:52.448413+00:00
+
+select current_timestamp(0) from dual
+current_timestamp
+2021-10-11 12:07:52+00:00
+
+select current_timestamp(1) from dual
+current_timestamp
+2021-10-11 12:07:52.500000+00:00
+
+select current_timestamp(2) from dual
+current_timestamp
+2021-10-11 12:07:52.450000+00:00
+
+select current_timestamp(3) from dual
+current_timestamp
+2021-10-11 12:07:52.452000+00:00
+
+select current_timestamp(4) from dual
+current_timestamp
+2021-10-11 12:07:52.452200+00:00
+
+select current_timestamp(5) from dual
+current_timestamp
+2021-10-11 12:07:52.452490+00:00
+
+select current_timestamp(6) from dual
+current_timestamp
+2021-10-11 12:07:52.453244+00:00
+
+select timeofday() from dual
+timeofday
+Mon Oct 11 12:07:52.453499 2021 +0000
+
+select current_time from dual
+current_time
+12:07:52.454200+00:00
+
+select current_date from dual
+current_date
+2021-10-11
+
+select clock_timestamp() from dual
+clock_timestamp
+2021-10-11 12:07:52.456240+00:00
+
+select experimental_follower_read_timestamp() from dual
+experimental_follower_read_timestamp
+2021-10-11 12:07:47.656554+00:00
+
+select follower_read_timestamp() from dual
+follower_read_timestamp
+2021-10-11 12:07:47.657373+00:00
+
+select localtimestamp() from dual
+localtimestamp
+2021-10-11 12:07:52.458198
+
+select localtimestamp(1) from dual
+localtimestamp
+2021-10-11 12:07:52.500000
+
+select localtimestamp(2) from dual
+localtimestamp
+2021-10-11 12:07:52.460000
+
+select localtimestamp(3) from dual
+localtimestamp
+2021-10-11 12:07:52.459000
+
+select localtimestamp(4) from dual
+localtimestamp
+2021-10-11 12:07:52.459400
+
+select localtimestamp(5) from dual
+localtimestamp
+2021-10-11 12:07:52.459720
+
+select localtimestamp(6) from dual
+localtimestamp
+2021-10-11 12:07:52.459988
+
+select localtimestamp(0) from dual
+localtimestamp
+2021-10-11 12:07:52
+
+select transaction_timestamp() from dual
+transaction_timestamp
+2021-10-11 12:07:52.460557+00:00
+
+select statement_timestamp() from dual
+statement_timestamp
+2021-10-11 12:07:52.460852+00:00
+
+select cluster_logical_timestamp() from dual
+cluster_logical_timestamp
+1633954072461192959
+
+select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+0:00:00
+
+select age(current_timestamp::timestamptz) from dual
+age
+0:00:00
+
+select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+-1 day, 23:59:59.999967
+
+select (sysdate::timestamptz-now())::int from dual
+int8
+0
+
+select (sysdate::timestamptz-now())::int::date from dual
+date
+1970-01-01
+
+select sysdate from dual
+sysdate
+2021-10-11 12:07:52.463310
+
+drop table if exists t1
+
+create table t1 as select current_timestamp from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.465440+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(0) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:53+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(1) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.600000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(2) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.700000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(3) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.782000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(4) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.862500+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(5) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:52.935070+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(6) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:53.019559+00:00
+
+drop table if exists t1
+
+create table t1 as select timeofday() from dual
+
+select * from t1
+timeofday
+Mon Oct 11 12:07:53.107475 2021 +0000
+
+drop table if exists t1
+
+create table t1 as select current_time from dual
+
+select * from t1
+current_time
+12:07:53.187186+00:00
+
+drop table if exists t1
+
+create table t1 as select current_date from dual
+
+select * from t1
+current_date
+2021-10-11
+
+drop table if exists t1
+
+create table t1 as select clock_timestamp() from dual
+
+select * from t1
+clock_timestamp
+2021-10-11 12:07:53.370284+00:00
+
+drop table if exists t1
+
+create table t1 as select experimental_follower_read_timestamp() from dual
+
+select * from t1
+experimental_follower_read_timestamp
+2021-10-11 12:07:48.638068+00:00
+
+drop table if exists t1
+
+create table t1 as select follower_read_timestamp() from dual
+
+select * from t1
+follower_read_timestamp
+2021-10-11 12:07:48.721766+00:00
+
+drop table if exists t1
+
+create table t1 as select localtimestamp() from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:53.606525
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(1) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:53.700000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(2) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:53.780000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(3) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:53.865000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(4) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:53.949700
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(5) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:54.037540
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(6) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:54.121927
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(0) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:54
+
+drop table if exists t1
+
+create table t1 as select transaction_timestamp() from dual
+
+select * from t1
+transaction_timestamp
+2021-10-11 12:07:54.325019+00:00
+
+drop table if exists t1
+
+create table t1 as select statement_timestamp() from dual
+
+select * from t1
+statement_timestamp
+2021-10-11 12:07:54.419275+00:00
+
+drop table if exists t1
+
+create table t1 as select cluster_logical_timestamp() from dual
+
+select * from t1
+cluster_logical_timestamp
+1633954074504343829
+
+drop table if exists t1
+
+create table t1 as select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(current_timestamp::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+-1 day, 23:59:59.866390
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int from dual
+
+select * from t1
+int8
+0
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int::date from dual
+
+select * from t1
+date
+1970-01-01
+
+drop table if exists t1
+
+create table t1 as select sysdate from dual
+
+select * from t1
+sysdate
+2021-10-11 12:07:55.175507
+
+drop table if exists t1
+
+create table t1(a timestamp,b date,c timestamptz)
+
+insert into t1(a) select current_timestamp from dual
+
+insert into t1(a) select current_timestamp(0) from dual
+
+insert into t1(a) select current_timestamp(1) from dual
+
+insert into t1(a) select current_timestamp(2) from dual
+
+insert into t1(a) select current_timestamp(3) from dual
+
+insert into t1(a) select current_timestamp(4) from dual
+
+insert into t1(a) select current_timestamp(5) from dual
+
+insert into t1(a) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+
+insert into t1(b) select current_timestamp from dual
+
+insert into t1(b) select current_timestamp(0) from dual
+
+insert into t1(b) select current_timestamp(1) from dual
+
+insert into t1(b) select current_timestamp(2) from dual
+
+insert into t1(b) select current_timestamp(3) from dual
+
+insert into t1(b) select current_timestamp(4) from dual
+
+insert into t1(b) select current_timestamp(5) from dual
+
+insert into t1(b) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select current_timestamp from dual
+
+insert into t1(c) select current_timestamp(0) from dual
+
+insert into t1(c) select current_timestamp(1) from dual
+
+insert into t1(c) select current_timestamp(2) from dual
+
+insert into t1(c) select current_timestamp(3) from dual
+
+insert into t1(c) select current_timestamp(4) from dual
+
+insert into t1(c) select current_timestamp(5) from dual
+
+insert into t1(c) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+
+insert into t1(a) select clock_timestamp() from dual
+
+insert into t1(a) select localtimestamp() from dual
+
+insert into t1(a) select localtimestamp(1) from dual
+
+insert into t1(a) select localtimestamp(2) from dual
+
+insert into t1(a) select localtimestamp(3) from dual
+
+insert into t1(a) select localtimestamp(4) from dual
+
+insert into t1(a) select localtimestamp(5) from dual
+
+insert into t1(a) select localtimestamp(6) from dual
+
+insert into t1(a) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+
+insert into t1(b) select current_date from dual
+
+insert into t1(b) select localtimestamp() from dual
+
+insert into t1(b) select localtimestamp(1) from dual
+
+insert into t1(b) select localtimestamp(2) from dual
+
+insert into t1(b) select localtimestamp(3) from dual
+
+insert into t1(b) select localtimestamp(4) from dual
+
+insert into t1(b) select localtimestamp(5) from dual
+
+insert into t1(b) select localtimestamp(6) from dual
+
+insert into t1(b) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select clock_timestamp() from dual
+
+insert into t1(c) select localtimestamp() from dual
+
+insert into t1(c) select localtimestamp(1) from dual
+
+insert into t1(c) select localtimestamp(2) from dual
+
+insert into t1(c) select localtimestamp(3) from dual
+
+insert into t1(c) select localtimestamp(4) from dual
+
+insert into t1(c) select localtimestamp(5) from dual
+
+insert into t1(c) select localtimestamp(6) from dual
+
+insert into t1(c) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.318820+00:00
+None None 2021-10-11 12:07:55.319831+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.320000+00:00
+None None 2021-10-11 12:07:55.323000+00:00
+None None 2021-10-11 12:07:55.323700+00:00
+None None 2021-10-11 12:07:55.324350+00:00
+None None 2021-10-11 12:07:55.325419+00:00
+None None 2021-10-11 12:07:55+00:00
+
+insert into t1(a) select transaction_timestamp() from dual
+
+insert into t1(a) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.318820+00:00
+None None 2021-10-11 12:07:55.319831+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.320000+00:00
+None None 2021-10-11 12:07:55.323000+00:00
+None None 2021-10-11 12:07:55.323700+00:00
+None None 2021-10-11 12:07:55.324350+00:00
+None None 2021-10-11 12:07:55.325419+00:00
+None None 2021-10-11 12:07:55+00:00
+2021-10-11 12:07:55.328570 None None
+2021-10-11 12:07:55.329638 None None
+
+insert into t1(b) select transaction_timestamp() from dual
+
+insert into t1(b) select (sysdate::timestamptz-now())::int::date from dual
+insert into t1(b) select sysdate from dual
+value type timestamp doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.318820+00:00
+None None 2021-10-11 12:07:55.319831+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.320000+00:00
+None None 2021-10-11 12:07:55.323000+00:00
+None None 2021-10-11 12:07:55.323700+00:00
+None None 2021-10-11 12:07:55.324350+00:00
+None None 2021-10-11 12:07:55.325419+00:00
+None None 2021-10-11 12:07:55+00:00
+2021-10-11 12:07:55.328570 None None
+2021-10-11 12:07:55.329638 None None
+None 2021-10-11 None
+None 1970-01-01 None
+
+insert into t1(c) select transaction_timestamp() from dual
+
+insert into t1(c) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:55.253697 None None
+2021-10-11 12:07:55 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.270000 None None
+2021-10-11 12:07:55.268000 None None
+2021-10-11 12:07:55.269300 None None
+2021-10-11 12:07:55.270460 None None
+2021-10-11 12:07:55.274746 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.292442+00:00
+None None 2021-10-11 12:07:55+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.296000+00:00
+None None 2021-10-11 12:07:55.296700+00:00
+None None 2021-10-11 12:07:55.297300+00:00
+None None 2021-10-11 12:07:55.297950+00:00
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.301070 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.300000 None None
+2021-10-11 12:07:55.304000 None None
+2021-10-11 12:07:55.304900 None None
+2021-10-11 12:07:55.305730 None None
+2021-10-11 12:07:55.306627 None None
+2021-10-11 12:07:55 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:55.318820+00:00
+None None 2021-10-11 12:07:55.319831+00:00
+None None 2021-10-11 12:07:55.300000+00:00
+None None 2021-10-11 12:07:55.320000+00:00
+None None 2021-10-11 12:07:55.323000+00:00
+None None 2021-10-11 12:07:55.323700+00:00
+None None 2021-10-11 12:07:55.324350+00:00
+None None 2021-10-11 12:07:55.325419+00:00
+None None 2021-10-11 12:07:55+00:00
+2021-10-11 12:07:55.328570 None None
+2021-10-11 12:07:55.329638 None None
+None 2021-10-11 None
+None 1970-01-01 None
+None None 2021-10-11 12:07:55.335564+00:00
+None None 2021-10-11 12:07:55.336514+00:00
+
+drop table t1
+
+set time zone 'utc'
+
+select current_timestamp from dual
+current_timestamp
+2021-10-11 12:07:55.383471+00:00
+
+select current_timestamp(0) from dual
+current_timestamp
+2021-10-11 12:07:55+00:00
+
+select current_timestamp(1) from dual
+current_timestamp
+2021-10-11 12:07:55.400000+00:00
+
+select current_timestamp(2) from dual
+current_timestamp
+2021-10-11 12:07:55.390000+00:00
+
+select current_timestamp(3) from dual
+current_timestamp
+2021-10-11 12:07:55.387000+00:00
+
+select current_timestamp(4) from dual
+current_timestamp
+2021-10-11 12:07:55.388000+00:00
+
+select current_timestamp(5) from dual
+current_timestamp
+2021-10-11 12:07:55.388300+00:00
+
+select current_timestamp(6) from dual
+current_timestamp
+2021-10-11 12:07:55.388946+00:00
+
+select timeofday() from dual
+timeofday
+Mon Oct 11 12:07:55.389669 2021 +0000
+
+select current_time from dual
+current_time
+12:07:55.389919+00:00
+
+select current_date from dual
+current_date
+2021-10-11
+
+select clock_timestamp() from dual
+clock_timestamp
+2021-10-11 12:07:55.391244+00:00
+
+select experimental_follower_read_timestamp() from dual
+experimental_follower_read_timestamp
+2021-10-11 12:07:50.591501+00:00
+
+select follower_read_timestamp() from dual
+follower_read_timestamp
+2021-10-11 12:07:50.592285+00:00
+
+select localtimestamp() from dual
+localtimestamp
+2021-10-11 12:07:55.392620
+
+select localtimestamp(1) from dual
+localtimestamp
+2021-10-11 12:07:55.400000
+
+select localtimestamp(2) from dual
+localtimestamp
+2021-10-11 12:07:55.390000
+
+select localtimestamp(3) from dual
+localtimestamp
+2021-10-11 12:07:55.393000
+
+select localtimestamp(4) from dual
+localtimestamp
+2021-10-11 12:07:55.393700
+
+select localtimestamp(5) from dual
+localtimestamp
+2021-10-11 12:07:55.394000
+
+select localtimestamp(6) from dual
+localtimestamp
+2021-10-11 12:07:55.394264
+
+select localtimestamp(0) from dual
+localtimestamp
+2021-10-11 12:07:55
+
+select transaction_timestamp() from dual
+transaction_timestamp
+2021-10-11 12:07:55.394829+00:00
+
+select statement_timestamp() from dual
+statement_timestamp
+2021-10-11 12:07:55.395146+00:00
+
+select cluster_logical_timestamp() from dual
+cluster_logical_timestamp
+1633954075395427676
+
+select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+0:00:00
+
+select age(current_timestamp::timestamptz) from dual
+age
+0:00:00
+
+select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+-1 day, 23:59:59.999972
+
+select (sysdate::timestamptz-now())::int from dual
+int8
+0
+
+select (sysdate::timestamptz-now())::int::date from dual
+date
+1970-01-01
+
+select sysdate from dual
+sysdate
+2021-10-11 12:07:55.397310
+
+drop table if exists t1
+
+create table t1 as select current_timestamp from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.399581+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(0) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(1) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.600000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(2) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.660000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(3) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.750000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(4) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.838000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(5) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:55.921280+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(6) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 12:07:56.002493+00:00
+
+drop table if exists t1
+
+create table t1 as select timeofday() from dual
+
+select * from t1
+timeofday
+Mon Oct 11 12:07:56.084227 2021 +0000
+
+drop table if exists t1
+
+create table t1 as select current_time from dual
+
+select * from t1
+current_time
+12:07:56.167157+00:00
+
+drop table if exists t1
+
+create table t1 as select current_date from dual
+
+select * from t1
+current_date
+2021-10-11
+
+drop table if exists t1
+
+create table t1 as select clock_timestamp() from dual
+
+select * from t1
+clock_timestamp
+2021-10-11 12:07:56.351999+00:00
+
+drop table if exists t1
+
+create table t1 as select experimental_follower_read_timestamp() from dual
+
+select * from t1
+experimental_follower_read_timestamp
+2021-10-11 12:07:51.611001+00:00
+
+drop table if exists t1
+
+create table t1 as select follower_read_timestamp() from dual
+
+select * from t1
+follower_read_timestamp
+2021-10-11 12:07:51.694159+00:00
+
+drop table if exists t1
+
+create table t1 as select localtimestamp() from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.576233
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(1) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.700000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(2) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.740000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(3) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.828000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(4) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.911300
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(5) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:56.996730
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(6) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:57.083928
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(0) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:57
+
+drop table if exists t1
+
+create table t1 as select transaction_timestamp() from dual
+
+select * from t1
+transaction_timestamp
+2021-10-11 12:07:57.269062+00:00
+
+drop table if exists t1
+
+create table t1 as select statement_timestamp() from dual
+
+select * from t1
+statement_timestamp
+2021-10-11 12:07:57.356790+00:00
+
+drop table if exists t1
+
+create table t1 as select cluster_logical_timestamp() from dual
+
+select * from t1
+cluster_logical_timestamp
+1633954077444469307
+
+drop table if exists t1
+
+create table t1 as select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(current_timestamp::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+-1 day, 23:59:59.981860
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int from dual
+
+select * from t1
+int8
+0
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int::date from dual
+
+select * from t1
+date
+1970-01-01
+
+drop table if exists t1
+
+create table t1 as select sysdate from dual
+
+select * from t1
+sysdate
+2021-10-11 12:07:57.957790
+
+drop table if exists t1
+
+create table t1(a timestamp,b date,c timestamptz)
+
+insert into t1(a) select current_timestamp from dual
+
+insert into t1(a) select current_timestamp(0) from dual
+
+insert into t1(a) select current_timestamp(1) from dual
+
+insert into t1(a) select current_timestamp(2) from dual
+
+insert into t1(a) select current_timestamp(3) from dual
+
+insert into t1(a) select current_timestamp(4) from dual
+
+insert into t1(a) select current_timestamp(5) from dual
+
+insert into t1(a) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+
+insert into t1(b) select current_timestamp from dual
+
+insert into t1(b) select current_timestamp(0) from dual
+
+insert into t1(b) select current_timestamp(1) from dual
+
+insert into t1(b) select current_timestamp(2) from dual
+
+insert into t1(b) select current_timestamp(3) from dual
+
+insert into t1(b) select current_timestamp(4) from dual
+
+insert into t1(b) select current_timestamp(5) from dual
+
+insert into t1(b) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select current_timestamp from dual
+
+insert into t1(c) select current_timestamp(0) from dual
+
+insert into t1(c) select current_timestamp(1) from dual
+
+insert into t1(c) select current_timestamp(2) from dual
+
+insert into t1(c) select current_timestamp(3) from dual
+
+insert into t1(c) select current_timestamp(4) from dual
+
+insert into t1(c) select current_timestamp(5) from dual
+
+insert into t1(c) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+
+insert into t1(a) select clock_timestamp() from dual
+
+insert into t1(a) select localtimestamp() from dual
+
+insert into t1(a) select localtimestamp(1) from dual
+
+insert into t1(a) select localtimestamp(2) from dual
+
+insert into t1(a) select localtimestamp(3) from dual
+
+insert into t1(a) select localtimestamp(4) from dual
+
+insert into t1(a) select localtimestamp(5) from dual
+
+insert into t1(a) select localtimestamp(6) from dual
+
+insert into t1(a) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+
+insert into t1(b) select current_date from dual
+
+insert into t1(b) select localtimestamp() from dual
+
+insert into t1(b) select localtimestamp(1) from dual
+
+insert into t1(b) select localtimestamp(2) from dual
+
+insert into t1(b) select localtimestamp(3) from dual
+
+insert into t1(b) select localtimestamp(4) from dual
+
+insert into t1(b) select localtimestamp(5) from dual
+
+insert into t1(b) select localtimestamp(6) from dual
+
+insert into t1(b) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select clock_timestamp() from dual
+
+insert into t1(c) select localtimestamp() from dual
+
+insert into t1(c) select localtimestamp(1) from dual
+
+insert into t1(c) select localtimestamp(2) from dual
+
+insert into t1(c) select localtimestamp(3) from dual
+
+insert into t1(c) select localtimestamp(4) from dual
+
+insert into t1(c) select localtimestamp(5) from dual
+
+insert into t1(c) select localtimestamp(6) from dual
+
+insert into t1(c) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.088359+00:00
+None None 2021-10-11 12:07:58.089203+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.090000+00:00
+None None 2021-10-11 12:07:58.094000+00:00
+None None 2021-10-11 12:07:58.094900+00:00
+None None 2021-10-11 12:07:58.095870+00:00
+None None 2021-10-11 12:07:58.096971+00:00
+None None 2021-10-11 12:07:58+00:00
+
+insert into t1(a) select transaction_timestamp() from dual
+
+insert into t1(a) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.088359+00:00
+None None 2021-10-11 12:07:58.089203+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.090000+00:00
+None None 2021-10-11 12:07:58.094000+00:00
+None None 2021-10-11 12:07:58.094900+00:00
+None None 2021-10-11 12:07:58.095870+00:00
+None None 2021-10-11 12:07:58.096971+00:00
+None None 2021-10-11 12:07:58+00:00
+2021-10-11 12:07:58.100042 None None
+2021-10-11 12:07:58.101058 None None
+
+insert into t1(b) select transaction_timestamp() from dual
+
+insert into t1(b) select (sysdate::timestamptz-now())::int::date from dual
+insert into t1(b) select sysdate from dual
+value type timestamp doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.088359+00:00
+None None 2021-10-11 12:07:58.089203+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.090000+00:00
+None None 2021-10-11 12:07:58.094000+00:00
+None None 2021-10-11 12:07:58.094900+00:00
+None None 2021-10-11 12:07:58.095870+00:00
+None None 2021-10-11 12:07:58.096971+00:00
+None None 2021-10-11 12:07:58+00:00
+2021-10-11 12:07:58.100042 None None
+2021-10-11 12:07:58.101058 None None
+None 2021-10-11 None
+None 1970-01-01 None
+
+insert into t1(c) select transaction_timestamp() from dual
+
+insert into t1(c) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 12:07:58.034402 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58 None None
+2021-10-11 12:07:58.050000 None None
+2021-10-11 12:07:58.049000 None None
+2021-10-11 12:07:58.049800 None None
+2021-10-11 12:07:58.050730 None None
+2021-10-11 12:07:58.051655 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.063291+00:00
+None None 2021-10-11 12:07:58+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.070000+00:00
+None None 2021-10-11 12:07:58.067000+00:00
+None None 2021-10-11 12:07:58.067400+00:00
+None None 2021-10-11 12:07:58.068130+00:00
+None None 2021-10-11 12:07:58.068787+00:00
+2021-10-11 12:07:58.070681 None None
+2021-10-11 12:07:58.071244 None None
+2021-10-11 12:07:58.100000 None None
+2021-10-11 12:07:58.070000 None None
+2021-10-11 12:07:58.074000 None None
+2021-10-11 12:07:58.075100 None None
+2021-10-11 12:07:58.075850 None None
+2021-10-11 12:07:58.076708 None None
+2021-10-11 12:07:58 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 12:07:58.088359+00:00
+None None 2021-10-11 12:07:58.089203+00:00
+None None 2021-10-11 12:07:58.100000+00:00
+None None 2021-10-11 12:07:58.090000+00:00
+None None 2021-10-11 12:07:58.094000+00:00
+None None 2021-10-11 12:07:58.094900+00:00
+None None 2021-10-11 12:07:58.095870+00:00
+None None 2021-10-11 12:07:58.096971+00:00
+None None 2021-10-11 12:07:58+00:00
+2021-10-11 12:07:58.100042 None None
+2021-10-11 12:07:58.101058 None None
+None 2021-10-11 None
+None 1970-01-01 None
+None None 2021-10-11 12:07:58.106663+00:00
+None None 2021-10-11 12:07:58.107761+00:00
+
+drop table t1
+
+set time zone 'asia/shanghai'
+
+select current_timestamp from dual
+current_timestamp
+2021-10-11 20:07:58.155148+08:00
+
+select current_timestamp(0) from dual
+current_timestamp
+2021-10-11 20:07:58+08:00
+
+select current_timestamp(1) from dual
+current_timestamp
+2021-10-11 20:07:58.200000+08:00
+
+select current_timestamp(2) from dual
+current_timestamp
+2021-10-11 20:07:58.160000+08:00
+
+select current_timestamp(3) from dual
+current_timestamp
+2021-10-11 20:07:58.158000+08:00
+
+select current_timestamp(4) from dual
+current_timestamp
+2021-10-11 20:07:58.158200+08:00
+
+select current_timestamp(5) from dual
+current_timestamp
+2021-10-11 20:07:58.158830+08:00
+
+select current_timestamp(6) from dual
+current_timestamp
+2021-10-11 20:07:58.159398+08:00
+
+select timeofday() from dual
+timeofday
+Mon Oct 11 20:07:58.159831 2021 +0800
+
+select current_time from dual
+current_time
+20:07:58.160130+08:00
+
+select current_date from dual
+current_date
+2021-10-11
+
+select clock_timestamp() from dual
+clock_timestamp
+2021-10-11 20:07:58.160754+08:00
+
+select experimental_follower_read_timestamp() from dual
+experimental_follower_read_timestamp
+2021-10-11 20:07:53.361001+08:00
+
+select follower_read_timestamp() from dual
+follower_read_timestamp
+2021-10-11 20:07:53.361347+08:00
+
+select localtimestamp() from dual
+localtimestamp
+2021-10-11 20:07:58.161671
+
+select localtimestamp(1) from dual
+localtimestamp
+2021-10-11 20:07:58.200000
+
+select localtimestamp(2) from dual
+localtimestamp
+2021-10-11 20:07:58.160000
+
+select localtimestamp(3) from dual
+localtimestamp
+2021-10-11 20:07:58.163000
+
+select localtimestamp(4) from dual
+localtimestamp
+2021-10-11 20:07:58.162800
+
+select localtimestamp(5) from dual
+localtimestamp
+2021-10-11 20:07:58.163120
+
+select localtimestamp(6) from dual
+localtimestamp
+2021-10-11 20:07:58.163374
+
+select localtimestamp(0) from dual
+localtimestamp
+2021-10-11 20:07:58
+
+select transaction_timestamp() from dual
+transaction_timestamp
+2021-10-11 20:07:58.163942+08:00
+
+select statement_timestamp() from dual
+statement_timestamp
+2021-10-11 20:07:58.164220+08:00
+
+select cluster_logical_timestamp() from dual
+cluster_logical_timestamp
+1633954078164483285
+
+select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+12:00:00
+
+select age(current_timestamp::timestamptz) from dual
+age
+0:00:00
+
+select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+11:59:59.999972
+
+select (sysdate::timestamptz-now())::int from dual
+int8
+0
+
+select (sysdate::timestamptz-now())::int::date from dual
+date
+1970-01-01
+
+select sysdate from dual
+sysdate
+2021-10-11 20:07:58.167347
+
+drop table if exists t1
+
+create table t1 as select current_timestamp from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.169317+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(0) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(1) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.300000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(2) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.430000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(3) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.511000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(4) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.594100+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(5) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.667260+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(6) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:07:58.758835+08:00
+
+drop table if exists t1
+
+create table t1 as select timeofday() from dual
+
+select * from t1
+timeofday
+Mon Oct 11 12:07:58.843779 2021 +0000
+
+drop table if exists t1
+
+create table t1 as select current_time from dual
+
+select * from t1
+current_time
+12:07:58.926914+00:00
+
+drop table if exists t1
+
+create table t1 as select current_date from dual
+
+select * from t1
+current_date
+2021-10-11
+
+drop table if exists t1
+
+create table t1 as select clock_timestamp() from dual
+
+select * from t1
+clock_timestamp
+2021-10-11 20:07:59.111207+08:00
+
+drop table if exists t1
+
+create table t1 as select experimental_follower_read_timestamp() from dual
+
+select * from t1
+experimental_follower_read_timestamp
+2021-10-11 20:07:54.379753+08:00
+
+drop table if exists t1
+
+create table t1 as select follower_read_timestamp() from dual
+
+select * from t1
+follower_read_timestamp
+2021-10-11 20:07:54.468681+08:00
+
+drop table if exists t1
+
+create table t1 as select localtimestamp() from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.352228
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(1) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.400000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(2) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.530000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(3) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.613000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(4) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.689600
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(5) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.775320
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(6) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:07:59.864909
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(0) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:00
+
+drop table if exists t1
+
+create table t1 as select transaction_timestamp() from dual
+
+select * from t1
+transaction_timestamp
+2021-10-11 20:08:00.037425+08:00
+
+drop table if exists t1
+
+create table t1 as select statement_timestamp() from dual
+
+select * from t1
+statement_timestamp
+2021-10-11 20:08:00.114418+08:00
+
+drop table if exists t1
+
+create table t1 as select cluster_logical_timestamp() from dual
+
+select * from t1
+cluster_logical_timestamp
+1633954080201675095
+
+drop table if exists t1
+
+create table t1 as select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(current_timestamp::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+-1 day, 23:59:59.980840
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int from dual
+
+select * from t1
+int8
+0
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int::date from dual
+
+select * from t1
+date
+1970-01-01
+
+drop table if exists t1
+
+create table t1 as select sysdate from dual
+
+select * from t1
+sysdate
+2021-10-11 12:08:00.749787
+
+drop table if exists t1
+
+create table t1(a timestamp,b date,c timestamptz)
+
+insert into t1(a) select current_timestamp from dual
+
+insert into t1(a) select current_timestamp(0) from dual
+
+insert into t1(a) select current_timestamp(1) from dual
+
+insert into t1(a) select current_timestamp(2) from dual
+
+insert into t1(a) select current_timestamp(3) from dual
+
+insert into t1(a) select current_timestamp(4) from dual
+
+insert into t1(a) select current_timestamp(5) from dual
+
+insert into t1(a) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+
+insert into t1(b) select current_timestamp from dual
+
+insert into t1(b) select current_timestamp(0) from dual
+
+insert into t1(b) select current_timestamp(1) from dual
+
+insert into t1(b) select current_timestamp(2) from dual
+
+insert into t1(b) select current_timestamp(3) from dual
+
+insert into t1(b) select current_timestamp(4) from dual
+
+insert into t1(b) select current_timestamp(5) from dual
+
+insert into t1(b) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select current_timestamp from dual
+
+insert into t1(c) select current_timestamp(0) from dual
+
+insert into t1(c) select current_timestamp(1) from dual
+
+insert into t1(c) select current_timestamp(2) from dual
+
+insert into t1(c) select current_timestamp(3) from dual
+
+insert into t1(c) select current_timestamp(4) from dual
+
+insert into t1(c) select current_timestamp(5) from dual
+
+insert into t1(c) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+
+insert into t1(a) select clock_timestamp() from dual
+
+insert into t1(a) select localtimestamp() from dual
+
+insert into t1(a) select localtimestamp(1) from dual
+
+insert into t1(a) select localtimestamp(2) from dual
+
+insert into t1(a) select localtimestamp(3) from dual
+
+insert into t1(a) select localtimestamp(4) from dual
+
+insert into t1(a) select localtimestamp(5) from dual
+
+insert into t1(a) select localtimestamp(6) from dual
+
+insert into t1(a) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+
+insert into t1(b) select current_date from dual
+
+insert into t1(b) select localtimestamp() from dual
+
+insert into t1(b) select localtimestamp(1) from dual
+
+insert into t1(b) select localtimestamp(2) from dual
+
+insert into t1(b) select localtimestamp(3) from dual
+
+insert into t1(b) select localtimestamp(4) from dual
+
+insert into t1(b) select localtimestamp(5) from dual
+
+insert into t1(b) select localtimestamp(6) from dual
+
+insert into t1(b) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select clock_timestamp() from dual
+
+insert into t1(c) select localtimestamp() from dual
+
+insert into t1(c) select localtimestamp(1) from dual
+
+insert into t1(c) select localtimestamp(2) from dual
+
+insert into t1(c) select localtimestamp(3) from dual
+
+insert into t1(c) select localtimestamp(4) from dual
+
+insert into t1(c) select localtimestamp(5) from dual
+
+insert into t1(c) select localtimestamp(6) from dual
+
+insert into t1(c) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.886402+08:00
+None None 2021-10-11 20:08:00.887477+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.890000+08:00
+None None 2021-10-11 20:08:00.891000+08:00
+None None 2021-10-11 20:08:00.892200+08:00
+None None 2021-10-11 20:08:00.893690+08:00
+None None 2021-10-11 20:08:00.894685+08:00
+None None 2021-10-11 20:08:01+08:00
+
+insert into t1(a) select transaction_timestamp() from dual
+
+insert into t1(a) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.886402+08:00
+None None 2021-10-11 20:08:00.887477+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.890000+08:00
+None None 2021-10-11 20:08:00.891000+08:00
+None None 2021-10-11 20:08:00.892200+08:00
+None None 2021-10-11 20:08:00.893690+08:00
+None None 2021-10-11 20:08:00.894685+08:00
+None None 2021-10-11 20:08:01+08:00
+2021-10-11 20:08:00.898045 None None
+2021-10-11 20:08:00.899205 None None
+
+insert into t1(b) select transaction_timestamp() from dual
+
+insert into t1(b) select (sysdate::timestamptz-now())::int::date from dual
+insert into t1(b) select sysdate from dual
+value type timestamp doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.886402+08:00
+None None 2021-10-11 20:08:00.887477+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.890000+08:00
+None None 2021-10-11 20:08:00.891000+08:00
+None None 2021-10-11 20:08:00.892200+08:00
+None None 2021-10-11 20:08:00.893690+08:00
+None None 2021-10-11 20:08:00.894685+08:00
+None None 2021-10-11 20:08:01+08:00
+2021-10-11 20:08:00.898045 None None
+2021-10-11 20:08:00.899205 None None
+None 2021-10-11 None
+None 1970-01-01 None
+
+insert into t1(c) select transaction_timestamp() from dual
+
+insert into t1(c) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:00.821809 None None
+2021-10-11 20:08:01 None None
+2021-10-11 20:08:00.800000 None None
+2021-10-11 20:08:00.840000 None None
+2021-10-11 20:08:00.836000 None None
+2021-10-11 20:08:00.838000 None None
+2021-10-11 20:08:00.839050 None None
+2021-10-11 20:08:00.840284 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.854195+08:00
+None None 2021-10-11 20:08:01+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.860000+08:00
+None None 2021-10-11 20:08:00.859000+08:00
+None None 2021-10-11 20:08:00.860600+08:00
+None None 2021-10-11 20:08:00.861750+08:00
+None None 2021-10-11 20:08:00.862847+08:00
+2021-10-11 20:08:00.865908 None None
+2021-10-11 20:08:00.867261 None None
+2021-10-11 20:08:00.900000 None None
+2021-10-11 20:08:00.870000 None None
+2021-10-11 20:08:00.869000 None None
+2021-10-11 20:08:00.870400 None None
+2021-10-11 20:08:00.871270 None None
+2021-10-11 20:08:00.871894 None None
+2021-10-11 20:08:01 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:00.886402+08:00
+None None 2021-10-11 20:08:00.887477+08:00
+None None 2021-10-11 20:08:00.900000+08:00
+None None 2021-10-11 20:08:00.890000+08:00
+None None 2021-10-11 20:08:00.891000+08:00
+None None 2021-10-11 20:08:00.892200+08:00
+None None 2021-10-11 20:08:00.893690+08:00
+None None 2021-10-11 20:08:00.894685+08:00
+None None 2021-10-11 20:08:01+08:00
+2021-10-11 20:08:00.898045 None None
+2021-10-11 20:08:00.899205 None None
+None 2021-10-11 None
+None 1970-01-01 None
+None None 2021-10-11 20:08:00.904810+08:00
+None None 2021-10-11 20:08:00.905430+08:00
+
+drop table t1
+
+select * from [show time zone]
+timezone
+Asia/Shanghai
+
+set time zone '+8'
+
+select current_timestamp from dual
+current_timestamp
+2021-10-11 20:08:00.951600+08:00
+
+select current_timestamp(0) from dual
+current_timestamp
+2021-10-11 20:08:01+08:00
+
+select current_timestamp(1) from dual
+current_timestamp
+2021-10-11 20:08:01+08:00
+
+select current_timestamp(2) from dual
+current_timestamp
+2021-10-11 20:08:00.950000+08:00
+
+select current_timestamp(3) from dual
+current_timestamp
+2021-10-11 20:08:00.953000+08:00
+
+select current_timestamp(4) from dual
+current_timestamp
+2021-10-11 20:08:00.953400+08:00
+
+select current_timestamp(5) from dual
+current_timestamp
+2021-10-11 20:08:00.953700+08:00
+
+select current_timestamp(6) from dual
+current_timestamp
+2021-10-11 20:08:00.953968+08:00
+
+select timeofday() from dual
+timeofday
+Mon Oct 11 20:08:00.954258 2021 +0800
+
+select current_time from dual
+current_time
+20:08:00.954565+08:00
+
+select current_date from dual
+current_date
+2021-10-11
+
+select clock_timestamp() from dual
+clock_timestamp
+2021-10-11 20:08:00.955156+08:00
+
+select experimental_follower_read_timestamp() from dual
+experimental_follower_read_timestamp
+2021-10-11 20:07:56.155413+08:00
+
+select follower_read_timestamp() from dual
+follower_read_timestamp
+2021-10-11 20:07:56.155732+08:00
+
+select localtimestamp() from dual
+localtimestamp
+2021-10-11 20:08:00.955994
+
+select localtimestamp(1) from dual
+localtimestamp
+2021-10-11 20:08:01
+
+select localtimestamp(2) from dual
+localtimestamp
+2021-10-11 20:08:00.960000
+
+select localtimestamp(3) from dual
+localtimestamp
+2021-10-11 20:08:00.957000
+
+select localtimestamp(4) from dual
+localtimestamp
+2021-10-11 20:08:00.957100
+
+select localtimestamp(5) from dual
+localtimestamp
+2021-10-11 20:08:00.957400
+
+select localtimestamp(6) from dual
+localtimestamp
+2021-10-11 20:08:00.957684
+
+select localtimestamp(0) from dual
+localtimestamp
+2021-10-11 20:08:01
+
+select transaction_timestamp() from dual
+transaction_timestamp
+2021-10-11 20:08:00.958248+08:00
+
+select statement_timestamp() from dual
+statement_timestamp
+2021-10-11 20:08:00.958545+08:00
+
+select cluster_logical_timestamp() from dual
+cluster_logical_timestamp
+1633954080958814159
+
+select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+12:00:00
+
+select age(current_timestamp::timestamptz) from dual
+age
+0:00:00
+
+select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+11:59:59.999971
+
+select (sysdate::timestamptz-now())::int from dual
+int8
+0
+
+select (sysdate::timestamptz-now())::int::date from dual
+date
+1970-01-01
+
+select sysdate from dual
+sysdate
+2021-10-11 20:08:00.960585
+
+drop table if exists t1
+
+create table t1 as select current_timestamp from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:00.962044+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(0) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(1) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.100000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(2) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.230000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(3) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.320000+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(4) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.406100+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(5) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.493670+08:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(6) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 20:08:01.586744+08:00
+
+drop table if exists t1
+
+create table t1 as select timeofday() from dual
+
+select * from t1
+timeofday
+Mon Oct 11 12:08:01.669603 2021 +0000
+
+drop table if exists t1
+
+create table t1 as select current_time from dual
+
+select * from t1
+current_time
+12:08:01.754282+00:00
+
+drop table if exists t1
+
+create table t1 as select current_date from dual
+
+select * from t1
+current_date
+2021-10-11
+
+drop table if exists t1
+
+create table t1 as select clock_timestamp() from dual
+
+select * from t1
+clock_timestamp
+2021-10-11 20:08:01.950919+08:00
+
+drop table if exists t1
+
+create table t1 as select experimental_follower_read_timestamp() from dual
+
+select * from t1
+experimental_follower_read_timestamp
+2021-10-11 20:07:57.216302+08:00
+
+drop table if exists t1
+
+create table t1 as select follower_read_timestamp() from dual
+
+select * from t1
+follower_read_timestamp
+2021-10-11 20:07:57.307799+08:00
+
+drop table if exists t1
+
+create table t1 as select localtimestamp() from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.193998
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(1) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.300000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(2) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.360000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(3) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.449000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(4) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.536600
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(5) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.619400
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(6) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:02.708214
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(0) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 12:08:03
+
+drop table if exists t1
+
+create table t1 as select transaction_timestamp() from dual
+
+select * from t1
+transaction_timestamp
+2021-10-11 20:08:02.881415+08:00
+
+drop table if exists t1
+
+create table t1 as select statement_timestamp() from dual
+
+select * from t1
+statement_timestamp
+2021-10-11 20:08:02.968850+08:00
+
+drop table if exists t1
+
+create table t1 as select cluster_logical_timestamp() from dual
+
+select * from t1
+cluster_logical_timestamp
+1633954083054234719
+
+drop table if exists t1
+
+create table t1 as select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(current_timestamp::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+-1 day, 23:59:59.976647
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int from dual
+
+select * from t1
+int8
+0
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int::date from dual
+
+select * from t1
+date
+1970-01-01
+
+drop table if exists t1
+
+create table t1 as select sysdate from dual
+
+select * from t1
+sysdate
+2021-10-11 12:08:03.617062
+
+drop table if exists t1
+
+create table t1(a timestamp,b date,c timestamptz)
+
+insert into t1(a) select current_timestamp from dual
+
+insert into t1(a) select current_timestamp(0) from dual
+
+insert into t1(a) select current_timestamp(1) from dual
+
+insert into t1(a) select current_timestamp(2) from dual
+
+insert into t1(a) select current_timestamp(3) from dual
+
+insert into t1(a) select current_timestamp(4) from dual
+
+insert into t1(a) select current_timestamp(5) from dual
+
+insert into t1(a) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+
+insert into t1(b) select current_timestamp from dual
+
+insert into t1(b) select current_timestamp(0) from dual
+
+insert into t1(b) select current_timestamp(1) from dual
+
+insert into t1(b) select current_timestamp(2) from dual
+
+insert into t1(b) select current_timestamp(3) from dual
+
+insert into t1(b) select current_timestamp(4) from dual
+
+insert into t1(b) select current_timestamp(5) from dual
+
+insert into t1(b) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select current_timestamp from dual
+
+insert into t1(c) select current_timestamp(0) from dual
+
+insert into t1(c) select current_timestamp(1) from dual
+
+insert into t1(c) select current_timestamp(2) from dual
+
+insert into t1(c) select current_timestamp(3) from dual
+
+insert into t1(c) select current_timestamp(4) from dual
+
+insert into t1(c) select current_timestamp(5) from dual
+
+insert into t1(c) select current_timestamp(6) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+
+insert into t1(a) select clock_timestamp() from dual
+
+insert into t1(a) select localtimestamp() from dual
+
+insert into t1(a) select localtimestamp(1) from dual
+
+insert into t1(a) select localtimestamp(2) from dual
+
+insert into t1(a) select localtimestamp(3) from dual
+
+insert into t1(a) select localtimestamp(4) from dual
+
+insert into t1(a) select localtimestamp(5) from dual
+
+insert into t1(a) select localtimestamp(6) from dual
+
+insert into t1(a) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+2021-10-11 20:08:03.727640 None None
+2021-10-11 20:08:03.728184 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.730000 None None
+2021-10-11 20:08:03.731000 None None
+2021-10-11 20:08:03.732000 None None
+2021-10-11 20:08:03.732870 None None
+2021-10-11 20:08:03.733449 None None
+2021-10-11 20:08:04 None None
+
+insert into t1(b) select current_date from dual
+
+insert into t1(c) select localtimestamp() from dual
+
+insert into t1(c) select localtimestamp(1) from dual
+
+insert into t1(c) select localtimestamp(2) from dual
+
+insert into t1(c) select localtimestamp(3) from dual
+
+insert into t1(c) select localtimestamp(4) from dual
+
+insert into t1(c) select localtimestamp(5) from dual
+
+insert into t1(c) select localtimestamp(6) from dual
+
+insert into t1(c) select localtimestamp(0) from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+2021-10-11 20:08:03.727640 None None
+2021-10-11 20:08:03.728184 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.730000 None None
+2021-10-11 20:08:03.731000 None None
+2021-10-11 20:08:03.732000 None None
+2021-10-11 20:08:03.732870 None None
+2021-10-11 20:08:03.733449 None None
+2021-10-11 20:08:04 None None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.736611+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740400+08:00
+None None 2021-10-11 20:08:03.741200+08:00
+None None 2021-10-11 20:08:03.741841+08:00
+None None 2021-10-11 20:08:04+08:00
+
+insert into t1(a) select transaction_timestamp() from dual
+
+insert into t1(a) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+2021-10-11 20:08:03.727640 None None
+2021-10-11 20:08:03.728184 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.730000 None None
+2021-10-11 20:08:03.731000 None None
+2021-10-11 20:08:03.732000 None None
+2021-10-11 20:08:03.732870 None None
+2021-10-11 20:08:03.733449 None None
+2021-10-11 20:08:04 None None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.736611+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740400+08:00
+None None 2021-10-11 20:08:03.741200+08:00
+None None 2021-10-11 20:08:03.741841+08:00
+None None 2021-10-11 20:08:04+08:00
+2021-10-11 20:08:03.743801 None None
+2021-10-11 20:08:03.744742 None None
+
+insert into t1(b) select transaction_timestamp() from dual
+
+insert into t1(b) select (sysdate::timestamptz-now())::int::date from dual
+insert into t1(b) select sysdate from dual
+value type timestamp doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+2021-10-11 20:08:03.727640 None None
+2021-10-11 20:08:03.728184 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.730000 None None
+2021-10-11 20:08:03.731000 None None
+2021-10-11 20:08:03.732000 None None
+2021-10-11 20:08:03.732870 None None
+2021-10-11 20:08:03.733449 None None
+2021-10-11 20:08:04 None None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.736611+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740400+08:00
+None None 2021-10-11 20:08:03.741200+08:00
+None None 2021-10-11 20:08:03.741841+08:00
+None None 2021-10-11 20:08:04+08:00
+2021-10-11 20:08:03.743801 None None
+2021-10-11 20:08:03.744742 None None
+None 2021-10-11 None
+None 1970-01-01 None
+
+insert into t1(c) select transaction_timestamp() from dual
+
+insert into t1(c) select statement_timestamp() from dual
+
+select * from t1
+a b c
+2021-10-11 20:08:03.687753 None None
+2021-10-11 20:08:04 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.702000 None None
+2021-10-11 20:08:03.703400 None None
+2021-10-11 20:08:03.704730 None None
+2021-10-11 20:08:03.705820 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.718106+08:00
+None None 2021-10-11 20:08:04+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.720000+08:00
+None None 2021-10-11 20:08:03.723000+08:00
+None None 2021-10-11 20:08:03.724000+08:00
+None None 2021-10-11 20:08:03.725150+08:00
+None None 2021-10-11 20:08:03.726123+08:00
+2021-10-11 20:08:03.727640 None None
+2021-10-11 20:08:03.728184 None None
+2021-10-11 20:08:03.700000 None None
+2021-10-11 20:08:03.730000 None None
+2021-10-11 20:08:03.731000 None None
+2021-10-11 20:08:03.732000 None None
+2021-10-11 20:08:03.732870 None None
+2021-10-11 20:08:03.733449 None None
+2021-10-11 20:08:04 None None
+None 2021-10-11 None
+None None 2021-10-11 20:08:03.736611+08:00
+None None 2021-10-11 20:08:03.700000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740000+08:00
+None None 2021-10-11 20:08:03.740400+08:00
+None None 2021-10-11 20:08:03.741200+08:00
+None None 2021-10-11 20:08:03.741841+08:00
+None None 2021-10-11 20:08:04+08:00
+2021-10-11 20:08:03.743801 None None
+2021-10-11 20:08:03.744742 None None
+None 2021-10-11 None
+None 1970-01-01 None
+None None 2021-10-11 20:08:03.749624+08:00
+None None 2021-10-11 20:08:03.750248+08:00
+
+drop table t1

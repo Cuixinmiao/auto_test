@@ -1,0 +1,1798 @@
+-- rownum test for v9.0.0-beta.1.xTP
+-- Author: cuixiangling
+-- Date: 2021/08/24
+-- generate data
+drop table if exists t1
+
+create table t1(a int,b varchar(10))
+
+insert into t1 values(1,'abc')
+
+insert into t1 values(5,'dfc')
+
+insert into t1 values(8,'ghtr')
+
+insert into t1 values(2,'daes')
+
+drop table if exists t2
+
+create table t2(c int,d varchar(10))
+
+insert into t2 values(1,'abc')
+
+insert into t2 values(15,'dfc')
+
+insert into t2 values(8,'dfhtr')
+
+insert into t2 values(2,'ddes')
+-- 使用比较类型 >, >= ,< ,<= ,!= ,between and，in，not in
+-- 整数值：负值，0，1和大于1的值
+-- 带有小数的值，例如-0.1，0.0，1.0，1.5等
+-- 字符串和特殊符号：例如'12','000','abc','13ab','%'等
+-- 包含null或者NULL
+select * from t1 where rownum >0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+
+select * from t1 where rownum >1
+a b
+
+select * from t1 where rownum >-1
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+
+select * from t1 where rownum >3
+a b
+
+select * from t1 where rownum >10
+a b
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >-0.1
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >-0.1
+                                   ^
+
+
+select * from t1 where rownum >0.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+ 
+select * from t1 where rownum >-1.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+
+select * from t1 where rownum >1.0
+a b
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >0.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >0.5
+                                  ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >1.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >1.5
+                                  ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >10.8
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >10.8
+                                   ^
+
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >'0'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >'000'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >'-1'
+a b
+
+select * from t1 where rownum >'12'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >'abcd'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >'13ab'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >'%%%&'
+a b
+
+select * from t1 where rownum >null
+a b
+
+select * from t1 where rownum >NULL
+a b
+
+insert into t1 values(null,null)
+
+select * from t1 where rownum >null
+a b
+
+select * from t1 where rownum >NULL
+a b
+
+select * from t1 where rownum >=0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum >=1
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum >=-1
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum >=3
+a b
+
+select * from t1 where rownum >=10
+a b
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >=-0.1
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >=-0.1
+                                    ^
+
+
+select * from t1 where rownum >=0.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum >=-1.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum >=1.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >=0.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >=0.5
+                                   ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >=1.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >=1.5
+                                   ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum >=10.8
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum >=10.8
+                                    ^
+
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >='0'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >='000'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum >='-1'
+a b
+
+select * from t1 where rownum >='12'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >='abcd'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >='13ab'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum >='%%%&'
+a b
+
+select * from t1 where rownum >=null
+a b
+
+select * from t1 where rownum >=NULL
+a b
+
+select * from t1 where rownum >=0.000000
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase has an ERROR: negative value for LIMIT,oracle is ok
+select * from t1 where rownum <0
+negative value for LIMIT
+
+
+select * from t1 where rownum <1
+a b
+-- qianbase has an ERROR: negative value for LIMIT,oracle is ok
+select * from t1 where rownum <-1
+negative value for LIMIT
+
+
+select * from t1 where rownum <3
+a b
+1 abc
+5 dfc
+
+select * from t1 where rownum <10
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum <-0.1
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum <-0.1
+                                   ^
+
+-- qianbase has an ERROR: negative value for LIMIT,oracle is ok
+select * from t1 where rownum <0.0
+negative value for LIMIT
+
+-- qianbase has an ERROR: negative value for LIMIT,oracle is ok
+select * from t1 where rownum <-1.0
+negative value for LIMIT
+
+
+select * from t1 where rownum <1.0
+a b
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum <0.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum <0.5
+                                  ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum <1.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum <1.5
+                                  ^
+
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum <10.8
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum <10.8
+                                   ^
+
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum <'0'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum <'000'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum <'-1'
+a b
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum <'12'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum <'abcd'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum <'13ab'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum <'%%%&'
+a b
+
+select * from t1 where rownum <null
+a b
+
+select * from t1 where rownum <NULL
+a b
+
+select * from t1 where rownum <=0
+a b
+
+select * from t1 where rownum <=1
+a b
+1 abc
+select * from t1 where rownum <=-1
+negative value for LIMIT
+
+
+select * from t1 where rownum <=3
+a b
+1 abc
+5 dfc
+8 ghtr
+
+select * from t1 where rownum <=10
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum <=1.0
+a b
+1 abc
+-- qianbase has no data set,oracle has data set
+select * from t1 where rownum <='12'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum <='%%%&'
+a b
+
+select * from t1 where rownum <=null
+a b
+
+select * from t1 where rownum <=NULL
+a b
+
+select * from t1 where rownum != 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+-- qianbase expect same as oracle
+select * from t1 where rownum != 0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum != 1
+a b
+-- qianbase expect same as oracle
+select * from t1 where rownum != -1
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum != 1.0
+a b
+
+select * from t1 where rownum != 10000000
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum != 100000000000000
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase has a syntax error,oracle is ok
+select * from t1 where rownum != 0.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum != 0.5
+                                    ^
+
+-- qianbase expect same as oracle
+select * from t1 where rownum != -5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum != 'abc'
+a b
+-- qianbase has no result set, oracle has all data set
+select * from t1 where rownum != '0'
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum != '^%#'
+a b
+
+select * from t1 where rownum != null
+a b
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum != '12'
+a b
+-- qianbase has ERROR: row_number(): window functions are not allowed in WHERE, oracle is ok
+select * from t1 where rownum like 12
+row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum like '1%'
+row_number(): window functions are not allowed in WHERE
+
+
+select * from t1 where rownum between -1 and 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between -1 and 0
+a b
+
+select * from t1 where rownum between -1 and 1
+a b
+1 abc
+-- qianbase has ERROR: negative value for LIMIT, oracle is ok
+select * from t1 where rownum between -10 and -5
+negative value for LIMIT
+
+
+select * from t1 where rownum between 0 and 3
+a b
+1 abc
+5 dfc
+8 ghtr
+
+select * from t1 where rownum between 1 and 3
+a b
+1 abc
+5 dfc
+8 ghtr
+
+select * from t1 where rownum between 0 and 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between 1 and 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between 0 and 10000
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between 1 and 10000
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- below three rows has error on the oracle,qianbase is ok(no result set)
+select * from t1 where rownum between 'a' and 'c'
+a b
+
+select * from t1 where rownum between b'01' and b'0110'
+a b
+
+select * from t1 where rownum between B'01' and B'0110'
+a b
+-- qianbase has an syntax error, oracle is ok
+select * from t1 where rownum between 0.5 and 5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum between 0.5 and 5
+                                               ^
+
+-- qianbase has an syntax error, oracle is ok
+select * from t1 where rownum between 0 and 5.5
+argument of LIMIT must be type int, not type decimal
+
+-- qianbase has an ERROR: argument of LIMIT must be type int, not type decimal, oracle is ok
+select * from t1 where rownum between 0.5 and 5.5
+at or near "EOF": syntax error: cannot represent numeric constant as an int
+DETAIL:  source SQL:
+select * from t1 where rownum between 0.5 and 5.5
+                                                 ^
+
+
+select * from t1 where rownum between -0.0 and 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between 00 and 1
+a b
+1 abc
+
+select * from t1 where rownum between 1.0 and 5
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+
+select * from t1 where rownum between 1.0 and 5.0
+a b
+1 abc
+5 dfc
+8 ghtr
+2 daes
+None None
+-- qianbase is ok, oracle has error for invalid number
+select * from t1 where rownum between '%' and '&&'
+a b
+-- below three rows has error on the qianbase, oracle is ok for the below two rows(the last is error)
+select * from t1 where rownum between to_number('01','xx') and to_number('011','xxx')
+a b
+
+select * from t1 where rownum between cast(0 as int) and cast(5 as int)
+a b
+
+select * from t1 where rownum between 0::int and 5::int
+a b
+-- qianbase unsupport the in clause,has error for ERROR: unsupported comparison operator: row_number() oracle is ok
+select * from t1 where rownum in (1,2,3,4)
+unsupported comparison operator: row_number() OVER () IN (1, 2, 3, 4): row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum in (-1,2,3,null)
+unsupported comparison operator: row_number() OVER () IN (-1, 2, 3, NULL): row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum in (1,2,3,null)
+unsupported comparison operator: row_number() OVER () IN (1, 2, 3, NULL): row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum not in (1,2,3,4)
+unsupported comparison operator: row_number() OVER () NOT IN (1, 2, 3, 4): row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum not in (-1,2,3,null)
+unsupported comparison operator: row_number() OVER () NOT IN (-1, 2, 3, NULL): row_number(): window functions are not allowed in WHERE
+
+select * from t1 where rownum not in (1,2,3,null)
+unsupported comparison operator: row_number() OVER () NOT IN (1, 2, 3, NULL): row_number(): window functions are not allowed in WHERE
+
+-- 判断值为表达式
+-- qianbase has error ERROR: row_number(): window functions are not allowed in WHERE,oracle is ok
+select * from t1 where rownum+3 <10
+row_number(): window functions are not allowed in WHERE
+
+-- qianbase has no result set on the below slause,oracle has result set
+select * from t1 where rownum <a
+a b
+
+select * from t1 where rownum < a+3
+a b
+-- 多个rownum
+-- qianbase has syntax error, oracle is ok
+select * from t1 where rownum<10 and rownum>0
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select * from t1 where rownum<10 and rownum>0
+                                     ^
+HINT:  try \h SELECT
+
+
+select a,b from( select a,b,rownum as rm from t1) aa where rm>2 and rm <10
+a b
+8 ghtr
+2 daes
+None None
+
+select a,b from( select *,rownum as rm from t1) aa where rm>2 and rm <10
+a b
+8 ghtr
+2 daes
+None None
+
+select * from( select a,b,rownum as rm from t1) aa where rm>2 and rm <10
+a b rm
+8 ghtr 3
+2 daes 4
+None None 5
+-- 和limit offset一起使用
+-- qianbase has syntax error, oracle is ok
+select rownum, * from t1 where rownum < 10 limit 3
+at or near "EOF": syntax error: The syntax of using rownum and limit/offset together is not allowed
+DETAIL:  source SQL:
+select rownum, * from t1 where rownum < 10 limit 3
+                                                  ^
+
+
+select * from (select rownum, * from t1 where rownum < 10)aa limit 3
+row_number a b
+1 1 abc
+2 5 dfc
+3 8 ghtr
+-- rownum出现在投影列中
+-- rownum单独使用
+-- 查看输出的字段名是否为rownum
+select rownum from t1
+row_number
+1
+2
+3
+4
+5
+
+select rownum from t1 where rownum<10
+row_number
+1
+2
+3
+4
+5
+
+select rownum from t1 where rownum<1
+row_number
+select rownum from t1 where rownum<0
+negative value for LIMIT
+
+
+select rownum from t1 where rownum<=10
+row_number
+1
+2
+3
+4
+5
+
+select rownum from t1 where rownum<=1
+row_number
+1
+
+select rownum from t1 where rownum<=0
+row_number
+-- rownum作为函数的入参，例如sum（rownum）
+-- qianbase has ERROR: sum(): row_number(): window functions are not allowed in aggregate, oracle is ok
+select sum(rownum) from t1 where rownum<10
+sum(): row_number(): window functions are not allowed in aggregate
+
+
+select substr('abc',rownum,3) from t1 where rownum<10
+substr
+abc
+bc
+c
+None
+None
+
+select substr('abc',rownum,3) from t1 where rownum<3
+substr
+abc
+bc
+
+select lpad('ab',rownum) from t1 where rownum <10
+lpad
+a
+ab
+ab
+ab
+ab
+-- rownum在表达式中使用 +，-，*，/，||，&，&&等
+select rownum+1 from  t1 where rownum<10
+?column?
+2
+3
+4
+5
+6
+
+select rownum+1 from  t1 where rownum<10
+?column?
+2
+3
+4
+5
+6
+
+select rownum/2 from  t1 where rownum<10
+?column?
+0.5
+1
+1.5
+2
+2.5
+
+select rownum*0 from  t1 where rownum<10
+?column?
+0
+0
+0
+0
+0
+select rownum/0 from  t1 where rownum<10
+division by zero
+
+
+select rownum*0.5 from  t1 where rownum<10
+?column?
+0.5
+1
+1.5
+2
+2.5
+
+select rownum+0.5 from  t1 where rownum<10
+?column?
+1.5
+2.5
+3.5
+4.5
+5.5
+-- qianbase has an ERROR: unsupported binary operator: <int> || <decimal>,oracle is ok,same as +
+select rownum||0.5 from  t1 where rownum<10
+unsupported binary operator: <int> || <decimal>
+
+
+select rownum||'abc' from  t1 where rownum<10
+?column?
+1abc
+2abc
+3abc
+4abc
+5abc
+
+select rownum||'0.5' from  t1 where rownum<10
+?column?
+10.5
+20.5
+30.5
+40.5
+50.5
+-- rownum在case when等中使用
+SELECT CASE WHEN false THEN 0:::INT2 ELSE 1:::INT8 END
+case
+1
+
+SELECT CASE rownum WHEN 1 THEN 0 ELSE 1 END from t1
+case
+0
+1
+1
+1
+1
+
+SELECT CASE rownum WHEN 1 THEN a ELSE a+1 END from t1 where rownum<4
+case
+1
+6
+9
+-- 和row_number(),聚合函数一起使用
+select rownum, row_number() over (partition by a order by a) from t1
+row_number row_number
+5 1
+1 1
+4 1
+2 1
+3 1
+
+select rownum,count(*) from t1 group by a
+row_number count
+1 1
+2 1
+3 1
+4 1
+5 1
+
+select rownum,count(*) from t1 
+row_number count
+1 5
+-- 多次出现rownum
+select rownum + rownum + rownum from t1 where rownum<10
+?column?
+3
+6
+9
+12
+15
+-- 对rownum做显式类型转换
+select rownum::string from t1 where rownum<10
+row_number
+1
+2
+3
+4
+5
+
+select cast(rownum as varchar(10)) from t1 where rownum<10
+row_number
+1
+2
+3
+4
+5
+-- 在临时表中使用rownum
+SET experimental_enable_temp_tables = 'on'
+
+create temp table tt as select rownum from t1
+
+create temp table tv as select cast(rownum as varchar(10)) from t1
+
+select * from tt
+row_number
+1
+2
+3
+4
+5
+
+select * from tv
+row_number
+1
+2
+3
+4
+5
+
+select *,rownum from tt where rownum<10
+row_number row_number
+1 1
+2 2
+3 3
+4 4
+5 5
+
+select rownum from tv where rownum<5
+row_number
+1
+2
+3
+4
+-- rownum在order by，group by，having等中出现
+-- bug92
+select * from t1 where rownum<10 order by rownum
+at or near "EOF": syntax error: The syntax of using where_rownum/limit and orderBy rownum/row_number()/rank() is not allowed
+DETAIL:  source SQL:
+select * from t1 where rownum<10 order by rownum
+                                                ^
+
+-- qianbase has an ERROR: row_number(): window functions are not allowed in GROUP BY, oracle is ok
+select rownum from t1 where rownum<10 group by rownum
+row_number(): window functions are not allowed in GROUP BY
+
+-- rownum作为别名出现 如果不支持，可以考虑加上引号试试
+select a rownum from t1
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select a rownum from t1
+         ^
+
+
+select a "rownum" from t1
+rownum
+1
+5
+8
+2
+None
+-- 给rownum起一个别名
+select rownum a from t1
+a
+1
+2
+3
+4
+5
+
+select rownum d from t1
+d
+1
+2
+3
+4
+5
+select rownum rownum from t1
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select rownum rownum from t1
+              ^
+
+
+select rownum "rownum" from t1
+rownum
+1
+2
+3
+4
+5
+
+select rownum "Rownum" from t1
+Rownum
+1
+2
+3
+4
+5
+
+select rownum as a from t1
+a
+1
+2
+3
+4
+5
+
+select rownum as d from t1
+d
+1
+2
+3
+4
+5
+
+select rownum as rownum from t1
+rownum
+1
+2
+3
+4
+5
+
+select rownum as "rownum" from t1
+rownum
+1
+2
+3
+4
+5
+
+select rownum as "Rownum" from t1
+Rownum
+1
+2
+3
+4
+5
+-- 多表join中使用rownum
+-- inner join
+-- join的表是实体表
+select rownum
+from t1,t2
+where a=c
+and b is not null
+row_number
+1
+2
+3
+
+select rownum
+from t1,t2
+where a=c 
+    and rownum<10
+    and b is not null
+row_number
+1
+2
+3
+--qianbase has syntax error,oracle is ok
+select rownum
+from t1 join t2
+    on a=c
+    and rownum<10
+    and b is not null
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select rownum
+from t1 join t2
+    on a=c
+    and rownum<10
+        ^
+HINT:  try \h <SOURCE>
+
+-- qianbase has no result(because rownum has comp with field),oracle has result set
+select a,rownum,b from t1 where a in (select rownum from t2 where rownum < c)
+a row_number b
+
+select a,rownum,b from t1 where a in (select rownum from t2 where rownum < 10 and a=c)
+a row_number b
+1 1 abc
+-- qianbase has ERROR: unsupported comparison operator: row_number() OVER () IN (SELECT row_number() OVER () FROM t2 WHERE a = c LIMIT 10 - 1 OFFSET 0),oracle is ok
+select a,rownum,b from t1 where rownum in (select rownum from t2 where rownum < 10 and a=c)
+unsupported comparison operator: row_number() OVER () IN (SELECT row_number() OVER () FROM t2 WHERE a = c LIMIT 10 - 1 OFFSET 0): row_number(): window functions are not allowed in WHERE
+
+-- join的表是驱动表 驱动表中都包含rownum
+--qianbase has syntax error,oracle is ok
+select rownum from (select rownum e from t1 where rownum<3) tt1 
+join (select c from t2 where d is not null) tt2
+on e=c and rownum <10
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select rownum from (select rownum e from t1 where rownum<3) tt1 
+join (select c from t2 where d is not null) tt2
+on e=c and rownum <10
+           ^
+HINT:  try \h <SOURCE>
+
+
+select rownum from (select rownum e from t1 where rownum<3) tt1
+join (select c from t2 where d is not null) tt2
+on e=c
+where rownum <10
+row_number
+1
+2
+
+select rownum, * from t1
+row_number a b
+1 1 abc
+2 5 dfc
+3 8 ghtr
+4 2 daes
+5 None None
+
+select *, rownum from t1
+a b row_number
+1 abc 1
+5 dfc 2
+8 ghtr 3
+2 daes 4
+None None 5
+
+select rownum, * from t1 order by a
+row_number a b
+5 None None
+1 1 abc
+4 2 daes
+2 5 dfc
+3 8 ghtr
+
+select rownum, * from t1 order by a
+row_number a b
+5 None None
+1 1 abc
+4 2 daes
+2 5 dfc
+3 8 ghtr
+
+select rownum, * from t1 order by rownum
+row_number a b
+1 1 abc
+2 5 dfc
+3 8 ghtr
+4 2 daes
+5 None None
+
+select rownum, * from t1 where a = 1
+row_number a b
+1 1 abc
+
+select rownum, * from t1 where rownum = 10
+row_number a b
+
+select rownum, * from t1 where rownum > 10 order by a
+row_number a b
+select rownum, * from t1 where rownum > 10 order by rownum
+at or near "EOF": syntax error: The syntax of using where_rownum/limit and orderBy rownum/row_number()/rank() is not allowed
+DETAIL:  source SQL:
+select rownum, * from t1 where rownum > 10 order by rownum
+                                                          ^
+
+
+select distinct rownum from t1
+row_number
+1
+2
+3
+4
+5
+
+select distinct rownum from t1 where rownum<10
+row_number
+1
+2
+3
+4
+5
+
+select rownum, * from t1 limit 5
+row_number a b
+1 1 abc
+2 5 dfc
+3 8 ghtr
+4 2 daes
+5 None None
+
+select rownum, t.* from (select a, a, a from t1) t
+row_number a a a
+1 1 1 1
+2 5 5 5
+3 8 8 8
+4 2 2 2
+5 None None None
+
+select rownum, t.* from (select a, a, a from t1 where rownum <= 10) t
+row_number a a a
+1 1 1 1
+2 5 5 5
+3 8 8 8
+4 2 2 2
+5 None None None
+
+select rownum, t.* from (select a, a, a from t1 where a <= 10) t
+row_number a a a
+1 1 1 1
+2 5 5 5
+3 8 8 8
+4 2 2 2
+-- 在with中使用rownum
+with q1 as (select a,b from t1) select rownum, a from q1 where a <10
+
+with q1 as (select a, b, rownum from t1) select rownum, a, b from q1 where rownum <10
+-- 嵌套语句中使用rownum
+-- 非相关子查询中使用rownum
+-- 相关子查询中使用rownum
+-- rownum作为驱动表的字段
+select a,b from t1 where rownum in (select a from t1 where a <= 10)
+unsupported comparison operator: row_number() OVER () IN (SELECT a FROM t1 WHERE a <= 10): row_number(): window functions are not allowed in WHERE
+
+
+select a,b from t1 where a in (select c from t2 where rownum <= 10)
+a b
+1 abc
+8 ghtr
+2 daes
+
+select a,b,rownum from t1 inner join t2 on a = c
+a b row_number
+1 abc 1
+8 ghtr 2
+2 daes 3
+select *,rownum from (select *, rownum as r1 from t1) tt1 inner join (select *,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum > 5 and rownum <15
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select *,rownum from (select *, rownum as r1 from t1) tt1 inner join (select *,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum > 5 and rownum <15
+                                                                                                                                               ^
+HINT:  try \h SELECT
+
+
+select *,rownum from (select *, rownum as r1 from t1) tt1 inner join (select *,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum<5
+a b r1 c d r2 row_number
+1 abc 1 1 abc 1 1
+8 ghtr 3 8 dfhtr 3 2
+2 daes 4 2 ddes 4 3
+
+select a,b,c,d,rownum,r1,r2 from (select a,b,rownum as r1 from t1) tt1 inner join (select c,d,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum<5
+a b c d row_number r1 r2
+1 abc 1 abc 1 1 1
+8 ghtr 8 dfhtr 2 3 3
+2 daes 2 ddes 3 4 4
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.rownum = tt2.rownum where tt1.rownum > 5 and tt1.rownum <15
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.rownum = tt2.rownum where tt1.rownum > 5 and tt1.rownum <15
+                                                                                                    ^
+HINT:  try \h <SOURCE>
+
+
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.row_number=tt2.row_number where rownum<10
+a b row_number c d row_number row_number
+1 abc 1 1 abc 1 1
+5 dfc 2 15 dfc 2 2
+8 ghtr 3 8 dfhtr 3 3
+2 daes 4 2 ddes 4 4
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.row_number=tt2.row_number and rownum<10
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.row_number=tt2.row_number and rownum<10
+                                                                                                                                  ^
+HINT:  try \h <SOURCE>
+
+
+select a,b,c,d,rownum,r1,r2 from (select a,b,rownum as r1 from t1) tt1 inner join (select c,d,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum<5 and r1<r2
+a b c d row_number r1 r2
+select a,b,c,d,rownum,r1,r2 from (select a,b,rownum as r1 from t1) tt1 inner join (select c,d,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum<5 and r1<rownum
+row_number(): window functions are not allowed in WHERE
+
+
+select * from (select a,b,c,d,rownum r3,r1,r2 from (select a,b,rownum as r1 from t1) tt1 inner join (select c,d,rownum as r2 from t2) tt2 on tt1.a = tt2.c where rownum<5) where r3<r1
+a b c d r3 r1 r2
+8 ghtr 8 dfhtr 2 3 3
+2 daes 2 ddes 3 4 4
+
+select *,rownum from (select *, rownum from t1) tt1 inner join (select *,rownum from t2) tt2 on tt1.row_number=tt2.row_number where rownum<10 and tt1.row_number<10 and tt2.row_number<2
+a b row_number c d row_number row_number
+1 abc 1 1 abc 1 1
+
+select * from (select a,b, rownum from t1) tt1 inner join (select c,d,rownum from t2) tt2 on 1=1
+a b row_number c d row_number
+1 abc 1 1 abc 1
+1 abc 1 15 dfc 2
+1 abc 1 8 dfhtr 3
+1 abc 1 2 ddes 4
+5 dfc 2 1 abc 1
+5 dfc 2 15 dfc 2
+5 dfc 2 8 dfhtr 3
+5 dfc 2 2 ddes 4
+8 ghtr 3 1 abc 1
+8 ghtr 3 15 dfc 2
+8 ghtr 3 8 dfhtr 3
+8 ghtr 3 2 ddes 4
+2 daes 4 1 abc 1
+2 daes 4 15 dfc 2
+2 daes 4 8 dfhtr 3
+2 daes 4 2 ddes 4
+None None 5 1 abc 1
+None None 5 15 dfc 2
+None None 5 8 dfhtr 3
+None None 5 2 ddes 4
+
+select * from (select a,b, rownum e from t1) tt1 inner join (select c,d,rownum f from t2) tt2 on e=f
+a b e c d f
+1 abc 1 1 abc 1
+5 dfc 2 15 dfc 2
+8 ghtr 3 8 dfhtr 3
+2 daes 4 2 ddes 4
+select * from (select a,b, rownum e from t1) tt1 inner join (select c,d,rownum f from t2) tt2 on e=f and rownum<3
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+select * from (select a,b, rownum e from t1) tt1 inner join (select c,d,rownum f from t2) tt2 on e=f and rownum<3
+                                                                                                         ^
+HINT:  try \h <SOURCE>
+
+
+select * from (select a,b, rownum e from t1) tt1 inner join (select c,d,rownum f from t2) tt2 on e=f where rownum<3
+a b e c d f
+1 abc 1 1 abc 1
+5 dfc 2 15 dfc 2
+select * from t1 where rownum<any(select rownum from t2 where a=c)
+at or near "any": syntax error
+DETAIL:  source SQL:
+select * from t1 where rownum<any(select rownum from t2 where a=c)
+                              ^
+HINT:  try \h SELECT
+
+
+select * from t1 where a<any(select rownum from t2 where a=c)
+a b
+
+select * from t1 where a<any(select rownum from t2 where a=c)
+a b
+
+select * from t1 where a<=some(select rownum from t2 where a=c)
+a b
+1 abc
+
+select * from t1 where a<some(select rownum from t2 where a=c)
+a b
+
+select * from t1 where exists (select rownum from t2 where a=c)
+a b
+1 abc
+8 ghtr
+2 daes
+
+select * from t1 where not exists (select rownum from t2 where a=c)
+a b
+5 dfc
+None None
+
+select *, rownum from t1 right join t2 on a = c
+a b c d row_number
+1 abc 1 abc 1
+None None 15 dfc 2
+8 ghtr 8 dfhtr 3
+2 daes 2 ddes 4
+
+select *, rownum from t1 right join t2 on a = c where rownum <15
+a b c d row_number
+1 abc 1 abc 1
+8 ghtr 8 dfhtr 2
+2 daes 2 ddes 3
+None None 15 dfc 4
+
+select *, rownum from t2 left join t1 on a = c
+c d a b row_number
+1 abc 1 abc 1
+15 dfc None None 2
+8 dfhtr 8 ghtr 3
+2 ddes 2 daes 4
+
+select *, rownum from t2 left join t1 on a = c where rownum <15
+c d a b row_number
+1 abc 1 abc 1
+8 dfhtr 8 ghtr 2
+2 ddes 2 daes 3
+15 dfc None None 4
+
+select *, rownum from t1 intersect select *, rownum from t2
+a b row_number
+1 abc 1
+
+select a,b,rownum from t1 intersect select c,d, rownum from t2
+a b row_number
+1 abc 1
+
+select *, rownum from t1 union select *, rownum from t2 order by a,b
+a b row_number
+None None 5
+1 abc 1
+2 daes 4
+2 ddes 4
+5 dfc 2
+8 dfhtr 3
+8 ghtr 3
+15 dfc 2
+
+select a,b, rownum from t1 union select c,d, rownum from t2 order by a,b
+a b row_number
+None None 5
+1 abc 1
+2 daes 4
+2 ddes 4
+5 dfc 2
+8 dfhtr 3
+8 ghtr 3
+15 dfc 2
+
+select *, rownum from t1 except select *, rownum from t2
+a b row_number
+5 dfc 2
+8 ghtr 3
+2 daes 4
+None None 5
+
+select a,b, rownum from t1 except select c,d, rownum from t2
+a b row_number
+5 dfc 2
+8 ghtr 3
+2 daes 4
+None None 5
+-- 和sequence一起使用
+drop sequence if exists seq_1
+
+create sequence seq_1
+
+select rownum, nextval('seq_1'), * from t1
+row_number nextval a b
+1 1 1 abc
+2 2 5 dfc
+3 3 8 ghtr
+4 4 2 daes
+5 5 None None
+
+select rownum, nextval('seq_1'), * from t1
+row_number nextval a b
+1 6 1 abc
+2 7 5 dfc
+3 8 8 ghtr
+4 9 2 daes
+5 10 None None
+
+select rownum, nextval('seq_1'), * from t1
+row_number nextval a b
+1 11 1 abc
+2 12 5 dfc
+3 13 8 ghtr
+4 14 2 daes
+5 15 None None
+
+drop sequence seq_1
+-- 视图中使用rownum
+drop view if exists v1
+
+create view v1 as select rownum, a, b from t1 where rownum < 15
+
+select * from v1
+row_number a b
+1 1 abc
+2 5 dfc
+3 8 ghtr
+4 2 daes
+5 None None
+
+select rownum from v1
+row_number
+1
+2
+3
+4
+5
+
+select rownum from v1 where rownum<2
+row_number
+1
+
+drop view v1
+--在insert select,create as select，update，delete中使用rownum
+drop table if exists tab_3
+
+create table tab_3 as select a, b, rownum c from t1
+
+insert into tab_3 select a,b,rownum from t1 where rownum < 10
+
+select * from tab_3
+a b c
+1 abc 1
+5 dfc 2
+8 ghtr 3
+2 daes 4
+None None 5
+1 abc 1
+5 dfc 2
+8 ghtr 3
+2 daes 4
+None None 5
+update tab_3 set c=888888 where rownum=1
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+update tab_3 set c=888888 where rownum=1
+                                ^
+HINT:  try \h UPDATE
+
+delete from tab_3 where rownum < 2
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+delete from tab_3 where rownum < 2
+                        ^
+HINT:  try \h DELETE
+
+
+drop table tab_3
+-- 在分区表中使用rownum
+drop table if exists pt
+CREATE TABLE pt(
+   id int NOT NULL,
+   city VARCHAR(50) NOT NULL,
+   PRIMARY KEY (city ASC, id ASC)
+ ) PARTITION BY LIST (city) (
+   PARTITION us_west VALUES IN (('seattle'), ('san francisco'), ('los angeles')),
+   PARTITION us_east VALUES IN (('new york'), ('boston'), ('washington dc')),
+   PARTITION europe_west VALUES IN (('amsterdam'), ('paris'), ('rome'))
+ )
+use of partitions requires an enterprise license. see https://esgyn.com/pricing?cluster=a400a442-708e-435a-8934-c92fdea0dbc7 for details on how to enable enterprise features
+
+insert into pt values(1,'seattle')
+relation "pt" does not exist
+
+insert into pt values(2,'paris')
+relation "pt" does not exist
+
+insert into pt values(5,'new york')
+relation "pt" does not exist
+
+insert into pt values(6,'seattle')
+relation "pt" does not exist
+
+insert into pt values(3,'los angeles')
+relation "pt" does not exist
+
+select rownum,id from pt where rownum<10
+relation "pt" does not exist
+
+select rownum,id from pt where id<5 and rownum<10
+relation "pt" does not exist
+
+select rownum,id,city from pt where id<5 and rownum<10
+relation "pt" does not exist
+
+drop table pt
+relation "pt" does not exist
+
+-- 在dual表中使用rownum
+select 1,2,rownum from dual
+?column? ?column? row_number
+1 2 1
+-- union/union all/intersect/except
+select rownum from t1 where rownum<3 union select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+select rownum from t1 where rownum<3 union select rownum from t2 where rownum<5
+                                                                               ^
+
+select rownum from t1 where rownum<3 union all select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+select rownum from t1 where rownum<3 union all select rownum from t2 where rownum<5
+                                                                                   ^
+
+select rownum from t1 where rownum<3 intersect select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+select rownum from t1 where rownum<3 intersect select rownum from t2 where rownum<5
+                                                                                   ^
+
+select rownum from t1 where rownum<3 except select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+select rownum from t1 where rownum<3 except select rownum from t2 where rownum<5
+                                                                                ^
+
+
+select rownum from t2 except (select rownum from t1 where rownum<3)
+row_number
+3
+4
+(select rownum from t1 
+	where rownum<3)
+union 
+select rownum from t2 
+	where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+(select rownum from t1 
+	where rownum<3)
+union 
+select rownum from t2 
+	where rownum<5
+               ^
+
+(select rownum from t1 where rownum<3) union all select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+(select rownum from t1 where rownum<3) union all select rownum from t2 where rownum<5
+                                                                                     ^
+
+(select rownum from t1 where rownum<3) intersect select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+(select rownum from t1 where rownum<3) intersect select rownum from t2 where rownum<5
+                                                                                     ^
+
+(select rownum from t1 where rownum<3) except select rownum from t2 where rownum<5
+at or near "EOF": syntax error: where_rownum_clause is not supported in select_clause1 union/union all select_clause2, when use it you must add parentheses
+DETAIL:  source SQL:
+(select rownum from t1 where rownum<3) except select rownum from t2 where rownum<5
+                                                                                  ^
+
+
+(select rownum from t1 where rownum<3) union (select rownum from t2 where rownum<5)
+row_number
+1
+2
+3
+4
+
+(select rownum from t1 where rownum<3) union all (select rownum from t2 where rownum<5)
+row_number
+1
+2
+1
+2
+3
+4
+
+(select rownum from t1 where rownum<3) intersect (select rownum from t2 where rownum<5)
+row_number
+1
+2
+
+(select rownum from t1 where rownum<3) except (select rownum from t2 where rownum<5)
+row_number
+
+(select rownum from t1 where rownum<3) union select rownum from t2
+row_number
+1
+2
+3
+4
+
+(select rownum from t1 where rownum<3) union all select rownum from t2
+row_number
+1
+2
+1
+2
+3
+4
+
+(select rownum from t1 where rownum<3) intersect select rownum from t2
+row_number
+1
+2
+
+(select rownum from t1 where rownum<3) except select rownum from t2
+row_number
+
+(select rownum from t2 where rownum<5) 
+ union select rownum from t1
+row_number
+1
+2
+3
+4
+5
+
+(select rownum from t2 where rownum<5) 
+union all select rownum from t1
+row_number
+1
+2
+3
+4
+1
+2
+3
+4
+5
+
+(select rownum from t2 where rownum<5) 
+intersect select rownum from t1
+row_number
+1
+2
+3
+4
+
+(select rownum from t2 where rownum<5) except select rownum from t1
+row_number
+
+select rownum from t2 union (select rownum from t1 where rownum<3)
+row_number
+1
+2
+3
+4
+
+select rownum from t2 union all (select rownum from t1 where rownum<3)
+row_number
+1
+2
+3
+4
+1
+2
+
+select rownum from t2 intersect (select rownum from t1 where rownum<3)
+row_number
+1
+2
+
+select rownum from t2 except (select rownum from t1 where rownum<3)
+row_number
+3
+4
+ 
+select c,d, rownum from t2 union (select a,b ,rownum from t1 where rownum<3) order by c
+c d row_number
+1 abc 1
+2 ddes 4
+5 dfc 2
+8 dfhtr 3
+15 dfc 2
+
+select c,d, rownum from t2 union all (select a,b,rownum from t1 where rownum<3) order by c
+c d row_number
+1 abc 1
+1 abc 1
+2 ddes 4
+5 dfc 2
+8 dfhtr 3
+15 dfc 2
+
+select c,d, rownum from t2 intersect (select a,b,rownum from t1 where rownum<3) order by c
+c d row_number
+1 abc 1
+
+select c,d,rownum from t2 except (select a,b, rownum from t1 where rownum<3) order by c
+c d row_number
+2 ddes 4
+8 dfhtr 3
+15 dfc 2
+-- rownum作为数据库名，表名，字段名等
+-- rownum不加引号
+-- 加引号 作为字段名，要考虑和rownum同时使用的情况
+-- rownum字母的大小写测试
+create table rownum(a int)
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+create table rownum(a int)
+             ^
+HINT:  try \h CREATE TABLE
+
+create table Rownum(a int)
+at or near "rownum": syntax error
+DETAIL:  source SQL:
+create table Rownum(a int)
+             ^
+HINT:  try \h CREATE TABLE
+
+
+drop table if exists "rownum"
+
+create table "rownum"(a int)
+
+insert into "rownum" values(1)
+
+insert into "rownum" values(-1)
+select * from rownum
+row_number(): window functions are not allowed in FROM
+
+
+select * from "rownum"
+a
+1
+-1
+
+select rownum from "rownum"
+row_number
+1
+2
+
+select rownum from "rownum" where rownum<2
+row_number
+1
+
+drop table "rownum"
+
+drop table if exists "Rownum"
+
+create table "Rownum"("rownum" int)
+
+insert into "Rownum" values(5)
+
+insert into "Rownum" values(2)
+
+select "rownum",rownum from "Rownum" where rownum<5
+rownum row_number
+5 1
+2 2
+
+select "rownum"+rownum from "Rownum" where rownum<5
+?column?
+6
+4
+
+drop table "Rownum"
+
+drop table t1
+
+drop table t2

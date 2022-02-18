@@ -1,0 +1,38 @@
+drop table if exists testPreparedStatementTalbe4
+create table if not exists testPreparedStatementTalbe4 (id largeint,c2 int)
+type "largeint" does not exist
+
+
+create table if not exists testPreparedStatementTalbe4 (id int GENERATED ALWAYS AS IDENTITY,c2 int)
+create table if not exists testPreparedStatementTalbe4 (id largeint GENERATED ALWAYS AS IDENTITY,c2 int)
+at or near ",": syntax error: identity column type must be INT, INT2, or INT4
+DETAIL:  source SQL:
+create table if not exists testPreparedStatementTalbe4 (id largeint GENERATED ALWAYS AS IDENTITY,c2 int)
+                                                                                                ^
+
+create table if not exists testPreparedStatementTalbe4 (a string[] GENERATED ALWAYS AS IDENTITY,c2 int)
+at or near ",": syntax error: identity column type must be INT, INT2, or INT4
+DETAIL:  source SQL:
+create table if not exists testPreparedStatementTalbe4 (a string[] GENERATED ALWAYS AS IDENTITY,c2 int)
+                                                                                               ^
+
+create table if not exists testPreparedStatementTalbe4 (a numeric GENERATED ALWAYS AS IDENTITY,c2 int)
+at or near ",": syntax error: identity column type must be INT, INT2, or INT4
+DETAIL:  source SQL:
+create table if not exists testPreparedStatementTalbe4 (a numeric GENERATED ALWAYS AS IDENTITY,c2 int)
+                                                                                              ^
+
+create table if not exists testPreparedStatementTalbe4 (a double GENERATED ALWAYS AS IDENTITY,c2 int)
+at or near ",": syntax error: identity column type must be INT, INT2, or INT4
+DETAIL:  source SQL:
+create table if not exists testPreparedStatementTalbe4 (a double GENERATED ALWAYS AS IDENTITY,c2 int)
+                                                                                             ^
+
+create table if not exists testPreparedStatementTalbe4 (a float GENERATED ALWAYS AS IDENTITY,c2 int)
+at or near ",": syntax error: identity column type must be INT, INT2, or INT4
+DETAIL:  source SQL:
+create table if not exists testPreparedStatementTalbe4 (a float GENERATED ALWAYS AS IDENTITY,c2 int)
+                                                                                            ^
+
+
+drop table testPreparedStatementTalbe4

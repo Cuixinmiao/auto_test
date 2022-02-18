@@ -1,0 +1,6 @@
+drop  DATABASE if exists bankdb cascade;
+CREATE DATABASE IF NOT EXISTS bankdb;
+use bankdb;
+create table accounts (a string,b string);
+insert into accounts values('1','2'),('a','b');
+create table accounts2 as select concat(a,b) from accounts;

@@ -1,0 +1,1073 @@
+-- create by cuixiangling
+-- Date: 2021-09-10
+--  system function for timezone test
+select * from [show time zone]
+timezone
+UTC
+
+select current_timestamp from dual
+current_timestamp
+2021-10-11 03:28:08.836979+00:00
+
+select current_timestamp(0) from dual
+current_timestamp
+2021-10-11 03:28:09+00:00
+
+select current_timestamp(1) from dual
+current_timestamp
+2021-10-11 03:28:08.800000+00:00
+
+select current_timestamp(2) from dual
+current_timestamp
+2021-10-11 03:28:08.840000+00:00
+
+select current_timestamp(3) from dual
+current_timestamp
+2021-10-11 03:28:08.839000+00:00
+
+select current_timestamp(4) from dual
+current_timestamp
+2021-10-11 03:28:08.840900+00:00
+
+select current_timestamp(5) from dual
+current_timestamp
+2021-10-11 03:28:08.841830+00:00
+
+select current_timestamp(6) from dual
+current_timestamp
+2021-10-11 03:28:08.842200+00:00
+select current_timestamp(7) from dual
+current_timestamp(): precision 7 out of range
+
+select current_timestamp(-1) from dual
+current_timestamp(): precision -1 out of range
+
+
+select timeofday() from dual
+timeofday
+Mon Oct 11 03:28:08.845096 2021 +0000
+
+select current_time from dual
+current_time
+03:28:08.845360+00:00
+
+select current_date from dual
+current_date
+2021-10-11
+
+select clock_timestamp() from dual
+clock_timestamp
+2021-10-11 03:28:08.846265+00:00
+
+select experimental_follower_read_timestamp() from dual
+experimental_follower_read_timestamp
+2021-10-11 03:28:04.046771+00:00
+
+select follower_read_timestamp() from dual
+follower_read_timestamp
+2021-10-11 03:28:04.047229+00:00
+
+select localtimestamp() from dual
+localtimestamp
+2021-10-11 03:28:08.847775
+
+select localtimestamp(1) from dual
+localtimestamp
+2021-10-11 03:28:08.800000
+
+select localtimestamp(2) from dual
+localtimestamp
+2021-10-11 03:28:08.850000
+
+select localtimestamp(3) from dual
+localtimestamp
+2021-10-11 03:28:08.850000
+
+select localtimestamp(4) from dual
+localtimestamp
+2021-10-11 03:28:08.850900
+
+select localtimestamp(5) from dual
+localtimestamp
+2021-10-11 03:28:08.851630
+
+select localtimestamp(6) from dual
+localtimestamp
+2021-10-11 03:28:08.852557
+select localtimestamp(7) from dual
+localtimestamp(): precision 7 out of range
+
+
+select localtimestamp(0) from dual
+localtimestamp
+2021-10-11 03:28:09
+select localtimestamp(-1) from dual
+localtimestamp(): precision -1 out of range
+
+
+select transaction_timestamp() from dual
+transaction_timestamp
+2021-10-11 03:28:08.857026+00:00
+
+select statement_timestamp() from dual
+statement_timestamp
+2021-10-11 03:28:08.858582+00:00
+
+select cluster_logical_timestamp() from dual
+cluster_logical_timestamp
+1633922888859733760
+
+select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+0:00:00
+
+select age(current_timestamp::timestamptz) from dual
+age
+0:00:00
+
+select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+age
+-1 day, 23:59:59.999972
+
+select (sysdate::timestamptz-now())::int from dual
+int8
+0
+
+select (sysdate::timestamptz-now())::int::date from dual
+date
+1970-01-01
+
+select sysdate from dual
+sysdate
+2021-10-11 03:28:08.866085
+
+drop table if exists t1
+
+create table t1 as select current_timestamp from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:08.868873+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(0) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(1) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(2) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09.030000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(3) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09.081000+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(4) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09.135700+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(5) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09.194440+00:00
+
+drop table if exists t1
+
+create table t1 as select current_timestamp(6) from dual
+
+select * from t1
+current_timestamp
+2021-10-11 03:28:09.251584+00:00
+
+drop table if exists t1
+create table t1 as select current_timestamp(7) from dual
+current_timestamp(): precision 7 out of range
+
+create table t1 as select current_timestamp(-1) from dual
+current_timestamp(): precision -1 out of range
+
+
+create table t1 as select timeofday() from dual
+
+select * from t1
+timeofday
+Mon Oct 11 03:28:09.310175 2021 +0000
+
+drop table if exists t1
+
+create table t1 as select current_time from dual
+
+select * from t1
+current_time
+03:28:09.365529+00:00
+
+drop table if exists t1
+
+create table t1 as select current_date from dual
+
+select * from t1
+current_date
+2021-10-11
+
+drop table if exists t1
+
+create table t1 as select clock_timestamp() from dual
+
+select * from t1
+clock_timestamp
+2021-10-11 03:28:09.487241+00:00
+
+drop table if exists t1
+
+create table t1 as select experimental_follower_read_timestamp() from dual
+
+select * from t1
+experimental_follower_read_timestamp
+2021-10-11 03:28:04.728987+00:00
+
+drop table if exists t1
+
+create table t1 as select follower_read_timestamp() from dual
+
+select * from t1
+follower_read_timestamp
+2021-10-11 03:28:04.782845+00:00
+
+drop table if exists t1
+
+create table t1 as select localtimestamp() from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.634073
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(1) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.700000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(2) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.750000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(3) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.802000
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(4) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.857200
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(5) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.913470
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(6) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:09.968571
+
+drop table if exists t1
+create table t1 as select localtimestamp(7) from dual
+localtimestamp(): precision 7 out of range
+
+select * from t1
+relation "t1" does not exist
+
+
+drop table if exists t1
+
+create table t1 as select localtimestamp(0) from dual
+
+select * from t1
+localtimestamp
+2021-10-11 03:28:10
+
+drop table if exists t1
+create table t1 as select localtimestamp(-1) from dual
+localtimestamp(): precision -1 out of range
+
+
+create table t1 as select transaction_timestamp() from dual
+
+select * from t1
+transaction_timestamp
+2021-10-11 03:28:10.093699+00:00
+
+drop table if exists t1
+
+create table t1 as select statement_timestamp() from dual
+
+select * from t1
+statement_timestamp
+2021-10-11 03:28:10.146072+00:00
+
+drop table if exists t1
+
+create table t1 as select cluster_logical_timestamp() from dual
+
+select * from t1
+cluster_logical_timestamp
+1633922890212650283
+
+drop table if exists t1
+
+create table t1 as select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(current_timestamp::timestamptz) from dual
+
+select * from t1
+age
+0:00:00
+
+drop table if exists t1
+
+create table t1 as select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+
+select * from t1
+age
+-1 day, 23:59:59.986197
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int from dual
+
+select * from t1
+int8
+0
+
+drop table if exists t1
+
+create table t1 as select (sysdate::timestamptz-now())::int::date from dual
+
+select * from t1
+date
+1970-01-01
+
+drop table if exists t1
+
+create table t1 as select sysdate from dual
+
+select * from t1
+sysdate
+2021-10-11 03:28:10.554413
+
+drop table if exists t1
+
+create table t1(a timestamp,b date,c timestamptz)
+
+insert into t1(a) select current_timestamp from dual
+
+insert into t1(a) select current_timestamp(0) from dual
+
+insert into t1(a) select current_timestamp(1) from dual
+
+insert into t1(a) select current_timestamp(2) from dual
+
+insert into t1(a) select current_timestamp(3) from dual
+
+insert into t1(a) select current_timestamp(4) from dual
+
+insert into t1(a) select current_timestamp(5) from dual
+
+insert into t1(a) select current_timestamp(6) from dual
+insert into t1(a) select current_timestamp(7) from dual
+current_timestamp(): precision 7 out of range
+
+insert into t1(a) select current_timestamp(-1) from dual
+current_timestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+
+insert into t1(b) select current_timestamp from dual
+
+insert into t1(b) select current_timestamp(0) from dual
+
+insert into t1(b) select current_timestamp(1) from dual
+
+insert into t1(b) select current_timestamp(2) from dual
+
+insert into t1(b) select current_timestamp(3) from dual
+
+insert into t1(b) select current_timestamp(4) from dual
+
+insert into t1(b) select current_timestamp(5) from dual
+
+insert into t1(b) select current_timestamp(6) from dual
+insert into t1(b) select current_timestamp(7) from dual
+current_timestamp(): precision 7 out of range
+
+insert into t1(b) select current_timestamp(-1) from dual
+current_timestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+
+insert into t1(c) select current_timestamp from dual
+
+insert into t1(c) select current_timestamp(0) from dual
+
+insert into t1(c) select current_timestamp(1) from dual
+
+insert into t1(c) select current_timestamp(2) from dual
+
+insert into t1(c) select current_timestamp(3) from dual
+
+insert into t1(c) select current_timestamp(4) from dual
+
+insert into t1(c) select current_timestamp(5) from dual
+
+insert into t1(c) select current_timestamp(6) from dual
+insert into t1(c) select current_timestamp(7) from dual
+current_timestamp(): precision 7 out of range
+
+insert into t1(c) select current_timestamp(-1) from dual
+current_timestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+insert into t1(a) select timeofday() from dual
+value type string doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select current_time from dual
+unknown signature: current_time() (desired <timestamp>)
+
+insert into t1(a) select current_date from dual
+value type date doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(a) select clock_timestamp() from dual
+insert into t1(a) select experimental_follower_read_timestamp() from dual
+value type timestamptz doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select follower_read_timestamp() from dual
+value type timestamptz doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(a) select localtimestamp() from dual
+
+insert into t1(a) select localtimestamp(1) from dual
+
+insert into t1(a) select localtimestamp(2) from dual
+
+insert into t1(a) select localtimestamp(3) from dual
+
+insert into t1(a) select localtimestamp(4) from dual
+
+insert into t1(a) select localtimestamp(5) from dual
+
+insert into t1(a) select localtimestamp(6) from dual
+insert into t1(a) select localtimestamp(7) from dual
+localtimestamp(): precision 7 out of range
+
+
+insert into t1(a) select localtimestamp(0) from dual
+insert into t1(a) select localtimestamp(-1) from dual
+localtimestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+insert into t1(b) select timeofday() from dual
+value type string doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select current_time from dual
+unknown signature: current_time() (desired <date>)
+
+
+insert into t1(b) select current_date from dual
+insert into t1(b) select clock_timestamp() from dual
+unknown signature: clock_timestamp() (desired <date>)
+
+insert into t1(b) select experimental_follower_read_timestamp() from dual
+value type timestamptz doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select follower_read_timestamp() from dual
+value type timestamptz doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(b) select localtimestamp() from dual
+
+insert into t1(b) select localtimestamp(1) from dual
+
+insert into t1(b) select localtimestamp(2) from dual
+
+insert into t1(b) select localtimestamp(3) from dual
+
+insert into t1(b) select localtimestamp(4) from dual
+
+insert into t1(b) select localtimestamp(5) from dual
+
+insert into t1(b) select localtimestamp(6) from dual
+insert into t1(b) select localtimestamp(7) from dual
+localtimestamp(): precision 7 out of range
+
+
+insert into t1(b) select localtimestamp(0) from dual
+insert into t1(b) select localtimestamp(-1) from dual
+localtimestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+insert into t1(c) select timeofday() from dual
+value type string doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select current_time from dual
+unknown signature: current_time() (desired <timestamptz>)
+
+insert into t1(c) select current_date from dual
+value type date doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(c) select clock_timestamp() from dual
+
+insert into t1(c) select experimental_follower_read_timestamp() from dual
+
+insert into t1(c) select follower_read_timestamp() from dual
+
+insert into t1(c) select localtimestamp() from dual
+
+insert into t1(c) select localtimestamp(1) from dual
+
+insert into t1(c) select localtimestamp(2) from dual
+
+insert into t1(c) select localtimestamp(3) from dual
+
+insert into t1(c) select localtimestamp(4) from dual
+
+insert into t1(c) select localtimestamp(5) from dual
+
+insert into t1(c) select localtimestamp(6) from dual
+insert into t1(c) select localtimestamp(7) from dual
+localtimestamp(): precision 7 out of range
+
+
+insert into t1(c) select localtimestamp(0) from dual
+insert into t1(c) select localtimestamp(-1) from dual
+localtimestamp(): precision -1 out of range
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.685643+00:00
+None None 2021-10-11 03:28:05.886616+00:00
+None None 2021-10-11 03:28:05.887743+00:00
+None None 2021-10-11 03:28:10.689134+00:00
+None None 2021-10-11 03:28:10.700000+00:00
+None None 2021-10-11 03:28:10.690000+00:00
+None None 2021-10-11 03:28:10.692000+00:00
+None None 2021-10-11 03:28:10.693800+00:00
+None None 2021-10-11 03:28:10.695040+00:00
+None None 2021-10-11 03:28:10.696197+00:00
+None None 2021-10-11 03:28:11+00:00
+
+insert into t1(a) select transaction_timestamp() from dual
+
+insert into t1(a) select statement_timestamp() from dual
+insert into t1(a) select cluster_logical_timestamp() from dual
+value type decimal doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select age(current_timestamp::timestamptz) from dual
+value type interval doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select (sysdate::timestamptz-now())::int from dual
+value type int doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(a) select (sysdate::timestamptz-now())::int::date from dual
+value type date doesn't match type timestamp of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(a) select sysdate from dual
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.685643+00:00
+None None 2021-10-11 03:28:05.886616+00:00
+None None 2021-10-11 03:28:05.887743+00:00
+None None 2021-10-11 03:28:10.689134+00:00
+None None 2021-10-11 03:28:10.700000+00:00
+None None 2021-10-11 03:28:10.690000+00:00
+None None 2021-10-11 03:28:10.692000+00:00
+None None 2021-10-11 03:28:10.693800+00:00
+None None 2021-10-11 03:28:10.695040+00:00
+None None 2021-10-11 03:28:10.696197+00:00
+None None 2021-10-11 03:28:11+00:00
+2021-10-11 03:28:10.702660 None None
+2021-10-11 03:28:10.704085 None None
+2021-10-11 03:28:10.712841 None None
+
+insert into t1(b) select transaction_timestamp() from dual
+insert into t1(b) select statement_timestamp() from dual
+unknown signature: statement_timestamp() (desired <date>)
+
+insert into t1(b) select cluster_logical_timestamp() from dual
+value type decimal doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select age(current_timestamp::timestamptz) from dual
+value type interval doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(b) select (sysdate::timestamptz-now())::int from dual
+value type int doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+insert into t1(b) select (sysdate::timestamptz-now())::int::date from dual
+insert into t1(b) select sysdate from dual
+value type timestamp doesn't match type date of column "b"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.685643+00:00
+None None 2021-10-11 03:28:05.886616+00:00
+None None 2021-10-11 03:28:05.887743+00:00
+None None 2021-10-11 03:28:10.689134+00:00
+None None 2021-10-11 03:28:10.700000+00:00
+None None 2021-10-11 03:28:10.690000+00:00
+None None 2021-10-11 03:28:10.692000+00:00
+None None 2021-10-11 03:28:10.693800+00:00
+None None 2021-10-11 03:28:10.695040+00:00
+None None 2021-10-11 03:28:10.696197+00:00
+None None 2021-10-11 03:28:11+00:00
+2021-10-11 03:28:10.702660 None None
+2021-10-11 03:28:10.704085 None None
+2021-10-11 03:28:10.712841 None None
+None 2021-10-11 None
+None 1970-01-01 None
+
+insert into t1(c) select transaction_timestamp() from dual
+
+insert into t1(c) select statement_timestamp() from dual
+insert into t1(c) select cluster_logical_timestamp() from dual
+value type decimal doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select age(to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select age(current_timestamp::timestamptz) from dual
+value type interval doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select age(to_char(sysdate,'YYYY-MM-DD HH:MI:SS.FF')::timestamptz) from dual
+value type interval doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select (sysdate::timestamptz-now())::int from dual
+value type int doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select (sysdate::timestamptz-now())::int::date from dual
+value type date doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+insert into t1(c) select sysdate from dual
+value type timestamp doesn't match type timestamptz of column "c"
+HINT:  you will need to rewrite or cast the expression
+
+
+select * from t1
+a b c
+2021-10-11 03:28:10.601952 None None
+2021-10-11 03:28:11 None None
+2021-10-11 03:28:10.600000 None None
+2021-10-11 03:28:10.610000 None None
+2021-10-11 03:28:10.616000 None None
+2021-10-11 03:28:10.616800 None None
+2021-10-11 03:28:10.617900 None None
+2021-10-11 03:28:10.619019 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.635989+00:00
+None None 2021-10-11 03:28:11+00:00
+None None 2021-10-11 03:28:10.600000+00:00
+None None 2021-10-11 03:28:10.640000+00:00
+None None 2021-10-11 03:28:10.641000+00:00
+None None 2021-10-11 03:28:10.641600+00:00
+None None 2021-10-11 03:28:10.642740+00:00
+None None 2021-10-11 03:28:10.643327+00:00
+2021-10-11 03:28:10.650577 None None
+2021-10-11 03:28:10.653104 None None
+2021-10-11 03:28:10.700000 None None
+2021-10-11 03:28:10.660000 None None
+2021-10-11 03:28:10.657000 None None
+2021-10-11 03:28:10.657700 None None
+2021-10-11 03:28:10.658700 None None
+2021-10-11 03:28:10.659232 None None
+2021-10-11 03:28:11 None None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None 2021-10-11 None
+None None 2021-10-11 03:28:10.685643+00:00
+None None 2021-10-11 03:28:05.886616+00:00
+None None 2021-10-11 03:28:05.887743+00:00
+None None 2021-10-11 03:28:10.689134+00:00
+None None 2021-10-11 03:28:10.700000+00:00
+None None 2021-10-11 03:28:10.690000+00:00
+None None 2021-10-11 03:28:10.692000+00:00
+None None 2021-10-11 03:28:10.693800+00:00
+None None 2021-10-11 03:28:10.695040+00:00
+None None 2021-10-11 03:28:10.696197+00:00
+None None 2021-10-11 03:28:11+00:00
+2021-10-11 03:28:10.702660 None None
+2021-10-11 03:28:10.704085 None None
+2021-10-11 03:28:10.712841 None None
+None 2021-10-11 None
+None 1970-01-01 None
+None None 2021-10-11 03:28:10.727793+00:00
+None None 2021-10-11 03:28:10.729577+00:00
+
+drop table t1

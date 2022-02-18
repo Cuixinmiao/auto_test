@@ -1,0 +1,10 @@
+commit;
+rollback;
+Release Savepoint;
+Set Transaction;
+SET TRANSACTION READ ONLY;
+Savepoint n1;
+savepoint;
+rollback transaction;
+rollback transaction to s1;
+end;

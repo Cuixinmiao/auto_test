@@ -1,0 +1,2174 @@
+-- to_char(datetime) test for v9.0.0-beta.1.xTP aarch64-redhat-linux, built 2021/08/24 05:32:28, go1.15.13
+-- Author: cuixiangling
+-- Date: 2021/08/27
+-- 第一个参数是string类型
+-- 日期不全，需要和to_date一起测试,未测试
+-- 日期全，用date或者timestamp转换(-/,.
+:"text")
+at or near ":": syntax error
+DETAIL:  source SQL:
+:"text")
+^
+
+-- 支持的格式 AD(A.D.),AM(A.M.),BC(B.C.),CC(SCC),D,DAY,DD,DDD,DY,FF [1..6],HH(HH12),HH24,MI,MM,MON,MONTH,PM(P.M.),Q,RM,SS,SSSSS,WW,W,X,(Y,YYY),YEAR(SYEAR),YYYY(SYYYY),YYY(YY,Y)
+-- dual表中使用
+select to_char(DATE'2021-02-01','AD') from dual
+to_char
+AD
+
+select to_char(DATE'2021-02-01','A.D.') from dual
+to_char
+A.D.
+
+select to_char(DATE'2021-02-01','BC') from dual
+to_char
+AD
+
+select to_char(DATE'2021-02-01','B.C.') from dual
+to_char
+A.D.
+
+select to_char(DATE'2021-02-01','CC') from dual
+to_char
+21
+
+select to_char(DATE'2021-02-01','SCC') from dual
+to_char
+21
+
+select to_char(DATE'2021-02-01','D') from dual
+to_char
+2
+
+select to_char(DATE'2021-02-01','DAY') from dual
+to_char
+Monday
+
+select to_char(DATE'2021-02-01','DD') from dual
+to_char
+01
+
+select to_char(DATE'2021-02-01','DDD') from dual
+to_char
+032
+
+select to_char(DATE'2021-02-01','DY') from dual
+to_char
+Mon
+
+select to_char(DATE'2021-02-01','FF1') from dual
+to_char
+0
+
+select to_char(DATE'2021-02-01','FF2') from dual
+to_char
+00
+
+select to_char(DATE'2021-02-01','FF3') from dual
+to_char
+000
+
+select to_char(DATE'2021-02-01','FF4') from dual
+to_char
+0000
+
+select to_char(DATE'2021-02-01','FF5') from dual
+to_char
+00000
+
+select to_char(DATE'2021-02-01','FF6') from dual
+to_char
+000000
+select to_char(DATE'2021-02-01','FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(DATE'2021-02-01','FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(DATE'2021-02-01','FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(DATE'2021-02-01','HH') from dual
+to_char
+12
+
+select to_char(DATE'2021-02-01','HH12') from dual
+to_char
+12
+
+select to_char(DATE'2021-02-01','HH24') from dual
+to_char
+00
+
+select to_char(DATE'2021-02-01','MI') from dual
+to_char
+00
+
+select to_char(DATE'2021-02-01','MM') from dual
+to_char
+02
+
+select to_char(DATE'2021-02-01','MON') from dual
+to_char
+Feb
+
+select to_char(DATE'2021-02-01','MONTH') from dual
+to_char
+February
+
+select to_char(DATE'2021-02-01','PM') from dual
+to_char
+AM
+
+select to_char(DATE'2021-02-01','P.M.') from dual
+to_char
+A.M.
+
+select to_char(DATE'2021-02-01','Q') from dual
+to_char
+1
+
+select to_char(DATE'2021-02-01','RM') from dual
+to_char
+II
+
+select to_char(DATE'2021-02-01','SS') from dual
+to_char
+00
+
+select to_char(DATE'2021-02-01','SSSSS') from dual
+to_char
+00000
+
+select to_char(DATE'2021-02-01','WW') from dual
+to_char
+05
+
+select to_char(DATE'2021-02-01','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-02-01','X') from dual
+to_char
+.
+
+select to_char(DATE'2021-02-01','Y,YYY') from dual
+to_char
+2,021
+
+select to_char(DATE'2021-02-01','YEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(DATE'2021-02-01','SYEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(DATE'2021-02-01','YYYY') from dual
+to_char
+2021
+
+select to_char(DATE'2021-02-01','SYYYY') from dual
+to_char
+2021
+
+select to_char(DATE'2021-02-01','YYY') from dual
+to_char
+021
+
+select to_char(DATE'2021-02-01','YY') from dual
+to_char
+21
+
+select to_char(DATE'2021-02-01','Y') from dual
+to_char
+1
+-- 以下to_date用例只能在oracle中使用，等qianbase支持to_date后再进行测试
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'AD') from dual
+to_char
+AD
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'A.D.') from dual
+to_char
+A.D.
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'BC') from dual
+to_char
+AD
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'B.C.') from dual
+to_char
+A.D.
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'CC') from dual
+to_char
+21
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'SCC') from dual
+to_char
+21
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'D') from dual
+to_char
+2
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'DAY') from dual
+to_char
+Monday
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'DD') from dual
+to_char
+01
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'DDD') from dual
+to_char
+032
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'DY') from dual
+to_char
+Mon
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF1') from dual
+to_char
+0
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF2') from dual
+to_char
+00
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF3') from dual
+to_char
+000
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF4') from dual
+to_char
+0000
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF5') from dual
+to_char
+00000
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF6') from dual
+to_char
+000000
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'HH') from dual
+to_char
+12
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'HH12') from dual
+to_char
+12
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'HH24') from dual
+to_char
+00
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'MI') from dual
+to_char
+00
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'MM') from dual
+to_char
+02
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'MON') from dual
+to_char
+Feb
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'MONTH') from dual
+to_char
+February
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'PM') from dual
+to_char
+AM
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'P.M.') from dual
+to_char
+A.M.
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'Q') from dual
+to_char
+1
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'RM') from dual
+to_char
+II
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'SS') from dual
+to_char
+00
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'SSSSS') from dual
+to_char
+00000
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'WW') from dual
+to_char
+05
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'W') from dual
+to_char
+1
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'X') from dual
+to_char
+.
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'Y,YYY') from dual
+to_char
+2,021
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'YEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'SYEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'YYYY') from dual
+to_char
+2021
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'SYYYY') from dual
+to_char
+2021
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'YYY') from dual
+to_char
+021
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'YY') from dual
+to_char
+21
+
+select to_char(to_date('2021-02-01','yyyy-mm-dd'),'Y') from dual
+to_char
+1
+select to_char(to_date('2021-02-01 00:00:00','yyyy-mm-dd HH12:MI:SS'),'HH12') from dual
+to_date(): hour must be between 1 and 12
+
+
+select to_char(to_date('2021-02-01 00:00:00','yyyy-mm-dd HH24:MI:SS'),'HH12') from dual
+to_char
+12
+
+select to_char(to_date('2021-02-01 00:00:00','yyyy-mm-dd HH24:MI:SS'),'HH24') from dual
+to_char
+00
+select to_char(to_date('2021-02-01 24:00:00','yyyy-mm-dd HH24:MI:SS'),'HH12') from dual
+to_date(): hour must be between 0 and 23
+
+
+select to_char(timestamp'1987-12-31 12:01:45','AD') from dual
+to_char
+AD
+
+select to_char(timestamp'1987-12-31 12:01:45','A.D.') from dual
+to_char
+A.D.
+
+select to_char(timestamp'1987-12-31 12:01:45','AM') from dual
+to_char
+PM
+
+select to_char(timestamp'1987-12-31 12:01:45','A.M.') from dual
+to_char
+P.M.
+
+select to_char(timestamp'1987-12-31 12:01:45','BC') from dual
+to_char
+AD
+
+select to_char(timestamp'1987-12-31 12:01:45','B.C.') from dual
+to_char
+A.D.
+
+select to_char(timestamp'1987-12-31 12:01:45','CC') from dual
+to_char
+20
+
+select to_char(timestamp'1987-12-31 12:01:45','SCC') from dual
+to_char
+20
+
+select to_char(timestamp'1987-12-31 12:01:45','D') from dual
+to_char
+5
+
+select to_char(timestamp'1987-12-31 12:01:45','DAY') from dual
+to_char
+Thursday
+
+select to_char(timestamp'1987-12-31 12:01:45','DD') from dual
+to_char
+31
+
+select to_char(timestamp'1987-12-31 12:01:45','DDD') from dual
+to_char
+365
+
+select to_char(timestamp'1987-12-31 12:01:45','DY') from dual
+to_char
+Thu
+
+select to_char(timestamp'1987-12-31 12:01:45','FF1') from dual
+to_char
+0
+
+select to_char(timestamp'1987-12-31 12:01:45','FF2') from dual
+to_char
+00
+
+select to_char(timestamp'1987-12-31 12:01:45','FF3') from dual
+to_char
+000
+
+select to_char(timestamp'1987-12-31 12:01:45','FF4') from dual
+to_char
+0000
+
+select to_char(timestamp'1987-12-31 12:01:45','FF5') from dual
+to_char
+00000
+
+select to_char(timestamp'1987-12-31 12:01:45','FF6') from dual
+to_char
+000000
+select to_char(timestamp'1987-12-31 12:01:45','FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(timestamp'1987-12-31 12:01:45','FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(timestamp'1987-12-31 12:01:45','FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(timestamp'1987-12-31 12:01:45','HH') from dual
+to_char
+12
+
+select to_char(timestamp'1987-12-31 12:01:45','HH12') from dual
+to_char
+12
+
+select to_char(timestamp'1987-12-31 12:01:45','HH24') from dual
+to_char
+12
+
+select to_char(timestamp'1987-12-31 12:01:45','MI') from dual
+to_char
+01
+
+select to_char(timestamp'1987-12-31 12:01:45','MM') from dual
+to_char
+12
+
+select to_char(timestamp'1987-12-31 12:01:45','MON') from dual
+to_char
+Dec
+
+select to_char(timestamp'1987-12-31 12:01:45','MONTH') from dual
+to_char
+December
+
+select to_char(timestamp'1987-12-31 12:01:45','PM') from dual
+to_char
+PM
+
+select to_char(timestamp'1987-12-31 12:01:45','P.M.') from dual
+to_char
+P.M.
+
+select to_char(timestamp'1987-12-31 12:01:45','Q') from dual
+to_char
+4
+
+select to_char(timestamp'1987-12-31 12:01:45','RM') from dual
+to_char
+XII
+
+select to_char(timestamp'1987-12-31 12:01:45','SS') from dual
+to_char
+45
+
+select to_char(timestamp'1987-12-31 12:01:45','SSSSS') from dual
+to_char
+43305
+
+select to_char(timestamp'1987-12-31 12:01:45','WW') from dual
+to_char
+53
+
+select to_char(timestamp'1987-12-31 12:01:45','W') from dual
+to_char
+5
+
+select to_char(timestamp'1987-12-31 12:01:45','X') from dual
+to_char
+.
+
+select to_char(timestamp'1987-12-31 12:01:45','Y,YYY') from dual
+to_char
+1,987
+
+select to_char(timestamp'1987-12-31 12:01:45','YEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(timestamp'1987-12-31 12:01:45','SYEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(timestamp'1987-12-31 12:01:45','YYYY') from dual
+to_char
+1987
+
+select to_char(timestamp'1987-12-31 12:01:45','SYYYY') from dual
+to_char
+1987
+
+select to_char(timestamp'1987-12-31 12:01:45','YYY') from dual
+to_char
+987
+
+select to_char(timestamp'1987-12-31 12:01:45','YY') from dual
+to_char
+87
+
+select to_char(timestamp'1987-12-31 12:01:45','Y') from dual
+to_char
+7
+
+select to_char(timestamptz'1987-12-31 12:01:45','AD') from dual
+to_char
+AD
+
+select to_char(timestamptz'1987-12-31 12:01:45','A.D.') from dual
+to_char
+A.D.
+
+select to_char(timestamptz'1987-12-31 12:01:45','AM') from dual
+to_char
+PM
+
+select to_char(timestamptz'1987-12-31 12:01:45','A.M.') from dual
+to_char
+P.M.
+
+select to_char(timestamptz'1987-12-31 12:01:45','BC') from dual
+to_char
+AD
+
+select to_char(timestamptz'1987-12-31 12:01:45','B.C.') from dual
+to_char
+A.D.
+
+select to_char(timestamptz'1987-12-31 12:01:45','CC') from dual
+to_char
+20
+
+select to_char(timestamptz'1987-12-31 12:01:45','SCC') from dual
+to_char
+20
+
+select to_char(timestamptz'1987-12-31 12:01:45','D') from dual
+to_char
+5
+
+select to_char(timestamptz'1987-12-31 12:01:45','DAY') from dual
+to_char
+Thursday
+
+select to_char(timestamptz'1987-12-31 12:01:45','DD') from dual
+to_char
+31
+
+select to_char(timestamptz'1987-12-31 12:01:45','DDD') from dual
+to_char
+365
+
+select to_char(timestamptz'1987-12-31 12:01:45','DY') from dual
+to_char
+Thu
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF1') from dual
+to_char
+0
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF2') from dual
+to_char
+00
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF3') from dual
+to_char
+000
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF4') from dual
+to_char
+0000
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF5') from dual
+to_char
+00000
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF6') from dual
+to_char
+000000
+select to_char(timestamptz'1987-12-31 12:01:45','FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(timestamptz'1987-12-31 12:01:45','FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(timestamptz'1987-12-31 12:01:45','HH') from dual
+to_char
+12
+
+select to_char(timestamptz'1987-12-31 12:01:45','HH12') from dual
+to_char
+12
+
+select to_char(timestamptz'1987-12-31 12:01:45','HH24') from dual
+to_char
+12
+
+select to_char(timestamptz'1987-12-31 12:01:45','MI') from dual
+to_char
+01
+
+select to_char(timestamptz'1987-12-31 12:01:45','MM') from dual
+to_char
+12
+
+select to_char(timestamptz'1987-12-31 12:01:45','MON') from dual
+to_char
+Dec
+
+select to_char(timestamptz'1987-12-31 12:01:45','MONTH') from dual
+to_char
+December
+
+select to_char(timestamptz'1987-12-31 12:01:45','PM') from dual
+to_char
+PM
+
+select to_char(timestamptz'1987-12-31 12:01:45','P.M.') from dual
+to_char
+P.M.
+
+select to_char(timestamptz'1987-12-31 12:01:45','Q') from dual
+to_char
+4
+
+select to_char(timestamptz'1987-12-31 12:01:45','RM') from dual
+to_char
+XII
+
+select to_char(timestamptz'1987-12-31 12:01:45','SS') from dual
+to_char
+45
+
+select to_char(timestamptz'1987-12-31 12:01:45','SSSSS') from dual
+to_char
+43305
+
+select to_char(timestamptz'1987-12-31 12:01:45','WW') from dual
+to_char
+53
+
+select to_char(timestamptz'1987-12-31 12:01:45','W') from dual
+to_char
+5
+
+select to_char(timestamptz'1987-12-31 12:01:45','X') from dual
+to_char
+.
+
+select to_char(timestamptz'1987-12-31 12:01:45','Y,YYY') from dual
+to_char
+1,987
+
+select to_char(timestamptz'1987-12-31 12:01:45','YEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(timestamptz'1987-12-31 12:01:45','SYEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(timestamptz'1987-12-31 12:01:45','YYYY') from dual
+to_char
+1987
+
+select to_char(timestamptz'1987-12-31 12:01:45','SYYYY') from dual
+to_char
+1987
+
+select to_char(timestamptz'1987-12-31 12:01:45','YYY') from dual
+to_char
+987
+
+select to_char(timestamptz'1987-12-31 12:01:45','YY') from dual
+to_char
+87
+
+select to_char(timestamptz'1987-12-31 12:01:45','Y') from dual
+to_char
+7
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'AD') from dual
+to_char
+AD
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'A.D.') from dual
+to_char
+A.D.
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'AM') from dual
+to_char
+PM
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'A.M.') from dual
+to_char
+P.M.
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'BC') from dual
+to_char
+AD
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'B.C.') from dual
+to_char
+A.D.
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'CC') from dual
+to_char
+20
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'SCC') from dual
+to_char
+20
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'D') from dual
+to_char
+5
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'DAY') from dual
+to_char
+Thursday
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'DD') from dual
+to_char
+31
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'DDD') from dual
+to_char
+365
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'DY') from dual
+to_char
+Thu
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF1') from dual
+to_char
+0
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF2') from dual
+to_char
+00
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF3') from dual
+to_char
+000
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF4') from dual
+to_char
+0000
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF5') from dual
+to_char
+00000
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF6') from dual
+to_char
+000000
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'HH') from dual
+to_char
+12
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'HH12') from dual
+to_char
+12
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'HH24') from dual
+to_char
+12
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'MI') from dual
+to_char
+01
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'MM') from dual
+to_char
+12
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'MON') from dual
+to_char
+Dec
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'MONTH') from dual
+to_char
+December
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'PM') from dual
+to_char
+PM
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'P.M.') from dual
+to_char
+P.M.
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'Q') from dual
+to_char
+4
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'RM') from dual
+to_char
+XII
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'SS') from dual
+to_char
+45
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'SSSSS') from dual
+to_char
+43305
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'WW') from dual
+to_char
+53
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'W') from dual
+to_char
+5
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'X') from dual
+to_char
+.
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'Y,YYY') from dual
+to_char
+1,987
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'YEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'SYEAR') from dual
+to_char
+nineteen eighty-seven
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'YYYY') from dual
+to_char
+1987
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'SYYYY') from dual
+to_char
+1987
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'YYY') from dual
+to_char
+987
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'YY') from dual
+to_char
+87
+
+select to_char(to_date('1987-12-31 12:01:45','yyyy-mm-dd hh:mi:ss'),'Y') from dual
+to_char
+7
+
+select to_char(now(),'AD') from dual
+to_char
+AD
+
+select to_char(now(),'A.D.') from dual
+to_char
+A.D.
+
+select to_char(now(),'AM') from dual
+to_char
+AM
+
+select to_char(now(),'A.M.') from dual
+to_char
+A.M.
+
+select to_char(now(),'BC') from dual
+to_char
+AD
+
+select to_char(now(),'B.C.') from dual
+to_char
+A.D.
+
+select to_char(now(),'CC') from dual
+to_char
+21
+
+select to_char(now(),'SCC') from dual
+to_char
+21
+
+select to_char(now(),'D') from dual
+to_char
+4
+
+select to_char(now(),'DAY') from dual
+to_char
+Wednesday
+
+select to_char(now(),'DD') from dual
+to_char
+01
+
+select to_char(now(),'DDD') from dual
+to_char
+335
+
+select to_char(now(),'DY') from dual
+to_char
+Wed
+
+select to_char(now(),'FF1') from dual
+to_char
+7
+
+select to_char(now(),'FF2') from dual
+to_char
+78
+
+select to_char(now(),'FF3') from dual
+to_char
+790
+
+select to_char(now(),'FF4') from dual
+to_char
+7908
+
+select to_char(now(),'FF5') from dual
+to_char
+79146
+
+select to_char(now(),'FF6') from dual
+to_char
+792024
+select to_char(now(),'FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(now(),'FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(now(),'FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(now(),'HH') from dual
+to_char
+09
+
+select to_char(now(),'HH12') from dual
+to_char
+09
+
+select to_char(now(),'HH24') from dual
+to_char
+09
+
+select to_char(now(),'MI') from dual
+to_char
+32
+
+select to_char(now(),'MM') from dual
+to_char
+12
+
+select to_char(now(),'MON') from dual
+to_char
+Dec
+
+select to_char(now(),'MONTH') from dual
+to_char
+December
+
+select to_char(now(),'PM') from dual
+to_char
+AM
+
+select to_char(now(),'P.M.') from dual
+to_char
+A.M.
+
+select to_char(now(),'Q') from dual
+to_char
+4
+
+select to_char(now(),'RM') from dual
+to_char
+XII
+
+select to_char(now(),'SS') from dual
+to_char
+55
+
+select to_char(now(),'SSSSS') from dual
+to_char
+34375
+
+select to_char(now(),'WW') from dual
+to_char
+48
+
+select to_char(now(),'W') from dual
+to_char
+1
+
+select to_char(now(),'X') from dual
+to_char
+.
+
+select to_char(now(),'Y,YYY') from dual
+to_char
+2,021
+
+select to_char(now(),'YEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(now(),'SYEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(now(),'YYYY') from dual
+to_char
+2021
+
+select to_char(now(),'SYYYY') from dual
+to_char
+2021
+
+select to_char(now(),'YYY') from dual
+to_char
+021
+
+select to_char(now(),'YY') from dual
+to_char
+21
+
+select to_char(now(),'Y') from dual
+to_char
+1
+
+select to_char(current_timestamp,'AD') from dual
+to_char
+AD
+
+select to_char(current_timestamp,'A.D.') from dual
+to_char
+A.D.
+
+select to_char(current_timestamp,'AM') from dual
+to_char
+AM
+
+select to_char(current_timestamp,'A.M.') from dual
+to_char
+A.M.
+
+select to_char(current_timestamp,'BC') from dual
+to_char
+AD
+
+select to_char(current_timestamp,'B.C.') from dual
+to_char
+A.D.
+
+select to_char(current_timestamp,'CC') from dual
+to_char
+21
+
+select to_char(current_timestamp,'SCC') from dual
+to_char
+21
+
+select to_char(current_timestamp,'D') from dual
+to_char
+4
+
+select to_char(current_timestamp,'DAY') from dual
+to_char
+Wednesday
+
+select to_char(current_timestamp,'DD') from dual
+to_char
+01
+
+select to_char(current_timestamp,'DDD') from dual
+to_char
+335
+
+select to_char(current_timestamp,'DY') from dual
+to_char
+Wed
+
+select to_char(current_timestamp,'FF1') from dual
+to_char
+8
+
+select to_char(current_timestamp,'FF2') from dual
+to_char
+81
+
+select to_char(current_timestamp,'FF3') from dual
+to_char
+810
+
+select to_char(current_timestamp,'FF4') from dual
+to_char
+8113
+
+select to_char(current_timestamp,'FF5') from dual
+to_char
+81162
+
+select to_char(current_timestamp,'FF6') from dual
+to_char
+812332
+select to_char(current_timestamp,'FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(current_timestamp,'FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(current_timestamp,'FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(current_timestamp,'HH') from dual
+to_char
+09
+
+select to_char(current_timestamp,'HH12') from dual
+to_char
+09
+
+select to_char(current_timestamp,'HH24') from dual
+to_char
+09
+
+select to_char(current_timestamp,'MI') from dual
+to_char
+32
+
+select to_char(current_timestamp,'MM') from dual
+to_char
+12
+
+select to_char(current_timestamp,'MON') from dual
+to_char
+Dec
+
+select to_char(current_timestamp,'MONTH') from dual
+to_char
+December
+
+select to_char(current_timestamp,'PM') from dual
+to_char
+AM
+
+select to_char(current_timestamp,'P.M.') from dual
+to_char
+A.M.
+
+select to_char(current_timestamp,'Q') from dual
+to_char
+4
+
+select to_char(current_timestamp,'RM') from dual
+to_char
+XII
+
+select to_char(current_timestamp,'SS') from dual
+to_char
+55
+
+select to_char(current_timestamp,'SSSSS') from dual
+to_char
+34375
+
+select to_char(current_timestamp,'WW') from dual
+to_char
+48
+
+select to_char(current_timestamp,'W') from dual
+to_char
+1
+
+select to_char(current_timestamp,'X') from dual
+to_char
+.
+
+select to_char(current_timestamp,'Y,YYY') from dual
+to_char
+2,021
+
+select to_char(current_timestamp,'YEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(current_timestamp,'SYEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(current_timestamp,'YYYY') from dual
+to_char
+2021
+
+select to_char(current_timestamp,'SYYYY') from dual
+to_char
+2021
+
+select to_char(current_timestamp,'YYY') from dual
+to_char
+021
+
+select to_char(current_timestamp,'YY') from dual
+to_char
+21
+
+select to_char(current_timestamp,'Y') from dual
+to_char
+1
+
+select to_char(current_date,'AD') from dual
+to_char
+AD
+
+select to_char(current_date,'A.D.') from dual
+to_char
+A.D.
+
+select to_char(current_date,'AM') from dual
+to_char
+AM
+
+select to_char(current_date,'A.M.') from dual
+to_char
+A.M.
+
+select to_char(current_date,'BC') from dual
+to_char
+AD
+
+select to_char(current_date,'B.C.') from dual
+to_char
+A.D.
+
+select to_char(current_date,'CC') from dual
+to_char
+21
+
+select to_char(current_date,'SCC') from dual
+to_char
+21
+
+select to_char(current_date,'D') from dual
+to_char
+4
+
+select to_char(current_date,'DAY') from dual
+to_char
+Wednesday
+
+select to_char(current_date,'DD') from dual
+to_char
+01
+
+select to_char(current_date,'DDD') from dual
+to_char
+335
+
+select to_char(current_date,'DY') from dual
+to_char
+Wed
+
+select to_char(current_date,'FF1') from dual
+to_char
+0
+
+select to_char(current_date,'FF2') from dual
+to_char
+00
+
+select to_char(current_date,'FF3') from dual
+to_char
+000
+
+select to_char(current_date,'FF4') from dual
+to_char
+0000
+
+select to_char(current_date,'FF5') from dual
+to_char
+00000
+
+select to_char(current_date,'FF6') from dual
+to_char
+000000
+select to_char(current_date,'FF7') from dual
+to_char(): invalid format code: 7
+
+select to_char(current_date,'FF8') from dual
+to_char(): invalid format code: 8
+
+select to_char(current_date,'FF9') from dual
+to_char(): invalid format code: 9
+
+
+select to_char(current_date,'HH') from dual
+to_char
+12
+
+select to_char(current_date,'HH12') from dual
+to_char
+12
+
+select to_char(current_date,'HH24') from dual
+to_char
+00
+
+select to_char(current_date,'MI') from dual
+to_char
+00
+
+select to_char(current_date,'MM') from dual
+to_char
+12
+
+select to_char(current_date,'MON') from dual
+to_char
+Dec
+
+select to_char(current_date,'MONTH') from dual
+to_char
+December
+
+select to_char(current_date,'PM') from dual
+to_char
+AM
+
+select to_char(current_date,'P.M.') from dual
+to_char
+A.M.
+
+select to_char(current_date,'Q') from dual
+to_char
+4
+
+select to_char(current_date,'RM') from dual
+to_char
+XII
+
+select to_char(current_date,'SS') from dual
+to_char
+00
+
+select to_char(current_date,'SSSSS') from dual
+to_char
+00000
+
+select to_char(current_date,'WW') from dual
+to_char
+48
+
+select to_char(current_date,'W') from dual
+to_char
+1
+
+select to_char(current_date,'X') from dual
+to_char
+.
+
+select to_char(current_date,'Y,YYY') from dual
+to_char
+2,021
+
+select to_char(current_date,'YEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(current_date,'SYEAR') from dual
+to_char
+twenty twenty-one
+
+select to_char(current_date,'YYYY') from dual
+to_char
+2021
+
+select to_char(current_date,'SYYYY') from dual
+to_char
+2021
+
+select to_char(current_date,'YYY') from dual
+to_char
+021
+
+select to_char(current_date,'YY') from dual
+to_char
+21
+
+select to_char(current_date,'Y') from dual
+to_char
+1
+-- 第一个参数用日期格式元素中标志的和用非日期格式元素中标记的
+select to_char(DATE'2021/02/01','Y') from dual
+to_char
+1
+select to_char(DATE'2021
+lexical error: unterminated string
+DETAIL:  source SQL:
+select to_char(DATE'2021
+                   ^
+HINT:  try \hf to_char
+
+02
+at or near "2": syntax error
+DETAIL:  source SQL:
+02
+^
+
+01','Y') from dual
+at or near "1": syntax error
+DETAIL:  source SQL:
+01','Y') from dual
+^
+
+select to_char(DATE'2021.02.01','Y') from dual
+to_char(): parsing as type date: missing required date fields
+DETAIL:  Wanted: [ Month Day Era Hour Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year Minute Second ]
+
+select to_char(DATE'2021#02#01','Y') from dual
+to_char(): parsing as type date: unexpected separator '#' for field Day
+DETAIL:  Wanted: [ Day Era Hour Minute Second Nanos Meridian TZHour TZMinute TZSecond ]
+Already found in input: [ Year Month ]
+
+-- 不支持的格式 DL DS E EE FM FX IW IYYY IYY IY I J RR RRRR TS TZD TZH TZM TZR
+select to_char(current_timestamp,'DL') from dual
+to_char(): invalid format code: L
+
+select to_char(current_timestamp,'DS') from dual
+to_char(): invalid format code: S
+
+select to_char(current_timestamp,'E') from dual
+to_char(): invalid format code: E
+
+select to_char(current_timestamp,'EE') from dual
+to_char(): invalid format code: EE
+
+select to_char(current_timestamp,'FM') from dual
+to_char(): invalid format code: FM
+
+select to_char(current_timestamp,'FX') from dual
+to_char(): invalid format code: FX
+
+select to_char(current_timestamp,'IW') from dual
+to_char(): invalid format code: IW
+
+select to_char(current_timestamp,'IYYY') from dual
+to_char(): invalid format code: IYYY
+
+select to_char(current_timestamp,'IYY') from dual
+to_char(): invalid format code: IYY
+
+select to_char(current_timestamp,'IY') from dual
+to_char(): invalid format code: IY
+
+select to_char(current_timestamp,'I') from dual
+to_char(): invalid format code: I
+
+select to_char(current_timestamp,'J') from dual
+to_char(): invalid format code: J
+
+select to_char(current_timestamp,'RR') from dual
+to_char(): invalid format code: RR
+
+select to_char(current_timestamp,'RRRR') from dual
+to_char(): invalid format code: RRRR
+
+select to_char(current_timestamp,'TS') from dual
+to_char(): invalid format code: TS
+
+select to_char(current_timestamp,'TZD') from dual
+to_char(): invalid format code: TZD
+
+select to_char(current_timestamp,'TZH') from dual
+to_char(): invalid format code: TZH
+
+select to_char(current_timestamp,'TZM') from dual
+to_char(): invalid format code: TZM
+
+select to_char(current_timestamp,'TZR') from dual
+to_char(): invalid format code: TZR
+
+-- 单独测试D W WW
+select to_char(DATE'2021-01-01','D') from dual
+to_char
+6
+
+select to_char(DATE'2021-01-01','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-01','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-02','D') from dual
+to_char
+7
+
+select to_char(DATE'2021-01-02','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-02','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-03','D') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-03','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-03','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-04','D') from dual
+to_char
+2
+
+select to_char(DATE'2021-01-04','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-04','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-05','D') from dual
+to_char
+3
+
+select to_char(DATE'2021-01-05','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-05','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-06','D') from dual
+to_char
+4
+
+select to_char(DATE'2021-01-06','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-06','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-07','D') from dual
+to_char
+5
+
+select to_char(DATE'2021-01-07','W') from dual
+to_char
+1
+
+select to_char(DATE'2021-01-07','WW') from dual
+to_char
+01
+
+select to_char(DATE'2021-01-08','D') from dual
+to_char
+6
+
+select to_char(DATE'2021-01-08','W') from dual
+to_char
+2
+
+select to_char(DATE'2021-01-08','WW') from dual
+to_char
+02
+
+select to_char(DATE'2021-01-09','D') from dual
+to_char
+7
+
+select to_char(DATE'2021-01-09','W') from dual
+to_char
+2
+
+select to_char(DATE'2021-01-09','WW') from dual
+to_char
+02
+-- 第二个参数按照日期格式元素表进行测试 分割符为 -/,.
+:"text"
+at or near ":": syntax error
+DETAIL:  source SQL:
+:"text"
+^
+
+-- 除了上面的其他字符
+select to_char(current_timestamp,'YYYY-MM-DD HH:MI:SS-ff AD') from dual
+to_char
+2021-12-01 09:32:55-879400 AD
+
+select to_char(current_timestamp,'YYYY-MM-DD HH/MI/SS.ff WW') from dual
+to_char
+2021-12-01 09/32/55.880102 48
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY-MM-DD HH/MI/SS.ff WW') from dual
+to_char
+2021-08-28 02/09/10.352185 35
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY:MM"text"DD HH,MI/SS.ff WW') from dual
+to_char
+2021:08text28 02,09/10.352185 35
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY:MM"day"DD HH,MI/SS.ff WW') from dual
+to_char
+2021:08day28 02,09/10.352185 35
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY:MM"day1"DD HH,MI/SS.ff WW') from dual
+to_char
+2021:08day128 02,09/10.352185 35
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY:MM","DD HH,MI/SS.ff WW') from dual
+to_char
+2021:0828 02,09/10.352185 35
+
+select to_char(timestamp'2021-08-28 22:09:10.352185','YYYY:MM,DD HH,MI/SS.ff WW') from dual
+to_char
+2021:08,28 10,09/10.352185 35
+select to_char(timestamp'2021-08-28 13:09:10.352185','YYYY:MM,DD HH
+lexical error: unterminated string
+DETAIL:  source SQL:
+select to_char(timestamp'2021-08-28 13:09:10.352185','YYYY:MM,DD HH
+                                                     ^
+HINT:  try \hf to_char
+
+MI/SS.ff WW') from dual
+at or near "mi": syntax error
+DETAIL:  source SQL:
+MI/SS.ff WW') from dual
+^
+
+
+select to_char(timestamp'2021-08-28 02:09:10.352185','YYYY:MM,DD HH*MI%SS.ff WW') from dual
+to_char
+2021:08,28 02*09%10.352185 35
+
+select to_char(timestamp'2021-01-07 02:09:10.352185','*&%()YYYY:MM,DD HH*MI%SS.ff WW') from dual
+to_char
+*&%()2021:01,07 02*09%10.352185 01
+
+SELECT to_char(timestamp'2021-1-6 1:1:1.123456789', 'YYY*(*YY,Y,YYY-MM(*&()DDDDDDHHHH12HH24') from dual
+to_char
+021*(*21,2,021-01(*&()006006010101
+-- oracle select to_char(SYSTIMESTAMP,'yyyy-mm-dd hh24:mi:ss.ff') from dual
+select to_char(CURRENT_TIMESTAMP,'yyyy-mm-dd hh24:mi:ss.ff') from dual
+to_char
+2021-12-01 09:32:55.887938
+
+select to_char(CURRENT_TIMESTAMP,'yyyy-mm-dd hh24:mi:ss.ff3') from dual
+to_char
+2021-12-01 09:32:55.888
+-- oracle select to_char(SYSTIMESTAMP,'yyyy-mm-dd hh24:mi:ss.ff9') from dual
+select to_char(CURRENT_TIMESTAMP,'yyyy-mm-dd hh24:mi:ss.ff9') from dual
+to_char(): invalid format code: 9
+
+-- ff考虑第一个参数的长度超过6位
+SELECT to_char(timestamp'-201-1-6 1:1:1.123456189', 'ff') from dual
+to_char
+123456
+
+SELECT to_char(timestamp'-201-1-6 1:1:1.123456789', 'ff') from dual
+to_char
+123457
+--timetz数据类型不支持
+select to_char(current_time,'HH') from dual
+unknown signature: to_char(timetz, string)
+
+select to_char(current_time,'HH12') from dual
+unknown signature: to_char(timetz, string)
+
+select to_char(current_time,'HH24') from dual
+unknown signature: to_char(timetz, string)
+
+
+drop table if exists tz
+
+create table tz(a timetz)
+
+insert into tz values('12:14:45')
+select to_char(a,'hh') from tz
+unknown signature: to_char(timetz, string)
+
+
+drop table tz
+-- 在实体表中测试
+drop table if exists t1
+
+create table t1(a int,b date,c interval,d time,e timetz,f timestamp,g timestamptz)
+
+insert into t1 values(1,'2021-05-07',INTERVAL '1 year 2 months 3 days 4 hours 5 minutes 6 seconds','12:56:07',TIMETZ '24:00:00','2021-06-08 12:01:01.4567',TIMESTAMPTZ'2021-06-08 00:01:01.4567')
+
+insert into t1 values(2,'2021-05-01', INTERVAL '1-2 3 4:5:6','00:56:07',TIMETZ '00:00:00','2021-06-09 12:01:01.4567',TIMESTAMPTZ'2021-06-09 00:01:01.4567')
+
+insert into t1 values(3,'2021-05-02', '1-2 3 4:5:10','12:56:07',TIMETZ '00:00:00','2021-06-08 01:01:00',TIMESTAMPTZ'2021-06-08 12:01:01.4567')
+
+insert into t1 values(3,'2021-05-03', '1-2 3 4:5:10','11:56:07',TIMETZ '00:59:00','2021-06-01 00:00:00',TIMESTAMPTZ'2021-06-09 11:01:01.4567')
+
+insert into t1 values(3,'2021-05-04', '1-2 3 4:5:10','12:56:07',TIMETZ '12:00:00','2021-06-08 03:00:00',TIMESTAMPTZ'2021-06-10 12:01:01.4567')
+
+insert into t1 values(3,'2021-05-05', '1-2 3 4:5:10','11:56:07',TIMETZ '00:59:00','2021-06-02 13:00:00',TIMESTAMPTZ'2021-06-03 11:01:01.4567')
+
+insert into t1 values(3,'2021-05-07', '1-2 3 4:5:10','12:56:07',TIMETZ '20:00:00','2021-06-06 15:00:00',TIMESTAMPTZ'2021-06-11 12:01:01.4567')
+
+insert into t1 values(3,'2021-05-06', '1-2 3 4:5:10','11:56:07',TIMETZ '00:59:00','2021-06-05 16:00:00',TIMESTAMPTZ'2021-06-04 11:01:01.4567')
+
+select * from t1
+a b c d e f g
+1 2021-05-07 428 days, 4:05:06 12:56:07 00:00:00+00:00 2021-06-08 12:01:01.456700 2021-06-08 00:01:01.456700+00:00
+2 2021-05-01 428 days, 4:05:06 00:56:07 00:00:00+00:00 2021-06-09 12:01:01.456700 2021-06-09 00:01:01.456700+00:00
+3 2021-05-02 428 days, 4:05:10 12:56:07 00:00:00+00:00 2021-06-08 01:01:00 2021-06-08 12:01:01.456700+00:00
+3 2021-05-03 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-01 00:00:00 2021-06-09 11:01:01.456700+00:00
+3 2021-05-04 428 days, 4:05:10 12:56:07 12:00:00+00:00 2021-06-08 03:00:00 2021-06-10 12:01:01.456700+00:00
+3 2021-05-05 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-02 13:00:00 2021-06-03 11:01:01.456700+00:00
+3 2021-05-07 428 days, 4:05:10 12:56:07 20:00:00+00:00 2021-06-06 15:00:00 2021-06-11 12:01:01.456700+00:00
+3 2021-05-06 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-05 16:00:00 2021-06-04 11:01:01.456700+00:00
+-- 出现在投影列中 单独使用
+select to_char(b,'D'),to_char(c,'HH'),to_char(d,'HH24'),to_char(e,'HH12'),to_char(f,'HH'),to_char(g,'HH24') from t1
+unknown signature: to_char(interval, string)
+
+select to_char(b,'D'),to_char(d,'HH24'),to_char(e,'HH12'),to_char(f,'HH'),to_char(g,'HH24') from t1
+unknown signature: to_char(time, string)
+
+select to_char(b,'D'),to_char(e,'HH12'),to_char(f,'HH'),to_char(g,'HH24') from t1
+unknown signature: to_char(timetz, string)
+
+
+select to_char(b,'D'),to_char(f,'HH'),to_char(g,'HH24') from t1
+to_char to_char to_char
+6 12 00
+7 12 00
+1 01 12
+2 12 11
+3 03 12
+4 01 11
+6 03 12
+5 04 11
+
+select to_char(b,'yyyy-mm-dd hh24:mi:ss.ff'),to_char(f,'AD A.D. AM A.M. BC B.C. CC SCC D DAY DD DDD DY FF1 FF2 FF3 FF4 FF5 FF6 HH HH12 HH24 MI MM MON MONTH PM P.M. Q RM SS SSSSS WW W X Y,YYY YEAR SYEAR YYYY SYYYY YYY YY Y') from t1
+to_char to_char
+2021-05-07 00:00:00.000000 AD A.D. PM P.M. AD A.D. 21  21 3 Tuesday 08 159 Tue 4 45 456 4567 45670 456700 12 12 12 01 06 Jun June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-01 00:00:00.000000 AD A.D. PM P.M. AD A.D. 21  21 4 Wednesday 09 160 Wed 4 45 456 4567 45670 456700 12 12 12 01 06 Jun June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-02 00:00:00.000000 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue 0 00 000 0000 00000 000000 01 01 01 01 06 Jun June AM A.M. 2 VI 00 03660 23 2 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-03 00:00:00.000000 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 01 152 Tue 0 00 000 0000 00000 000000 12 12 00 00 06 Jun June AM A.M. 2 VI 00 00000 22 1 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-04 00:00:00.000000 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue 0 00 000 0000 00000 000000 03 03 03 00 06 Jun June AM A.M. 2 VI 00 10800 23 2 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-05 00:00:00.000000 AD A.D. PM P.M. AD A.D. 21  21 4 Wednesday 02 153 Wed 0 00 000 0000 00000 000000 01 01 13 00 06 Jun June PM P.M. 2 VI 00 46800 22 1 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-07 00:00:00.000000 AD A.D. PM P.M. AD A.D. 21  21 1 Sunday 06 157 Sun 0 00 000 0000 00000 000000 03 03 15 00 06 Jun June PM P.M. 2 VI 00 54000 23 1 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+2021-05-06 00:00:00.000000 AD A.D. PM P.M. AD A.D. 21  21 7 Saturday 05 156 Sat 0 00 000 0000 00000 000000 04 04 16 00 06 Jun June PM P.M. 2 VI 00 57600 23 1 . 2,021 twenty twenty-one  twenty twenty-one 2021  2021 021 21 1
+
+select f, to_char(cast(f as timestamp),'AD A.D. AM A.M. BC B.C. CC SCC D DAY DD DDD DY') from t1
+f to_char
+2021-06-08 12:01:01.456700 AD A.D. PM P.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-09 12:01:01.456700 AD A.D. PM P.M. AD A.D. 21  21 4 Wednesday 09 160 Wed
+2021-06-08 01:01:00 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-01 00:00:00 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 01 152 Tue
+2021-06-08 03:00:00 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-02 13:00:00 AD A.D. PM P.M. AD A.D. 21  21 4 Wednesday 02 153 Wed
+2021-06-06 15:00:00 AD A.D. PM P.M. AD A.D. 21  21 1 Sunday 06 157 Sun
+2021-06-05 16:00:00 AD A.D. PM P.M. AD A.D. 21  21 7 Saturday 05 156 Sat
+
+select f, to_char(cast(f as timestamp),'FF1 FF2 FF3 FF4 FF5 FF6 HH HH12 HH24 MI MM MON') from t1
+f to_char
+2021-06-08 12:01:01.456700 4 45 456 4567 45670 456700 12 12 12 01 06 Jun
+2021-06-09 12:01:01.456700 4 45 456 4567 45670 456700 12 12 12 01 06 Jun
+2021-06-08 01:01:00 0 00 000 0000 00000 000000 01 01 01 01 06 Jun
+2021-06-01 00:00:00 0 00 000 0000 00000 000000 12 12 00 00 06 Jun
+2021-06-08 03:00:00 0 00 000 0000 00000 000000 03 03 03 00 06 Jun
+2021-06-02 13:00:00 0 00 000 0000 00000 000000 01 01 13 00 06 Jun
+2021-06-06 15:00:00 0 00 000 0000 00000 000000 03 03 15 00 06 Jun
+2021-06-05 16:00:00 0 00 000 0000 00000 000000 04 04 16 00 06 Jun
+
+select f, to_char(cast(f as timestamp),'MONTH PM P.M. Q RM SS SSSSS WW W X Y,YYY YEAR') from t1
+f to_char
+2021-06-08 12:01:01.456700 June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one
+2021-06-09 12:01:01.456700 June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one
+2021-06-08 01:01:00 June AM A.M. 2 VI 00 03660 23 2 . 2,021 twenty twenty-one
+2021-06-01 00:00:00 June AM A.M. 2 VI 00 00000 22 1 . 2,021 twenty twenty-one
+2021-06-08 03:00:00 June AM A.M. 2 VI 00 10800 23 2 . 2,021 twenty twenty-one
+2021-06-02 13:00:00 June PM P.M. 2 VI 00 46800 22 1 . 2,021 twenty twenty-one
+2021-06-06 15:00:00 June PM P.M. 2 VI 00 54000 23 1 . 2,021 twenty twenty-one
+2021-06-05 16:00:00 June PM P.M. 2 VI 00 57600 23 1 . 2,021 twenty twenty-one
+
+select f, to_char(cast(f as timestamp),'SYEAR YYYY SYYYY YYY YY Y') from t1
+f to_char
+2021-06-08 12:01:01.456700 twenty twenty-one 2021  2021 021 21 1
+2021-06-09 12:01:01.456700 twenty twenty-one 2021  2021 021 21 1
+2021-06-08 01:01:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-01 00:00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-08 03:00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-02 13:00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-06 15:00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-05 16:00:00 twenty twenty-one 2021  2021 021 21 1
+
+select g, to_char(g,'AD A.D. AM A.M. BC B.C. CC SCC D DAY DD DDD DY') from t1
+g to_char
+2021-06-08 00:01:01.456700+00:00 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-09 00:01:01.456700+00:00 AD A.D. AM A.M. AD A.D. 21  21 4 Wednesday 09 160 Wed
+2021-06-08 12:01:01.456700+00:00 AD A.D. PM P.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-09 11:01:01.456700+00:00 AD A.D. AM A.M. AD A.D. 21  21 4 Wednesday 09 160 Wed
+2021-06-10 12:01:01.456700+00:00 AD A.D. PM P.M. AD A.D. 21  21 5 Thursday 10 161 Thu
+2021-06-03 11:01:01.456700+00:00 AD A.D. AM A.M. AD A.D. 21  21 5 Thursday 03 154 Thu
+2021-06-11 12:01:01.456700+00:00 AD A.D. PM P.M. AD A.D. 21  21 6 Friday 11 162 Fri
+2021-06-04 11:01:01.456700+00:00 AD A.D. AM A.M. AD A.D. 21  21 6 Friday 04 155 Fri
+
+select g, to_char(g,'FF1 FF2 FF3 FF4 FF5 FF6 HH HH12 HH24 MI MM MON') from t1
+g to_char
+2021-06-08 00:01:01.456700+00:00 4 45 456 4567 45670 456700 12 12 00 01 06 Jun
+2021-06-09 00:01:01.456700+00:00 4 45 456 4567 45670 456700 12 12 00 01 06 Jun
+2021-06-08 12:01:01.456700+00:00 4 45 456 4567 45670 456700 12 12 12 01 06 Jun
+2021-06-09 11:01:01.456700+00:00 4 45 456 4567 45670 456700 11 11 11 01 06 Jun
+2021-06-10 12:01:01.456700+00:00 4 45 456 4567 45670 456700 12 12 12 01 06 Jun
+2021-06-03 11:01:01.456700+00:00 4 45 456 4567 45670 456700 11 11 11 01 06 Jun
+2021-06-11 12:01:01.456700+00:00 4 45 456 4567 45670 456700 12 12 12 01 06 Jun
+2021-06-04 11:01:01.456700+00:00 4 45 456 4567 45670 456700 11 11 11 01 06 Jun
+
+select g, to_char(g,'MONTH PM P.M. Q RM SS SSSSS WW W X Y,YYY YEAR') from t1
+g to_char
+2021-06-08 00:01:01.456700+00:00 June AM A.M. 2 VI 01 00061 23 2 . 2,021 twenty twenty-one
+2021-06-09 00:01:01.456700+00:00 June AM A.M. 2 VI 01 00061 23 2 . 2,021 twenty twenty-one
+2021-06-08 12:01:01.456700+00:00 June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one
+2021-06-09 11:01:01.456700+00:00 June AM A.M. 2 VI 01 39661 23 2 . 2,021 twenty twenty-one
+2021-06-10 12:01:01.456700+00:00 June PM P.M. 2 VI 01 43261 23 2 . 2,021 twenty twenty-one
+2021-06-03 11:01:01.456700+00:00 June AM A.M. 2 VI 01 39661 22 1 . 2,021 twenty twenty-one
+2021-06-11 12:01:01.456700+00:00 June PM P.M. 2 VI 01 43261 24 2 . 2,021 twenty twenty-one
+2021-06-04 11:01:01.456700+00:00 June AM A.M. 2 VI 01 39661 23 1 . 2,021 twenty twenty-one
+
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1
+g to_char
+2021-06-08 00:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-09 00:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-08 12:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-09 11:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-10 12:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-03 11:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-11 12:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-04 11:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+-- 出现在where语句中
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(g,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(g,'HH') >10
+unsupported comparison operator: <string> > <int>
+
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(g,'HH24') >10
+unsupported comparison operator: <string> > <int>
+
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(g,'HH24') >10
+unsupported comparison operator: <string> > <int>
+
+
+select g, to_char(g,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(g,'MONTH') > to_char(g,'DAY')
+g to_char
+2021-06-11 12:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+2021-06-04 11:01:01.456700+00:00 twenty twenty-one 2021  2021 021 21 1
+-- 出现在投影列中 作为表达式使用
+select cast(to_char(g,'YYYY') as int) + cast(to_char(g,'DD') as int) from t1 where to_char(g,'Y') < to_char(g,'DD')
+?column?
+2031
+2032
+-- 出现在group by，order by
+select cast(to_char(g,'YYYY') as int), sum(a) from t1 where to_char(g,'Y') < to_char(g,'DD') group by to_char(g,'Y'),g
+to_char sum
+2021 3
+2021 3
+
+select cast(to_char(g,'YYYY') as int), sum(a) from t1 where to_char(g,'Y') < to_char(g,'DD') group by g
+to_char sum
+2021 3
+2021 3
+
+select sum(cast(to_char(g,'YYYY') as int)) from t1 group by a
+sum
+2021
+2021
+12126
+
+select sum(cast(to_char(g,'YYYY') as int)) from t1 group by g,to_char(g,'YYYY') order by g
+sum
+2021
+2021
+2021
+2021
+2021
+2021
+2021
+2021
+select distinct to_char(g,'YYYY') from t1 group by g,to_char(g,'YYYY') order by g
+for SELECT DISTINCT, ORDER BY expressions must appear in select list
+
+
+select distinct to_char(g,'YYYY') from t1 group by g,to_char(g,'YYYY')
+to_char
+2021
+
+select distinct to_char(g,'YYYY') from t1 group by g
+to_char
+2021
+
+select sum(cast(to_char(g,'YYYY') as int)) from t1 group by g
+sum
+2021
+2021
+2021
+2021
+2021
+2021
+2021
+2021
+-- 出现在update的set和where语句中
+update t1 set a=cast(to_char(g,'YYYY') as int) where a>2
+
+insert into t1(a,g) values(4,'0021-06-03 03:01:00')
+
+update t1 set a=cast(to_char(g,'YYYY') as int) where a>2
+
+drop table if exists tv
+
+create table tv(col1 int,col2 varchar(20),col3 timestamp)
+
+insert into tv values(1,'abcd','2021-06-01 03:00:00')
+
+insert into tv values(2,'geft','2021-06-02 13:00:00')
+
+insert into tv values(3,'dfd','0021-06-03 03:01:00')
+
+insert into tv values(4,'htyt','2021-06-04 13:00:00')
+-- 出现在update的set和where语句中
+update tv set col2=to_char(col3,'YYYY') where col1>2
+
+select * from tv
+col1 col2 col3
+1 abcd 2021-06-01 03:00:00
+2 geft 2021-06-02 13:00:00
+3 0021 0021-06-03 03:01:00
+4 2021 2021-06-04 13:00:00
+
+select * from t1,tv where a=col1 and to_char(g,'YYYY')=to_char(col3,'YYYY')
+a b c d e f g col1 col2 col3
+1 2021-05-07 428 days, 4:05:06 12:56:07 00:00:00+00:00 2021-06-08 12:01:01.456700 2021-06-08 00:01:01.456700+00:00 1 abcd 2021-06-01 03:00:00
+2 2021-05-01 428 days, 4:05:06 00:56:07 00:00:00+00:00 2021-06-09 12:01:01.456700 2021-06-09 00:01:01.456700+00:00 2 geft 2021-06-02 13:00:00
+-- 出现在union/union all/intersect/except
+select f, to_char(f,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(f,'WW') >10 union select col3, to_char(col3,'SYEAR YYYY SYYYY YYY YY Y') from tv where to_char(col3,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+select f, to_char(f,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(f,'WW') >10 union all select col3, to_char(col3,'SYEAR YYYY SYYYY YYY YY Y') from tv where to_char(col3,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+select f, to_char(f,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(f,'WW') >10 intersect select col3, to_char(col3,'SYEAR YYYY SYYYY YYY YY Y') from tv where to_char(col3,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+select f, to_char(f,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(f,'WW') >10 except select col3, to_char(col3,'SYEAR YYYY SYYYY YYY YY Y') from tv where to_char(col3,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+select col3, to_char(col3,'SYEAR YYYY SYYYY YYY YY Y') from tv where to_char(col3,'WW') >10 except select f, to_char(f,'SYEAR YYYY SYYYY YYY YY Y') from t1 where to_char(f,'WW') >10
+unsupported comparison operator: <string> > <int>
+
+-- create table as select，create的default
+drop table if exists tc
+
+create table tc as select * from t1
+
+select * from tc
+a b c d e f g
+1 2021-05-07 428 days, 4:05:06 12:56:07 00:00:00+00:00 2021-06-08 12:01:01.456700 2021-06-08 00:01:01.456700+00:00
+2 2021-05-01 428 days, 4:05:06 00:56:07 00:00:00+00:00 2021-06-09 12:01:01.456700 2021-06-09 00:01:01.456700+00:00
+2021 2021-05-02 428 days, 4:05:10 12:56:07 00:00:00+00:00 2021-06-08 01:01:00 2021-06-08 12:01:01.456700+00:00
+2021 2021-05-03 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-01 00:00:00 2021-06-09 11:01:01.456700+00:00
+2021 2021-05-04 428 days, 4:05:10 12:56:07 12:00:00+00:00 2021-06-08 03:00:00 2021-06-10 12:01:01.456700+00:00
+2021 2021-05-05 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-02 13:00:00 2021-06-03 11:01:01.456700+00:00
+2021 2021-05-07 428 days, 4:05:10 12:56:07 20:00:00+00:00 2021-06-06 15:00:00 2021-06-11 12:01:01.456700+00:00
+2021 2021-05-06 428 days, 4:05:10 11:56:07 00:59:00+00:00 2021-06-05 16:00:00 2021-06-04 11:01:01.456700+00:00
+17 None None None None None 0021-06-03 03:01:00+00:00
+\d tc
+at or near "\": syntax error
+DETAIL:  source SQL:
+\d tc
+^
+
+
+drop table tc
+
+create table tc(a int , b varchar(50) not null default to_char(timestamp'2021-01-07 02:09:10.352185','*&%()YYYY:MM,DD HH*MI%SS.ff WW'))
+
+insert into tc(a) values(1)
+
+select * from tc
+a b
+1 *&%()2021:01,07 02*09%10.352185 01
+
+drop table tc
+
+drop table if exists t1
+
+create table t1(a int,b date,f date,g date)
+
+insert into t1 values(1,'2021-05-07','2021-06-08 12:01:01','2021-06-08 00:01:01')
+
+insert into t1 values(2,'2021-05-01','2021-06-09 12:01:01','2021-06-09 00:01:01')
+
+insert into t1 values(3,'2021-05-02','2021-06-08 01:01:00','2021-06-08 12:01:01')
+
+insert into t1 values(3,'2021-05-03','2021-06-01 00:00:00','2021-06-09 11:01:01')
+
+insert into t1 values(3,'2021-05-04','2021-06-08 03:00:00','2021-06-10 12:01:01')
+
+insert into t1 values(3,'2021-05-05','2021-06-02 13:00:00','2021-06-03 11:01:01')
+
+insert into t1 values(3,'2021-05-07','2021-06-06 15:00:00','2021-06-11 12:01:01')
+
+insert into t1 values(3,'2021-05-06','2021-06-05 16:00:00','2021-06-04 11:01:01')
+
+select to_char(b,'D'),to_char(f,'HH'),to_char(g,'HH24') from t1
+to_char to_char to_char
+6 12 00
+7 12 00
+1 12 00
+2 12 00
+3 12 00
+4 12 00
+6 12 00
+5 12 00
+
+select f, to_char(cast(f as timestamp),'AD A.D. AM A.M. BC B.C. CC SCC D DAY DD DDD DY') from t1
+f to_char
+2021-06-08 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-09 AD A.D. AM A.M. AD A.D. 21  21 4 Wednesday 09 160 Wed
+2021-06-08 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-01 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 01 152 Tue
+2021-06-08 AD A.D. AM A.M. AD A.D. 21  21 3 Tuesday 08 159 Tue
+2021-06-02 AD A.D. AM A.M. AD A.D. 21  21 4 Wednesday 02 153 Wed
+2021-06-06 AD A.D. AM A.M. AD A.D. 21  21 1 Sunday 06 157 Sun
+2021-06-05 AD A.D. AM A.M. AD A.D. 21  21 7 Saturday 05 156 Sat
+update t1 set a=to_char(g,'YYYY') where a>2
+value type string doesn't match type int of column "a"
+HINT:  you will need to rewrite or cast the expression
+
+
+drop table t1
+
+drop table tv
+-- below from oracle doc
+drop table if exists empl_temp
+
+CREATE TABLE empl_temp   (      employee_id NUMBER(6),      first_name  VARCHAR(20),      last_name   VARCHAR(25),      email       VARCHAR(25),      hire_date   DATE,      job_id      VARCHAR(10), clob_column text )
+ 
+INSERT INTO empl_temp VALUES(111,'John','Doe','example.com','10-JAN-2015','1001','Experienced Employee')
+
+INSERT INTO empl_temp VALUES(112,'John','Smith','example.com','12-JAN-2015','1002','Junior Employee')
+
+INSERT INTO empl_temp VALUES(113,'Johnnie','Smith','example.com','12-JAN-2014','1002','Mid-Career Employee')
+
+INSERT INTO empl_temp VALUES(115,'Jane','Doe','example.com','15-JAN-2015','1005','Executive Employee')
+
+INSERT INTO empl_temp VALUES(1,'Jane','Doe','example.com','2015-05-15','1005','Executive Employee')
+
+INSERT INTO empl_temp VALUES(1,'Jane','Doe','example.com','2015-05-15 10:23:45','1005','Executive Employee')
+
+SELECT hire_date "Default", TO_CHAR(hire_date,'DD') "Short", TO_CHAR(hire_date,'DDD') "Long" FROM empl_temp  WHERE employee_id IN (111, 112, 115)
+Default Short Long
+2015-01-10 10 010
+2015-01-12 12 012
+2015-01-15 15 015
+
+select to_char(DATE'2021-02-01 12:34:23.890','DD')
+to_char
+01
+
+select to_char(timestamp'2021-02-01 12:34:23.890','DD')
+to_char
+01
+
+select now(),to_char(now(),'yyyy-mm-dd hh24:mi:ss.ff')
+now to_char
+2021-12-01 09:32:57.740592+00:00 2021-12-01 09:32:57.740592
+
+select to_char(timestamp'2021-02-01 12:34:23.890','HH')
+to_char
+12
+
+SELECT TO_CHAR(current_DATE, 'DD') || ' of ' || TO_CHAR(current_date, 'Month') || ', ' || TO_CHAR(current_date, 'YYYY') "Ides" FROM DUAL
+Ides
+01 of December, 2021
+SELECT TO_CHAR(current_date, 'DDTH') || ' of ' ||  TO_CHAR(current_date, 'Month') || ', ' ||  TO_CHAR(current_date, 'YYYY') "Ides"  FROM DUAL
+to_char(): invalid format code: TH
+
+SELECT TO_CHAR(current_date, 'DD') || ' of ' ||  TO_CHAR(current_date, 'Month') || ', ' | TO_CHAR(current_date, 'YYYY') "Ides" FROM DUAL
+unsupported binary operator: <string> | <string>
+
+SELECT TO_CHAR(current_date, 'fmDDTH') || ' of ' || TO_CHAR(current_date, 'fmMonth') || ', ' || TO_CHAR(current_date, 'YYYY') "Ides" FROM DUAL
+to_char(): invalid format code: fmDDTH
+
+SELECT TO_CHAR(current_date, 'fmDD') || ' of ' || TO_CHAR(current_date, 'fmMonth') || ', ' || TO_CHAR(current_date, 'YYYY') "Ides" FROM DUAL
+to_char(): invalid format code: fmDD
+
+
+drop table empl_temp

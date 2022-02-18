@@ -1,0 +1,316 @@
+drop table if exists cs_int
+
+drop table if exists cs_int2
+
+drop table if exists cs_varchar
+
+drop table if exists cs_char
+
+create table cs_int (id int)
+insert into cs_int select generate_series(1,5)::char
+value type char doesn't match type int of column "id"
+HINT:  you will need to rewrite or cast the expression
+
+
+create table cs_int2 (id int)
+
+insert into cs_int2 select generate_series(1,5)
+
+create table cs_varchar(id varchar,name varchar)
+
+insert into cs_varchar select generate_series(1,10)::varchar,random()::varchar
+
+create index on cs_varchar(id)
+
+create table cs_char (id char(2))
+
+insert into cs_char select generate_series(1,5)::char
+select * from cs_varchar where id=2
+unsupported comparison operator: <varchar> = <int>
+
+select * from cs_varchar where id=2.0
+unsupported comparison operator: <varchar> = <decimal>
+
+select * from cs_char where id=2
+unsupported comparison operator: <char> = <int>
+
+select * from cs_char where id=2.0
+unsupported comparison operator: <char> = <decimal>
+
+select * from cs_varchar where id in (select id from cs_int)
+unsupported comparison operator: <varchar> IN <tuple{int}>
+
+select a.id,b.id from cs_varchar a,cs_int b where a.id=b.id
+unsupported comparison operator: <varchar> = <int>
+
+-- ERROR: unsupported comparison operator: <varchar> = <int>
+-- SQLSTATE: 22023
+select id+1 from cs_varchar
+unsupported binary operator: <varchar> + <int>
+
+-- ERROR: unsupported binary operator: <varchar> + <int>
+-- SQLSTATE: 22023
+select * from cs_char where id <2
+unsupported comparison operator: <char> < <int>
+
+select * from cs_char where id>2
+unsupported comparison operator: <char> > <int>
+
+select * from cs_varchar where id<2
+unsupported comparison operator: <varchar> < <int>
+
+select * from cs_varchar where id>2
+unsupported comparison operator: <varchar> > <int>
+
+select * from cs_varchar where id<2.1
+unsupported comparison operator: <varchar> < <decimal>
+
+-- ERROR: unsupported comparison operator: <varchar> > <decimal>
+select * from cs_varchar where id between 1 and 3
+unsupported comparison operator: <varchar> > <int>
+
+select * from cs_varchar where id between 3 and 1
+unsupported comparison operator: <varchar> > <int>
+
+select * from cs_varchar where id between 1.9 and 3.0
+unsupported comparison operator: <varchar> > <decimal>
+
+-- ERROR: unsupported comparison operator: <varchar> < <decimal>
+select * from cs_char where id>2.1
+unsupported comparison operator: <char> > <decimal>
+
+-- ERROR: unsupported comparison operator: <char> > <decimal>
+select * from cs_char where id>2.1
+unsupported comparison operator: <char> > <decimal>
+
+-- ERROR: unsupported comparison operator: <char> > <decimal>
+select * from cs_char where id<2.1
+unsupported comparison operator: <char> < <decimal>
+
+-- ERROR: unsupported comparison operator: <char> < <decimal>
+select * from cs_varchar where id in (1,5)
+unsupported comparison operator: id IN (1, 5): expected 1 to be of type varchar, found type int
+
+select * from cs_varchar where id not in (1,5)
+unsupported comparison operator: id NOT IN (1, 5): expected 1 to be of type varchar, found type int
+
+select * from cs_varchar where id like %1
+at or near "%": syntax error
+DETAIL:  source SQL:
+select * from cs_varchar where id like %1
+                                       ^
+HINT:  try \h SELECT
+
+-- invalid syntax: statement ignored: at or near "%": syntax error
+-- SQLSTATE: 42601
+-- DETAIL: source SQL:
+-- select * from cs_varchar where id like %1
+-- HINT: try \h SELECT
+--按照asci排序
+
+select id from cs_varchar order by id desc
+id
+9
+8
+7
+6
+5
+4
+3
+2
+10
+1
+
+select id from cs_varchar group by id
+id
+1
+10
+2
+3
+4
+5
+6
+7
+8
+9
+-- 会按照ascii 码值对比
+select count(*) from cs_varchar
+count
+10
+
+select min(id) from cs_varchar
+min
+1
+-- 会按照ascii 码值对比
+select max(id) from cs_varchar
+max
+9
+-- 会按照ascii 码值对比
+select avg(id) from cs_varchar
+unknown signature: avg(varchar)
+
+-- ERROR: unknown signature: avg(varchar)
+-- SQLSTATE: 42883
+select sum(id) from cs_varchar
+unknown signature: sum(varchar)
+
+-- ERROR: unknown signature: sum(varchar)
+-- SQLSTATE: 42883
+select nvl(id,1) from cs_varchar
+incompatible NVL expressions: expected 1 to be of type varchar, found type int
+
+
+select length(id) from cs_varchar
+length
+1
+2
+1
+1
+1
+1
+1
+1
+1
+1
+
+select lpad(id,10,'1') from cs_varchar
+lpad
+1111111111
+1111111110
+1111111112
+1111111113
+1111111114
+1111111115
+1111111116
+1111111117
+1111111118
+1111111119
+
+select substr(id,1) from cs_varchar
+substr
+1
+10
+2
+3
+4
+5
+6
+7
+8
+9
+
+select substr(lpad(id,10,'1'),1,9) from cs_varchar
+substr
+111111111
+111111111
+111111111
+111111111
+111111111
+111111111
+111111111
+111111111
+111111111
+111111111
+insert into cs_varchar values (1)
+value type int doesn't match type varchar of column "id"
+HINT:  you will need to rewrite or cast the expression
+
+insert into cs_varchar select * from cs_int
+value type int doesn't match type varchar of column "id"
+HINT:  you will need to rewrite or cast the expression
+
+-- ERROR: value type int doesn't match type varchar of column "id"
+-- SQLSTATE: 42804
+delete from cs_varchar  where id <2
+unsupported comparison operator: <varchar> < <int>
+
+delete from cs_varchar  where id =2
+unsupported comparison operator: <varchar> = <int>
+
+delete from cs_varchar  where id in (1,2,3)
+unsupported comparison operator: id IN (1, 2, 3): expected 1 to be of type varchar, found type int
+
+delete from cs_varchar  where id not in (1,2,3)
+unsupported comparison operator: id NOT IN (1, 2, 3): expected 1 to be of type varchar, found type int
+
+delete from cs_varchar  where id in (select  id from cs_int2)
+unsupported comparison operator: <varchar> IN <tuple{int}>
+
+-- ERROR: unsupported comparison operator: <varchar> = <int>
+-- SQLSTATE: 22023
+alter table cs_varchar alter column   id set default 1
+expected DEFAULT expression to have type varchar, but '1' has type int
+
+
+insert into cs_varchar select generate_series(1,10)::varchar,random()::varchar
+
+insert into cs_varchar select generate_series(1,10)::varchar,random()::varchar
+
+insert into cs_varchar select generate_series(1,10)::varchar,random()::varchar
+
+explain select id from cs_varchar where id ='1'
+
+drop sequence if exists cs
+
+create sequence cs
+
+drop table if exists cs_serial
+create table cs_serial (id varchar default nextval('cs'))
+expected DEFAULT expression to have type varchar, but 'nextval('cs')' has type int
+
+alter index cs_varchar@cs_varchar_id_idx split at values (10)
+SPLIT AT data column 1 (id) must be of type varchar, not type int
+
+alter index cs_varchar@cs_varchar_id_idx split at values (1)
+SPLIT AT data column 1 (id) must be of type varchar, not type int
+
+
+alter table cs_varchar split at values (4)
+
+alter table cs_varchar split at values (1)
+
+ALTER TABLE cs_varchar UNSPLIT AT VALUES (1)
+
+ALTER TABLE cs_varchar UNSPLIT all
+ALTER index cs_varchar@cs_varchar_id_idx UNSPLIT  at values(1)
+UNSPLIT AT data column 1 (id) must be of type varchar, not type int
+
+
+ALTER index cs_varchar@cs_varchar_id_idx UNSPLIT  all
+import into cs_varchar csv data ('nodelocal://1/redmine24_import_data.csv')
+exhausted retries: nodelocal storage file does not exist: rpc error: code = NotFound desc = stat /data1/extern/redmine24_import_data.csv: no such file or directory: external_storage: file doesn't exist
+
+
+select count(*) from cs_varchar
+count
+40
+
+export into csv 'nodelocal://1/' with nullas='' from table cs_varchar 
+
+backup table cs_varchar to 'nodelocal://1/'
+
+drop table if exists cs_varcharbak
+
+create table cs_varcharbak as select * from cs_varchar
+
+drop table cs_varchar
+
+restore table cs_varchar from 'nodelocal://1/'
+
+select id,name from cs_varchar where (id,name) not in (select id,name from cs_varcharbak)
+id name
+
+drop table cs_int
+
+drop table cs_int2
+
+drop table cs_varchar
+
+drop table cs_char
+
+drop sequence cs
+drop table cs_serial
+relation "cs_serial" does not exist
+
+
+drop table cs_varcharbak

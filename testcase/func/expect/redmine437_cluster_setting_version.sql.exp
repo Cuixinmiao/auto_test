@@ -1,0 +1,3 @@
+select * from [show cluster setting version]
+version
+9.0-21020000

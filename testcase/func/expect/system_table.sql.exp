@@ -1,0 +1,1134 @@
+select * from [show tables from dbms_internal]
+schema_name table_name type owner estimated_row_count locality
+dbms_internal active_range_feeds table None None None
+dbms_internal backward_dependencies table None None None
+dbms_internal builtin_functions table None None None
+dbms_internal cluster_contended_indexes view None None None
+dbms_internal cluster_contended_keys view None None None
+dbms_internal cluster_contended_tables view None None None
+dbms_internal cluster_contention_events table None None None
+dbms_internal cluster_database_privileges table None None None
+dbms_internal cluster_distsql_flows table None None None
+dbms_internal cluster_inflight_traces table None None None
+dbms_internal cluster_queries table None None None
+dbms_internal cluster_sessions table None None None
+dbms_internal cluster_settings table None None None
+dbms_internal cluster_transactions table None None None
+dbms_internal create_statements table None None None
+dbms_internal create_type_statements table None None None
+dbms_internal cross_db_references table None None None
+dbms_internal databases table None None None
+dbms_internal default_privileges table None None None
+dbms_internal feature_usage table None None None
+dbms_internal forward_dependencies table None None None
+dbms_internal gossip_alerts table None None None
+dbms_internal gossip_liveness table None None None
+dbms_internal gossip_network table None None None
+dbms_internal gossip_nodes table None None None
+dbms_internal index_columns table None None None
+dbms_internal index_usage_statistics table None None None
+dbms_internal interleaved table None None None
+dbms_internal invalid_objects table None None None
+dbms_internal jobs table None None None
+dbms_internal kv_node_liveness table None None None
+dbms_internal kv_node_status table None None None
+dbms_internal kv_store_status table None None None
+dbms_internal leases table None None None
+dbms_internal lost_descriptors_with_data table None None None
+dbms_internal node_build_info table None None None
+dbms_internal node_contention_events table None None None
+dbms_internal node_distsql_flows table None None None
+dbms_internal node_inflight_trace_spans table None None None
+dbms_internal node_metrics table None None None
+dbms_internal node_queries table None None None
+dbms_internal node_runtime_info table None None None
+dbms_internal node_sessions table None None None
+dbms_internal node_statement_statistics table None None None
+dbms_internal node_transaction_statistics table None None None
+dbms_internal node_transactions table None None None
+dbms_internal node_txn_stats table None None None
+dbms_internal partitions table None None None
+dbms_internal predefined_comments table None None None
+dbms_internal ranges view None None None
+dbms_internal ranges_no_leases table None None None
+dbms_internal regions table None None None
+dbms_internal schema_changes table None None None
+dbms_internal session_trace table None None None
+dbms_internal session_variables table None None None
+dbms_internal statement_statistics table None None None
+dbms_internal table_columns table None None None
+dbms_internal table_indexes table None None None
+dbms_internal table_row_statistics table None None None
+dbms_internal tables table None None None
+dbms_internal tenant_usage_details view None None None
+dbms_internal transaction_statistics table None None None
+dbms_internal zones table None None None
+
+select * from [show columns from dbms_internal.active_range_feeds]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+diff BOOL True None  [] False
+id INT8 True None  [] False
+last_event_utc INT8 True None  [] False
+node_id INT8 True None  [] False
+range_end STRING True None  [] False
+range_id INT8 True None  [] False
+range_start STRING True None  [] False
+resolved STRING True None  [] False
+span_end STRING True None  [] False
+span_start STRING True None  [] False
+startts STRING True None  [] False
+tags STRING True None  [] False
+
+select * from [show columns from dbms_internal.backward_dependencies]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+column_id INT8 True None  [] False
+dependson_details STRING True None  [] False
+dependson_id INT8 False None  [] False
+dependson_index_id INT8 True None  [] False
+dependson_name STRING True None  [] False
+dependson_type STRING False None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+index_id INT8 True None  [] False
+
+select * from [show columns from dbms_internal.builtin_functions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+category STRING False None  [] False
+details STRING False None  [] False
+function STRING False None  [] False
+signature STRING False None  [] False
+
+select * from [show columns from dbms_internal.cluster_contended_indexes]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+index_name STRING True None  [] False
+num_contention_events INT8 True None  [] False
+schema_name STRING True None  [] False
+table_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_contended_keys]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+index_name STRING True None  [] False
+key BYTES True None  [] False
+num_contention_events INT8 True None  [] False
+schema_name STRING True None  [] False
+table_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_contended_tables]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+num_contention_events INT8 True None  [] False
+schema_name STRING True None  [] False
+table_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_contention_events]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+count INT8 False None  [] False
+cumulative_contention_time INTERVAL False None  [] False
+index_id INT8 True None  [] False
+key BYTES False None  [] False
+num_contention_events INT8 False None  [] False
+table_id INT8 True None  [] False
+txn_id UUID False None  [] False
+
+select * from [show columns from dbms_internal.cluster_database_privileges]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING False None  [] False
+grantee STRING False None  [] False
+privilege_type STRING False None  [] False
+
+select * from [show columns from dbms_internal.cluster_distsql_flows]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+flow_id UUID False None  [] False
+node_id INT8 False None  [] False
+since TIMESTAMPTZ False None  [] False
+status STRING False None  [] False
+
+select * from [show columns from dbms_internal.cluster_inflight_traces]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+jaeger_json STRING True None  [] False
+node_id INT8 False None  [] False
+root_op_name STRING False None  [] False
+trace_id INT8 False None  [] False
+trace_str STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_queries]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING True None  [] False
+client_address STRING True None  [] False
+distributed BOOL True None  [] False
+node_id INT8 False None  [] False
+phase STRING True None  [] False
+query STRING True None  [] False
+query_id STRING True None  [] False
+session_id STRING True None  [] False
+start TIMESTAMP True None  [] False
+txn_id UUID True None  [] False
+user_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_sessions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+active_queries STRING True None  [] False
+alloc_bytes INT8 True None  [] False
+application_name STRING True None  [] False
+client_address STRING True None  [] False
+kv_txn STRING True None  [] False
+last_active_query STRING True None  [] False
+max_alloc_bytes INT8 True None  [] False
+node_id INT8 False None  [] False
+oldest_query_start TIMESTAMP True None  [] False
+session_id STRING True None  [] False
+session_start TIMESTAMP True None  [] False
+user_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cluster_settings]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+description STRING False None  [] False
+public BOOL False None  [] False
+type STRING False None  [] False
+value STRING False None  [] False
+variable STRING False None  [] False
+
+select * from [show columns from dbms_internal.cluster_transactions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING True None  [] False
+id UUID True None  [] False
+node_id INT8 True None  [] False
+num_auto_retries INT8 True None  [] False
+num_retries INT8 True None  [] False
+num_stmts INT8 True None  [] False
+session_id STRING True None  [] False
+start TIMESTAMP True None  [] False
+txn_string STRING True None  [] False
+
+select * from [show columns from dbms_internal.create_statements]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+alter_statements STRING[] False None  [] False
+create_nofks STRING False None  [] False
+create_statement STRING False None  [] False
+database_id INT8 True None  [] False
+database_name STRING True None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+descriptor_type STRING False None  [] False
+has_partitions BOOL False None  [] False
+is_multi_region BOOL False None  [] False
+is_temporary BOOL False None  [] False
+is_virtual BOOL False None  [] False
+schema_name STRING False None  [] False
+state STRING False None  [] False
+validate_statements STRING[] False None  [] False
+
+select * from [show columns from dbms_internal.create_type_statements]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+create_statement STRING True None  [] False
+database_id INT8 True None  [] False
+database_name STRING True None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING True None  [] False
+enum_members STRING[] True None  [] False
+schema_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.cross_db_references]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+cross_database_reference_description STRING False None  [] False
+object_database STRING False None  [] False
+object_name STRING False None  [] False
+object_schema STRING False None  [] False
+referenced_object_database STRING False None  [] False
+referenced_object_name STRING False None  [] False
+referenced_object_schema STRING False None  [] False
+
+select * from [show columns from dbms_internal.databases]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+create_statement STRING False None  [] False
+id INT8 False None  [] False
+name STRING False None  [] False
+owner NAME False None  [] False
+placement_policy STRING True None  [] False
+primary_region STRING True None  [] False
+regions STRING[] True None  [] False
+survival_goal STRING True None  [] False
+
+select * from [show columns from dbms_internal.default_privileges]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING False None  [] False
+for_all_roles BOOL True None  [] False
+grantee STRING False None  [] False
+object_type STRING False None  [] False
+privilege_type STRING False None  [] False
+role STRING True None  [] False
+schema_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.feature_usage]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+feature_name STRING False None  [] False
+usage_count INT8 False None  [] False
+
+select * from [show columns from dbms_internal.forward_dependencies]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+dependedonby_details STRING True None  [] False
+dependedonby_id INT8 False None  [] False
+dependedonby_index_id INT8 True None  [] False
+dependedonby_name STRING True None  [] False
+dependedonby_type STRING False None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+index_id INT8 True None  [] False
+
+select * from [show columns from dbms_internal.gossip_alerts]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+category STRING False None  [] False
+description STRING False None  [] False
+node_id INT8 False None  [] False
+store_id INT8 True None  [] False
+value FLOAT8 False None  [] False
+
+select * from [show columns from dbms_internal.gossip_liveness]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+decommissioning BOOL False None  [] False
+draining BOOL False None  [] False
+epoch INT8 False None  [] False
+expiration STRING False None  [] False
+isolating BOOL False None  [] False
+membership STRING False None  [] False
+node_id INT8 False None  [] False
+updated_at TIMESTAMP True None  [] False
+
+select * from [show columns from dbms_internal.gossip_network]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+source_id INT8 False None  [] False
+target_id INT8 False None  [] False
+
+select * from [show columns from dbms_internal.gossip_nodes]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+address STRING False None  [] False
+advertise_address STRING False None  [] False
+advertise_sql_address STRING False None  [] False
+attrs JSONB False None  [] False
+build_tag STRING False None  [] False
+cluster_name STRING False None  [] False
+is_live BOOL False None  [] False
+leases INT8 False None  [] False
+locality STRING False None  [] False
+network STRING False None  [] False
+node_id INT8 False None  [] False
+ranges INT8 False None  [] False
+server_version STRING False None  [] False
+sql_address STRING False None  [] False
+sql_network STRING False None  [] False
+started_at TIMESTAMP False None  [] False
+
+select * from [show columns from dbms_internal.index_columns]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+column_direction STRING True None  [] False
+column_id INT8 False None  [] False
+column_name STRING True None  [] False
+column_type STRING False None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+implicit BOOL True None  [] False
+index_id INT8 False None  [] False
+index_name STRING False None  [] False
+
+select * from [show columns from dbms_internal.index_usage_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+index_id INT8 False None  [] False
+last_read TIMESTAMPTZ True None  [] False
+table_id INT8 False None  [] False
+total_reads INT8 False None  [] False
+
+select * from [show columns from dbms_internal.interleaved]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING False None  [] False
+index_name STRING False None  [] False
+parent_database_name STRING False None  [] False
+parent_schema_name STRING False None  [] False
+parent_table_name STRING False None  [] False
+schema_name STRING False None  [] False
+table_name STRING False None  [] False
+
+select * from [show columns from dbms_internal.invalid_objects]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+error STRING True None  [] False
+id INT8 True None  [] False
+obj_name STRING True None  [] False
+schema_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.jobs]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+coordinator_id INT8 True None  [] False
+created TIMESTAMP True None  [] False
+description STRING True None  [] False
+descriptor_ids INT8[] True None  [] False
+error STRING True None  [] False
+execution_errors STRING[] True None  [] False
+finished TIMESTAMP True None  [] False
+fraction_completed FLOAT8 True None  [] False
+high_water_timestamp DECIMAL True None  [] False
+job_id INT8 True None  [] False
+job_type STRING True None  [] False
+last_run TIMESTAMP True None  [] False
+modified TIMESTAMP True None  [] False
+next_run TIMESTAMP True None  [] False
+num_runs INT8 True None  [] False
+running_status STRING True None  [] False
+started TIMESTAMP True None  [] False
+statement STRING True None  [] False
+status STRING True None  [] False
+trace_id INT8 True None  [] False
+user_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.kv_node_liveness]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+draining BOOL False None  [] False
+epoch INT8 False None  [] False
+expiration STRING False None  [] False
+isolating BOOL False None  [] False
+membership STRING False None  [] False
+node_id INT8 False None  [] False
+
+select * from [show columns from dbms_internal.kv_node_status]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+activity JSONB False None  [] False
+address STRING False None  [] False
+args JSONB False None  [] False
+attrs JSONB False None  [] False
+cgo_compiler STRING False None  [] False
+dependencies STRING False None  [] False
+distribution STRING False None  [] False
+env JSONB False None  [] False
+go_version STRING False None  [] False
+locality STRING False None  [] False
+metrics JSONB False None  [] False
+network STRING False None  [] False
+node_id INT8 False None  [] False
+platform STRING False None  [] False
+revision STRING False None  [] False
+server_version STRING False None  [] False
+started_at TIMESTAMP False None  [] False
+tag STRING False None  [] False
+time STRING False None  [] False
+type STRING False None  [] False
+updated_at TIMESTAMP False None  [] False
+
+select * from [show columns from dbms_internal.kv_store_status]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+attrs JSONB False None  [] False
+available INT8 False None  [] False
+bytes_per_replica JSONB False None  [] False
+capacity INT8 False None  [] False
+lease_count INT8 False None  [] False
+logical_bytes INT8 False None  [] False
+metrics JSONB False None  [] False
+node_id INT8 False None  [] False
+range_count INT8 False None  [] False
+store_id INT8 False None  [] False
+used INT8 False None  [] False
+writes_per_replica JSONB False None  [] False
+writes_per_second FLOAT8 False None  [] False
+
+select * from [show columns from dbms_internal.leases]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+deleted BOOL False None  [] False
+expiration TIMESTAMP False None  [] False
+name STRING False None  [] False
+node_id INT8 False None  [] False
+parent_id INT8 False None  [] False
+table_id INT8 False None  [] False
+
+select * from [show columns from dbms_internal.lost_descriptors_with_data]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+descid INT8 False None  [] False
+
+select * from [show columns from dbms_internal.node_build_info]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+field STRING False None  [] False
+node_id INT8 False None  [] False
+value STRING False None  [] False
+
+select * from [show columns from dbms_internal.node_contention_events]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+count INT8 False None  [] False
+cumulative_contention_time INTERVAL False None  [] False
+index_id INT8 True None  [] False
+key BYTES False None  [] False
+num_contention_events INT8 False None  [] False
+table_id INT8 True None  [] False
+txn_id UUID False None  [] False
+
+select * from [show columns from dbms_internal.node_distsql_flows]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+flow_id UUID False None  [] False
+node_id INT8 False None  [] False
+since TIMESTAMPTZ False None  [] False
+status STRING False None  [] False
+
+select * from [show columns from dbms_internal.node_inflight_trace_spans]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+duration INTERVAL True None  [] False
+finished BOOL False None  [] False
+goroutine_id INT8 False None  [] False
+operation STRING True None  [] False
+parent_span_id INT8 False None  [] False
+span_id INT8 False None  [] False
+start_time TIMESTAMPTZ True None  [] False
+trace_id INT8 False None  [] False
+
+select * from [show columns from dbms_internal.node_metrics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+name STRING False None  [] False
+store_id INT8 True None  [] False
+value FLOAT8 False None  [] False
+
+select * from [show columns from dbms_internal.node_queries]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING True None  [] False
+client_address STRING True None  [] False
+distributed BOOL True None  [] False
+node_id INT8 False None  [] False
+phase STRING True None  [] False
+query STRING True None  [] False
+query_id STRING True None  [] False
+session_id STRING True None  [] False
+start TIMESTAMP True None  [] False
+txn_id UUID True None  [] False
+user_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.node_runtime_info]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+component STRING False None  [] False
+field STRING False None  [] False
+node_id INT8 False None  [] False
+value STRING False None  [] False
+
+select * from [show columns from dbms_internal.node_sessions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+active_queries STRING True None  [] False
+alloc_bytes INT8 True None  [] False
+application_name STRING True None  [] False
+client_address STRING True None  [] False
+kv_txn STRING True None  [] False
+last_active_query STRING True None  [] False
+max_alloc_bytes INT8 True None  [] False
+node_id INT8 False None  [] False
+oldest_query_start TIMESTAMP True None  [] False
+session_id STRING True None  [] False
+session_start TIMESTAMP True None  [] False
+user_name STRING True None  [] False
+
+select * from [show columns from dbms_internal.node_statement_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+anonymized STRING True None  [] False
+application_name STRING False None  [] False
+bytes_read_avg FLOAT8 False None  [] False
+bytes_read_var FLOAT8 False None  [] False
+contention_time_avg FLOAT8 True None  [] False
+contention_time_var FLOAT8 True None  [] False
+count INT8 False None  [] False
+database_name STRING False None  [] False
+exec_node_ids INT8[] False None  [] False
+first_attempt_count INT8 False None  [] False
+flags STRING False None  [] False
+full_scan BOOL False None  [] False
+implicit_txn BOOL False None  [] False
+key STRING False None  [] False
+last_error STRING True None  [] False
+max_disk_usage_avg FLOAT8 True None  [] False
+max_disk_usage_var FLOAT8 True None  [] False
+max_mem_usage_avg FLOAT8 True None  [] False
+max_mem_usage_var FLOAT8 True None  [] False
+max_retries INT8 False None  [] False
+network_bytes_avg FLOAT8 True None  [] False
+network_bytes_var FLOAT8 True None  [] False
+network_msgs_avg FLOAT8 True None  [] False
+network_msgs_var FLOAT8 True None  [] False
+node_id INT8 False None  [] False
+overhead_lat_avg FLOAT8 False None  [] False
+overhead_lat_var FLOAT8 False None  [] False
+parse_lat_avg FLOAT8 False None  [] False
+parse_lat_var FLOAT8 False None  [] False
+plan_lat_avg FLOAT8 False None  [] False
+plan_lat_var FLOAT8 False None  [] False
+rows_avg FLOAT8 False None  [] False
+rows_read_avg FLOAT8 False None  [] False
+rows_read_var FLOAT8 False None  [] False
+rows_var FLOAT8 False None  [] False
+run_lat_avg FLOAT8 False None  [] False
+run_lat_var FLOAT8 False None  [] False
+sample_plan JSONB True None  [] False
+service_lat_avg FLOAT8 False None  [] False
+service_lat_var FLOAT8 False None  [] False
+statement_id STRING False None  [] False
+
+select * from [show columns from dbms_internal.node_transaction_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING False None  [] False
+commit_lat_avg FLOAT8 False None  [] False
+commit_lat_var FLOAT8 False None  [] False
+contention_time_avg FLOAT8 True None  [] False
+contention_time_var FLOAT8 True None  [] False
+count INT8 True None  [] False
+key STRING True None  [] False
+max_disk_usage_avg FLOAT8 True None  [] False
+max_disk_usage_var FLOAT8 True None  [] False
+max_mem_usage_avg FLOAT8 True None  [] False
+max_mem_usage_var FLOAT8 True None  [] False
+max_retries INT8 True None  [] False
+network_bytes_avg FLOAT8 True None  [] False
+network_bytes_var FLOAT8 True None  [] False
+network_msgs_avg FLOAT8 True None  [] False
+network_msgs_var FLOAT8 True None  [] False
+node_id INT8 False None  [] False
+retry_lat_avg FLOAT8 False None  [] False
+retry_lat_var FLOAT8 False None  [] False
+rows_read_avg FLOAT8 False None  [] False
+rows_read_var FLOAT8 False None  [] False
+service_lat_avg FLOAT8 False None  [] False
+service_lat_var FLOAT8 False None  [] False
+statement_ids STRING[] True None  [] False
+
+select * from [show columns from dbms_internal.node_transactions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING True None  [] False
+id UUID True None  [] False
+node_id INT8 True None  [] False
+num_auto_retries INT8 True None  [] False
+num_retries INT8 True None  [] False
+num_stmts INT8 True None  [] False
+session_id STRING True None  [] False
+start TIMESTAMP True None  [] False
+txn_string STRING True None  [] False
+
+select * from [show columns from dbms_internal.node_txn_stats]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+application_name STRING False None  [] False
+committed_count INT8 False None  [] False
+implicit_count INT8 False None  [] False
+node_id INT8 False None  [] False
+txn_count INT8 False None  [] False
+txn_time_avg_sec FLOAT8 False None  [] False
+txn_time_var_sec FLOAT8 False None  [] False
+
+select * from [show columns from dbms_internal.partitions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+column_names STRING True None  [] False
+columns INT8 False None  [] False
+index_id INT8 False None  [] False
+list_value STRING True None  [] False
+name STRING False None  [] False
+parent_name STRING True None  [] False
+range_value STRING True None  [] False
+subzone_id INT8 True None  [] False
+table_id INT8 False None  [] False
+zone_id INT8 True None  [] False
+
+select * from [show columns from dbms_internal.predefined_comments]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+comment STRING True None  [] False
+object_id INT8 True None  [] False
+sub_id INT8 True None  [] False
+type INT8 True None  [] False
+
+select * from [show columns from dbms_internal.ranges]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+end_key BYTES True None  [] False
+end_pretty STRING True None  [] False
+index_name STRING True None  [] False
+learner_replicas INT2VECTOR True None  [] False
+lease_holder INT8 True None  [] False
+non_voting_replicas INT2VECTOR True None  [] False
+range_id INT8 True None  [] False
+range_size INT8 True None  [] False
+replica_localities STRING[] True None  [] False
+replicas INT2VECTOR True None  [] False
+schema_name STRING True None  [] False
+split_enforced_until TIMESTAMP True None  [] False
+start_key BYTES True None  [] False
+start_pretty STRING True None  [] False
+table_id INT8 True None  [] False
+table_name STRING True None  [] False
+voting_replicas INT2VECTOR True None  [] False
+
+select * from [show columns from dbms_internal.ranges_no_leases]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING False None  [] False
+end_key BYTES False None  [] False
+end_pretty STRING False None  [] False
+index_name STRING False None  [] False
+learner_replicas INT8[] False None  [] False
+non_voting_replicas INT8[] False None  [] False
+range_id INT8 False None  [] False
+replica_localities STRING[] False None  [] False
+replicas INT8[] False None  [] False
+schema_name STRING False None  [] False
+split_enforced_until TIMESTAMP True None  [] False
+start_key BYTES False None  [] False
+start_pretty STRING False None  [] False
+table_id INT8 False None  [] False
+table_name STRING False None  [] False
+voting_replicas INT8[] False None  [] False
+
+select * from [show columns from dbms_internal.regions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+region STRING False None  [] False
+zones STRING[] False None  [] False
+
+select * from [show columns from dbms_internal.schema_changes]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+direction STRING False None  [] False
+name STRING False None  [] False
+parent_id INT8 False None  [] False
+state STRING False None  [] False
+table_id INT8 False None  [] False
+target_id INT8 True None  [] False
+target_name STRING True None  [] False
+type STRING False None  [] False
+
+select * from [show columns from dbms_internal.session_trace]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+age INTERVAL False None  [] False
+duration INTERVAL True None  [] False
+loc STRING False None  [] False
+message STRING False None  [] False
+message_idx INT8 False None  [] False
+operation STRING True None  [] False
+span_idx INT8 False None  [] False
+tag STRING False None  [] False
+timestamp TIMESTAMPTZ False None  [] False
+
+select * from [show columns from dbms_internal.session_variables]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+hidden BOOL False None  [] False
+value STRING False None  [] False
+variable STRING False None  [] False
+
+select * from [show columns from dbms_internal.statement_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+aggregated_ts TIMESTAMPTZ False None  [] False
+app_name STRING False None  [] False
+fingerprint_id BYTES False None  [] False
+metadata JSONB False None  [] False
+plan_hash BYTES False None  [] False
+sampled_plan JSONB False None  [] False
+statistics JSONB False None  [] False
+
+select * from [show columns from dbms_internal.table_columns]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+column_id INT8 False None  [] False
+column_name STRING False None  [] False
+column_type STRING False None  [] False
+default_expr STRING True None  [] False
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+hidden BOOL False None  [] False
+nullable BOOL False None  [] False
+
+select * from [show columns from dbms_internal.table_indexes]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+descriptor_id INT8 True None  [] False
+descriptor_name STRING False None  [] False
+index_id INT8 False None  [] False
+index_name STRING False None  [] False
+index_type STRING False None  [] False
+is_inverted BOOL False None  [] False
+is_unique BOOL False None  [] False
+
+select * from [show columns from dbms_internal.table_row_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+estimated_row_count INT8 True None  [] False
+table_id INT8 False None  [] False
+table_name STRING False None  [] False
+
+select * from [show columns from dbms_internal.tables]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+audit_mode STRING False None  [] False
+database_name STRING True None  [] False
+drop_time TIMESTAMP True None  [] False
+format_version STRING False None  [] False
+locality STRING True None  [] False
+mod_time TIMESTAMP False None  [] False
+mod_time_logical DECIMAL False None  [] False
+name STRING False None  [] False
+parent_id INT8 False None  [] False
+parent_schema_id INT8 False None  [] False
+sc_lease_expiration_time TIMESTAMP True None  [] False
+sc_lease_node_id INT8 True None  [] False
+schema_name STRING False None  [] False
+state STRING False None  [] False
+table_id INT8 False None  [] False
+version INT8 False None  [] False
+
+select * from [show columns from dbms_internal.tenant_usage_details]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+tenant_id INT8 True None  [] False
+total_pgwire_egress_bytes INT8 True None  [] False
+total_read_bytes INT8 True None  [] False
+total_read_requests INT8 True None  [] False
+total_ru FLOAT8 True None  [] False
+total_sql_pod_seconds FLOAT8 True None  [] False
+total_write_bytes INT8 True None  [] False
+total_write_requests INT8 True None  [] False
+
+select * from [show columns from dbms_internal.transaction_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+aggregated_ts TIMESTAMPTZ False None  [] False
+app_name STRING False None  [] False
+fingerprint_id BYTES False None  [] False
+metadata JSONB False None  [] False
+statistics JSONB False None  [] False
+
+select * from [show columns from dbms_internal.zones]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_name STRING True None  [] False
+full_config_sql STRING True None  [] False
+full_config_yaml STRING False None  [] False
+index_name STRING True None  [] False
+partition_name STRING True None  [] False
+range_name STRING True None  [] False
+raw_config_protobuf BYTES False None  [] False
+raw_config_sql STRING True None  [] False
+raw_config_yaml STRING False None  [] False
+schema_name STRING True None  [] False
+subzone_id INT8 False None  [] False
+table_name STRING True None  [] False
+target STRING True None  [] False
+zone_id INT8 False None  [] False
+
+select * from [show tables from system]
+schema_name table_name type owner estimated_row_count locality
+public descriptor table None 0 None
+public span_configurations table None 0 None
+public sql_instances table None 0 None
+public tenant_usage table None 0 None
+public database_role_settings table None 0 None
+public transaction_statistics table None 0 None
+public statement_statistics table None 0 None
+public join_tokens table None 0 None
+public migrations table None 0 None
+public sqlliveness table None 0 None
+public scheduled_jobs table None 0 None
+public statement_diagnostics table None 0 None
+public statement_diagnostics_requests table None 0 None
+public statement_bundle_chunks table None 0 None
+public role_options table None 0 None
+public protected_ts_records table None 0 None
+public protected_ts_meta table None 0 None
+public namespace table None 0 None
+public reports_meta table None 0 None
+public replication_stats table None 0 None
+public replication_critical_localities table None 0 None
+public replication_constraint_stats table None 0 None
+public comments table None 0 None
+public role_members table None 0 None
+public locations table None 0 None
+public table_statistics table None 0 None
+public web_sessions table None 0 None
+public jobs table None 0 None
+public ui table None 0 None
+public rangelog table None 0 None
+public eventlog table None 0 None
+public lease table None 0 None
+public tenants table None 0 None
+public settings table None 0 None
+public zones table None 0 None
+public users table None 0 None
+
+select * from [show columns from system.descriptor]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+descriptor BYTES True None  ['primary'] False
+id INT8 False None  ['primary'] False
+
+select * from [show columns from system.span_configurations]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+config BYTES False None  ['primary'] False
+end_key BYTES False None  ['primary'] False
+start_key BYTES False None  ['primary'] False
+
+select * from [show columns from system.sql_instances]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+addr STRING True None  ['primary'] False
+id INT8 False None  ['primary'] False
+session_id BYTES True None  ['primary'] False
+
+select * from [show columns from system.tenant_usage]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+current_share_sum FLOAT8 True None  ['primary'] False
+instance_id INT8 False None  ['primary'] False
+instance_lease BYTES True None  ['primary'] False
+instance_seq INT8 True None  ['primary'] False
+instance_shares FLOAT8 True None  ['primary'] False
+last_update TIMESTAMP False None  ['primary'] False
+next_instance_id INT8 False None  ['primary'] False
+ru_burst_limit FLOAT8 True None  ['primary'] False
+ru_current FLOAT8 True None  ['primary'] False
+ru_refill_rate FLOAT8 True None  ['primary'] False
+tenant_id INT8 False None  ['primary'] False
+total_consumption BYTES True None  ['primary'] False
+
+select * from [show columns from system.database_role_settings]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+database_id OID False None  ['primary'] False
+role_name STRING False None  ['primary'] False
+settings STRING[] False None  ['primary'] False
+
+select * from [show columns from system.transaction_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+agg_interval INTERVAL False None  ['primary'] False
+aggregated_ts TIMESTAMPTZ False None  ['fingerprint_stats_idx', 'primary'] False
+app_name STRING False None  ['fingerprint_stats_idx', 'primary'] False
+dbms_internal_aggregated_ts_app_name_fingerprint_id_node_id_shard_8 INT4 False None mod(fnv32(dbms_internal.datums_to_bytes(aggregated_ts, app_name, fingerprint_id, node_id)), 8) ['fingerprint_stats_idx', 'primary'] True
+fingerprint_id BYTES False None  ['fingerprint_stats_idx', 'primary'] False
+metadata JSONB False None  ['primary'] False
+node_id INT8 False None  ['fingerprint_stats_idx', 'primary'] False
+statistics JSONB False None  ['primary'] False
+
+select * from [show columns from system.statement_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+agg_interval INTERVAL False None  ['primary'] False
+aggregated_ts TIMESTAMPTZ False None  ['fingerprint_stats_idx', 'primary'] False
+app_name STRING False None  ['fingerprint_stats_idx', 'primary'] False
+dbms_internal_aggregated_ts_app_name_fingerprint_id_node_id_plan_hash_transaction_fingerprint_id_shard_8 INT4 False None mod(fnv32(dbms_internal.datums_to_bytes(aggregated_ts, app_name, fingerprint_id, node_id, plan_hash, transaction_fingerprint_id)), 8) ['fingerprint_stats_idx', 'primary'] True
+fingerprint_id BYTES False None  ['fingerprint_stats_idx', 'primary'] False
+metadata JSONB False None  ['primary'] False
+node_id INT8 False None  ['fingerprint_stats_idx', 'primary'] False
+plan JSONB False None  ['primary'] False
+plan_hash BYTES False None  ['fingerprint_stats_idx', 'primary'] False
+statistics JSONB False None  ['primary'] False
+transaction_fingerprint_id BYTES False None  ['fingerprint_stats_idx', 'primary'] False
+
+select * from [show columns from system.join_tokens]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+expiration TIMESTAMPTZ False None  ['primary'] False
+id UUID False None  ['primary'] False
+secret BYTES False None  ['primary'] False
+
+select * from [show columns from system.migrations]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+completed_at TIMESTAMPTZ False None  ['primary'] False
+internal INT8 False None  ['primary'] False
+major INT8 False None  ['primary'] False
+minor INT8 False None  ['primary'] False
+patch INT8 False None  ['primary'] False
+
+select * from [show columns from system.sqlliveness]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+expiration DECIMAL False None  ['primary'] False
+session_id BYTES False None  ['primary'] False
+
+select * from [show columns from system.scheduled_jobs]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+created TIMESTAMPTZ False now():::TIMESTAMPTZ  ['primary'] False
+execution_args BYTES False None  ['primary'] False
+executor_type STRING False None  ['primary'] False
+next_run TIMESTAMPTZ True None  ['next_run_idx', 'primary'] False
+owner STRING False None  ['primary'] False
+schedule_details BYTES True None  ['primary'] False
+schedule_expr STRING True None  ['primary'] False
+schedule_id INT8 False unique_rowid()  ['next_run_idx', 'primary'] False
+schedule_name STRING False None  ['primary'] False
+schedule_state BYTES True None  ['primary'] False
+
+select * from [show columns from system.statement_diagnostics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+bundle_chunks INT8[] True None  ['primary'] False
+collected_at TIMESTAMPTZ False None  ['primary'] False
+error STRING True None  ['primary'] False
+id INT8 False unique_rowid()  ['primary'] False
+statement STRING False None  ['primary'] False
+statement_fingerprint STRING False None  ['primary'] False
+trace JSONB True None  ['primary'] False
+
+select * from [show columns from system.statement_diagnostics_requests]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+completed BOOL False false  ['completed_idx', 'primary'] False
+id INT8 False unique_rowid()  ['completed_idx', 'primary'] False
+requested_at TIMESTAMPTZ False None  ['primary'] False
+statement_diagnostics_id INT8 True None  ['primary'] False
+statement_fingerprint STRING False None  ['completed_idx', 'primary'] False
+
+select * from [show columns from system.statement_bundle_chunks]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+data BYTES False None  ['primary'] False
+description STRING True None  ['primary'] False
+id INT8 False unique_rowid()  ['primary'] False
+
+select * from [show columns from system.role_options]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+option STRING False None  ['primary'] False
+username STRING False None  ['primary'] False
+value STRING True None  ['primary'] False
+
+select * from [show columns from system.protected_ts_records]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+id UUID False None  ['primary'] False
+meta BYTES True None  ['primary'] False
+meta_type STRING False None  ['primary'] False
+num_spans INT8 False None  ['primary'] False
+spans BYTES False None  ['primary'] False
+ts DECIMAL False None  ['primary'] False
+verified BOOL False false  ['primary'] False
+
+select * from [show columns from system.protected_ts_meta]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+num_records INT8 False None  ['primary'] False
+num_spans INT8 False None  ['primary'] False
+singleton BOOL False true  ['primary'] False
+total_bytes INT8 False None  ['primary'] False
+version INT8 False None  ['primary'] False
+
+select * from [show columns from system.namespace]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+id INT8 True None  ['primary'] False
+name STRING False None  ['primary'] False
+parentID INT8 False None  ['primary'] False
+parentSchemaID INT8 False None  ['primary'] False
+
+select * from [show columns from system.reports_meta]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+generated TIMESTAMPTZ False None  ['primary'] False
+id INT8 False None  ['primary'] False
+
+select * from [show columns from system.replication_stats]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+over_replicated_ranges INT8 False None  ['primary'] False
+report_id INT8 False None  ['primary'] False
+subzone_id INT8 False None  ['primary'] False
+total_ranges INT8 False None  ['primary'] False
+unavailable_ranges INT8 False None  ['primary'] False
+under_replicated_ranges INT8 False None  ['primary'] False
+zone_id INT8 False None  ['primary'] False
+
+select * from [show columns from system.replication_critical_localities]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+at_risk_ranges INT8 False None  ['primary'] False
+locality STRING False None  ['primary'] False
+report_id INT8 False None  ['primary'] False
+subzone_id INT8 False None  ['primary'] False
+zone_id INT8 False None  ['primary'] False
+
+select * from [show columns from system.replication_constraint_stats]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+config STRING False None  ['primary'] False
+report_id INT8 False None  ['primary'] False
+subzone_id INT8 False None  ['primary'] False
+type STRING False None  ['primary'] False
+violating_ranges INT8 False None  ['primary'] False
+violation_start TIMESTAMPTZ True None  ['primary'] False
+zone_id INT8 False None  ['primary'] False
+
+select * from [show columns from system.comments]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+comment STRING False None  ['primary'] False
+object_id INT8 False None  ['primary'] False
+sub_id INT8 False None  ['primary'] False
+type INT8 False None  ['primary'] False
+
+select * from [show columns from system.role_members]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+isAdmin BOOL False None  ['primary'] False
+member STRING False None  ['primary', 'role_members_member_idx', 'role_members_role_idx'] False
+role STRING False None  ['primary', 'role_members_member_idx', 'role_members_role_idx'] False
+
+select * from [show columns from system.locations]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+latitude DECIMAL(18,15) False None  ['primary'] False
+localityKey STRING False None  ['primary'] False
+localityValue STRING False None  ['primary'] False
+longitude DECIMAL(18,15) False None  ['primary'] False
+
+select * from [show columns from system.table_statistics]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+columnIDs INT8[] False None  ['primary'] False
+createdAt TIMESTAMP False now():::TIMESTAMP  ['primary'] False
+distinctCount INT8 False None  ['primary'] False
+histogram BYTES True None  ['primary'] False
+name STRING True None  ['primary'] False
+nullCount INT8 False None  ['primary'] False
+rowCount INT8 False None  ['primary'] False
+statisticID INT8 False unique_rowid()  ['primary'] False
+tableID INT8 False None  ['primary'] False
+
+select * from [show columns from system.web_sessions]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+auditInfo STRING True None  ['primary'] False
+createdAt TIMESTAMP False now():::TIMESTAMP  ['primary', 'web_sessions_createdAt_idx'] False
+expiresAt TIMESTAMP False None  ['primary', 'web_sessions_expiresAt_idx'] False
+hashedSecret BYTES False None  ['primary'] False
+id INT8 False unique_rowid()  ['primary', 'web_sessions_createdAt_idx', 'web_sessions_expiresAt_idx', 'web_sessions_lastUsedAt_idx', 'web_sessions_revokedAt_idx'] False
+lastUsedAt TIMESTAMP False now():::TIMESTAMP  ['primary', 'web_sessions_lastUsedAt_idx'] False
+revokedAt TIMESTAMP True None  ['primary', 'web_sessions_revokedAt_idx'] False
+username STRING False None  ['primary'] False
+
+select * from [show columns from system.jobs]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+claim_instance_id INT8 True None  ['jobs_run_stats_idx', 'primary'] False
+claim_session_id BYTES True None  ['jobs_run_stats_idx', 'primary'] False
+created TIMESTAMP False now():::TIMESTAMP  ['jobs_run_stats_idx', 'jobs_status_created_idx', 'primary'] False
+created_by_id INT8 True None  ['jobs_created_by_type_created_by_id_idx', 'primary'] False
+created_by_type STRING True None  ['jobs_created_by_type_created_by_id_idx', 'primary'] False
+id INT8 False unique_rowid()  ['jobs_created_by_type_created_by_id_idx', 'jobs_run_stats_idx', 'jobs_status_created_idx', 'primary'] False
+last_run TIMESTAMP True None  ['jobs_run_stats_idx', 'primary'] False
+num_runs INT8 True None  ['jobs_run_stats_idx', 'primary'] False
+payload BYTES False None  ['primary'] False
+progress BYTES True None  ['primary'] False
+status STRING False None  ['jobs_created_by_type_created_by_id_idx', 'jobs_run_stats_idx', 'jobs_status_created_idx', 'primary'] False
+
+select * from [show columns from system.ui]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+key STRING False None  ['primary'] False
+lastUpdated TIMESTAMP False None  ['primary'] False
+value BYTES True None  ['primary'] False
+
+select * from [show columns from system.rangelog]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+eventType STRING False None  ['primary'] False
+info STRING True None  ['primary'] False
+otherRangeID INT8 True None  ['primary'] False
+rangeID INT8 False None  ['primary'] False
+storeID INT8 False None  ['primary'] False
+timestamp TIMESTAMP False None  ['primary'] False
+uniqueID INT8 False unique_rowid()  ['primary'] False
+
+select * from [show columns from system.eventlog]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+eventType STRING False None  ['primary'] False
+info STRING True None  ['primary'] False
+reportingID INT8 False None  ['primary'] False
+targetID INT8 False None  ['primary'] False
+timestamp TIMESTAMP False None  ['primary'] False
+uniqueID BYTES False uuid_v4()  ['primary'] False
+
+select * from [show columns from system.lease]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+descID INT8 False None  ['primary'] False
+expiration TIMESTAMP False None  ['primary'] False
+nodeID INT8 False None  ['primary'] False
+version INT8 False None  ['primary'] False
+
+select * from [show columns from system.tenants]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+active BOOL False true  ['primary'] False
+id INT8 False None  ['primary'] False
+info BYTES True None  ['primary'] False
+
+select * from [show columns from system.settings]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+lastUpdated TIMESTAMP False now():::TIMESTAMP  ['primary'] False
+name STRING False None  ['primary'] False
+value STRING False None  ['primary'] False
+valueType STRING True None  ['primary'] False
+
+select * from [show columns from system.zones]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+config BYTES True None  ['primary'] False
+id INT8 False None  ['primary'] False
+
+select * from [show columns from system.users]
+column_name data_type is_nullable column_default generation_expression indices is_hidden
+hashedPassword BYTES True None  ['primary'] False
+isRole BOOL False false  ['primary'] False
+username STRING False None  ['primary'] False

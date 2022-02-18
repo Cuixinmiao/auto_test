@@ -1,0 +1,32 @@
+commit
+
+rollback
+Release Savepoint
+there is no transaction in progress
+
+Set Transaction
+at or near "EOF": syntax error
+DETAIL:  source SQL:
+Set Transaction
+               ^
+HINT:  try \h SET TRANSACTION
+
+
+SET TRANSACTION READ ONLY
+Savepoint n1
+there is no transaction in progress
+
+savepoint
+at or near "EOF": syntax error
+DETAIL:  source SQL:
+savepoint
+         ^
+HINT:  try \h SAVEPOINT
+
+
+rollback transaction
+rollback transaction to s1
+savepoint "s1" does not exist
+
+
+end
